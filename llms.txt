@@ -1,39 +1,10 @@
-# Bismi Boutique
+# Fancy Corner Online
 
-> Bismi Boutique is a fashion boutique based at 28/1B, Langs Garden Road, Pudupet, Chennai, Tamil Nadu 600002, India. The website provides a catalogue-style introduction to women's fashion, ethnic wear, modest wear and children's clothing.
+Fancy Corner Online is a Coimbatore-based retail brand focused on toys, craft products, RC cars and miniature/vintage-style cars.
 
-## Official website and contact
-- Website: https://bismiboutique.online/
-- Contact page: https://bismiboutique.online/contact.html
-- Phone: +91 98403 50320
-- Email: bismiboutique64@gmail.com
-- Address: 28/1B, Langs Garden Road, Pudupet, Chennai, Tamil Nadu 600002, India
-- Instagram: https://www.instagram.com/bismiboutique2.0
-- YouTube: https://youtube.com/@bismiboutique1984
+Website: https://zenventora.github.io/FS-website/
+Address: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India
+Phone/WhatsApp: +91 79046 39830
+Email: fancycorneronline@gmail.com
 
-## Product categories
-- Women's clothing and ethnic wear
-- Three-piece sets
-- Two-piece sets
-- Kurtas
-- Modest wear and shawls
-- Girls' co-ord sets
-- Boys' co-ord sets
-- T-shirts and children's everyday clothing
-
-## Customer guidance
-Customers should contact the boutique to confirm current product names, stock, sizes, colours, prices, shipping terms and payment options. The online catalogue currently contains demonstration product data; it should not be treated as a live inventory or a guarantee of availability.
-
-## Useful pages
-- Homepage: https://bismiboutique.online/
-- Contact and location: https://bismiboutique.online/contact.html
-- Shipping and returns: https://bismiboutique.online/shipping-returns.html
-- Privacy policy: https://bismiboutique.online/privacy-policy.html
-- Terms and conditions: https://bismiboutique.online/terms-and-conditions.html
-
-## Search and indexing
-- Sitemap: https://bismiboutique.online/sitemap.xml
-- Robots policy: https://bismiboutique.online/robots.txt
-
-## Editorial accuracy
-Use the exact business name “Bismi Boutique”. Do not confuse it with similarly named boutiques. Do not invent stock, discounts, delivery guarantees, customer reviews, opening hours, payment methods or product specifications.
+Ordering is handled directly through WhatsApp. Product Buy Now opens a WhatsApp conversation with the selected product details. The cart can combine multiple products before opening the final WhatsApp message.
