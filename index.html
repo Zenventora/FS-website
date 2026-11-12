@@ -59,7 +59,7 @@
 
 <main id="home">
 <section class="hero"><div class="hero-copy"><div class="eyebrow">FANCY CORNER ONLINE · COIMBATORE</div><h1>Small things.<br><span>Big fun.</span></h1><p>Toys, crafts, RC cars and little vintage cars picked for kids, collectors and anyone who still loves a good toy. Browse the demo collection and order directly on WhatsApp.</p><div class="hero-actions"><a class="btn btn-primary" href="#shop">Shop the collection ↘</a><a class="btn btn-dark" href="https://wa.me/917904639830?text=Hi%20Fancy%20Corner%20Online!%20I%20would%20like%20to%20know%20about%20your%20products." target="_blank" rel="noopener">WhatsApp us ↗</a></div><div class="hero-note">Demo catalogue · Product images are ready to be replaced from <strong>assets/products</strong>.</div></div>
-<div class="hero-art"><div class="shape"></div><div class="shape2"></div><div class="hero-card"><img src="./assets/products/hero.jpg" alt="Toy car collection"></div><div class="hero-badge">RC · TOYS<br><strong>FUN</strong><br>CRAFTS · MINI</div></div></section>
+<div class="hero-art"><div class="shape"></div><div class="shape2"></div><div class="hero-card"><img src="./assets/products/fc-hero.jpg" alt="Toy car collection"></div><div class="hero-badge">RC · TOYS<br><strong>FUN</strong><br>CRAFTS · MINI</div></div></section>
 
 <section class="section"><div class="section-head"><div><div class="eyebrow">WHAT'S IN THE CORNER</div><h2>Pick your <span>kind of fun.</span></h2></div><p>From RC cars to craft kits and tiny vintage-style cars, this starter catalogue is built around the products Fancy Corner Online sells.</p></div>
 <div class="categories"><a class="cat" href="#shop" data-filter-link="RC Cars"><small>01 · DRIVE</small><strong>RC Cars</strong><span class="go">↗</span></a><a class="cat" href="#shop" data-filter-link="Vintage Cars"><small>02 · COLLECT</small><strong>Vintage Cars</strong><span class="go">↗</span></a><a class="cat" href="#shop" data-filter-link="Crafts"><small>03 · CREATE</small><strong>Crafts</strong><span class="go">↗</span></a><a class="cat" href="#shop" data-filter-link="Toys"><small>04 · PLAY</small><strong>Toys & Gifts</strong><span class="go">↗</span></a></div></section>
@@ -79,18 +79,18 @@
 <script>
 const WA="917904639830";
 const products=[
-{id:1,n:"High-Speed RC Racing Car",c:"RC Cars",p:550,i:"./assets/products/rc-racing-car.jpg",t:"Popular"},
-{id:2,n:"Mini Vintage Classic Car",c:"Vintage Cars",p:399,i:"./assets/products/vintage-classic-car.jpg",t:"Classic"},
-{id:3,n:"Creative Craft Starter Kit",c:"Crafts",p:299,i:"./assets/products/craft-starter-kit.jpg",t:"New"},
-{id:4,n:"Remote Monster Truck",c:"RC Cars",p:899,i:"./assets/products/monster-truck.jpg",t:"Hot"},
-{id:5,n:"Retro Mini Beetle Car",c:"Vintage Cars",p:499,i:"./assets/products/retro-beetle.jpg",t:"Collector"},
-{id:6,n:"DIY Art & Craft Box",c:"Crafts",p:449,i:"./assets/products/diy-craft-box.jpg",t:"Create"},
-{id:7,n:"Kids Fun Toy Bundle",c:"Toys",p:699,i:"./assets/products/toy-gift-bundle.jpg",t:"Bundle"},
-{id:8,n:"Mini Police Vintage Car",c:"Vintage Cars",p:349,i:"./assets/products/police-vintage-car.jpg",t:"Mini"},
-{id:9,n:"Fast Drift RC Car",c:"RC Cars",p:749,i:"./assets/products/drift-rc-car.jpg",t:"Drift"},
-{id:10,n:"Build Your Own Craft Set",c:"Crafts",p:599,i:"./assets/products/build-craft-set.jpg",t:"DIY"},
-{id:11,n:"Pocket Toy Gift Pack",c:"Toys",p:399,i:"./assets/products/pocket-toy-pack.jpg",t:"Gift"},
-{id:12,n:"Classic Muscle Mini Car",c:"Vintage Cars",p:599,i:"./assets/products/muscle-mini-car.jpg",t:"Classic"}
+{id:1,n:"Mini Metal Motorcycle — Red",c:"Miniature Bikes",p:550,i:"./assets/products/fc-red-bike.jpg",t:"Popular"},
+{id:2,n:"Mini Metal Motorcycle — Green",c:"Miniature Bikes",p:550,i:"./assets/products/fc-green-bike.jpg",t:"Classic"},
+{id:3,n:"Mini Metal Motorcycle — Gold",c:"Miniature Bikes",p:550,i:"./assets/products/fc-gold-bike.jpg",t:"New"},
+{id:4,n:"Mini Metal Motorcycle — Blue",c:"Miniature Bikes",p:550,i:"./assets/products/fc-blue-bike.jpg",t:"Hot"},
+{id:5,n:"Mini Metal Motorcycle — White",c:"Miniature Bikes",p:550,i:"./assets/products/fc-white-bike.jpg",t:"Collector"},
+{id:6,n:"Mini Bike Display Set",c:"Miniature Bikes",p:1499,i:"./assets/products/fc-display.jpg",t:"Bundle"},
+{id:7,n:"RC Racing Car — Demo",c:"RC Cars",p:899,i:"./assets/products/fc-display.jpg",t:"Demo"},
+{id:8,n:"Vintage Mini Car — Demo",c:"Vintage Cars",p:499,i:"./assets/products/fc-display.jpg",t:"Mini"},
+{id:9,n:"Kids Toy Car — Demo",c:"Toys",p:399,i:"./assets/products/fc-display.jpg",t:"Toy"},
+{id:10,n:"Creative Craft Set — Demo",c:"Crafts",p:299,i:"./assets/products/fc-display.jpg",t:"DIY"},
+{id:11,n:"Fancy Toy Gift Pack — Demo",c:"Toys",p:699,i:"./assets/products/fc-display.jpg",t:"Gift"},
+{id:12,n:"Classic Miniature Bike — Demo",c:"Miniature Bikes",p:599,i:"./assets/products/fc-hero.jpg",t:"Classic"}
 ];
 let cart=JSON.parse(localStorage.getItem("fc-cart")||"[]"),filter="All",query="";
 const money=n=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(n);
@@ -99,7 +99,7 @@ function toast(t){$("#toast").textContent=t;$("#toast").classList.add("show");se
 function save(){localStorage.setItem("fc-cart",JSON.stringify(cart));$("#count").textContent=cart.reduce((a,x)=>a+x.q,0);renderCart()}
 function waMessage(items){let lines=["Hi Fancy Corner Online! 👋","I would like to order these products:",""];let total=0;items.forEach(x=>{let p=products.find(y=>y.id===x.id);let sub=p.p*x.q;total+=sub;lines.push("• "+p.n+" × "+x.q+" — "+money(sub));});lines.push("","Total: "+money(total),"","Store: Fancy Corner Online","Address: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001","Phone/WhatsApp: +91 79046 39830","Please confirm availability, final price and delivery details. Thank you!");return lines.join("\n")}
 function direct(id){let p=products.find(x=>x.id===id);window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(waMessage([{id:p.id,q:1}])), "_blank","noopener,noreferrer")}
-function renderFilters(){let cs=["All","RC Cars","Vintage Cars","Crafts","Toys"];$("#filters").innerHTML=cs.map(x=>'<button class="chip '+(filter===x?"active":"")+'" data-filter="'+x+'">'+x+"</button>").join("");document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderFilters();renderProducts()})}
+function renderFilters(){let cs=["All","RC Cars","Vintage Cars","Miniature Bikes","Crafts","Toys"];$("#filters").innerHTML=cs.map(x=>'<button class="chip '+(filter===x?"active":"")+'" data-filter="'+x+'">'+x+"</button>").join("");document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{filter=b.dataset.filter;renderFilters();renderProducts()})}
 function renderProducts(){let list=products.filter(p=>(filter==="All"||p.c===filter)&&((p.n+" "+p.c).toLowerCase().includes(query)));$("#grid").innerHTML=list.map(p=>'<article class="product"><div class="pic"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy" onerror="this.src=\'https://placehold.co/800x900/ffd900/090909?text=Fancy+Corner\'"><span class="tag">'+p.t+'</span></div><div class="info"><div class="category">'+p.c+'</div><div class="name">'+p.n+'</div><div class="price">'+money(p.p)+' <small>demo</small></div><div class="product-actions"><button class="add" data-add="'+p.id+'" aria-label="Add '+p.n+'">＋</button><button class="buy" data-buy="'+p.id+'">Buy Now ↗</button></div></div></article>').join("");document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>add(+b.dataset.add));document.querySelectorAll("[data-buy]").forEach(b=>b.onclick=()=>direct(+b.dataset.buy))}
 function add(id){let x=cart.find(x=>x.id===id);x?x.q++:cart.push({id,q:1});save();toast("Added to cart")}
 function renderCart(){let list=cart.map(x=>({x,p:products.find(p=>p.id===x.id)})).filter(v=>v.p);$("#bagCount").textContent="("+list.reduce((a,v)=>a+v.x.q,0)+")";$("#cartList").innerHTML=list.length?list.map(v=>'<div class="cart-row"><img src="'+v.p.i+'" alt=""><div><strong>'+v.p.n+'</strong><small>'+money(v.p.p)+' each</small><div class="qty"><button data-minus="'+v.p.id+'">−</button><b>'+v.x.q+'</b><button data-plus="'+v.p.id+'">+</button></div><button class="remove" data-remove="'+v.p.id+'">Remove</button></div><strong>'+money(v.p.p*v.x.q)+'</strong></div>').join(""):'<div style="padding:45px 10px;text-align:center;color:#777"><strong>Your cart is empty.</strong><br><small>Add a few products to send one WhatsApp order.</small></div>';let total=list.reduce((a,v)=>a+v.p.p*v.x.q,0);$("#total").textContent=money(total);document.querySelectorAll("[data-plus]").forEach(b=>b.onclick=()=>add(+b.dataset.plus));document.querySelectorAll("[data-minus]").forEach(b=>b.onclick=()=>{let x=cart.find(x=>x.id===+b.dataset.minus);if(x.q>1)x.q--;else cart=cart.filter(y=>y.id!==x.id);save()});document.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>{cart=cart.filter(x=>x.id!==+b.dataset.remove);save()})}
