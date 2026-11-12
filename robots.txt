@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://bismiboutique.online/sitemap.xml
+Sitemap: https://zenventora.github.io/FS-website/sitemap.xml
