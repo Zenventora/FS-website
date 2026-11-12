@@ -1,0 +1,14 @@
+{
+  "name": "bismi-boutique-storefront",
+  "version": "1.1.0",
+  "description": "Responsive SEO-aware fashion storefront preview for Bismi Boutique.",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 4173",
+    "check:links": "python3 scripts/check_links.py",
+    "check:seo": "python3 scripts/check_seo.py"
+  },
+  "keywords": ["Bismi Boutique", "women fashion", "kids clothing", "ethnic wear", "boutique"],
+  "author": "Bismi Boutique",
+  "license": "UNLICENSED"
+}

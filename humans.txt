@@ -1,0 +1,8 @@
+/* TEAM */
+Brand: Bismi Boutique
+Website: https://bismiboutique.online/
+
+/* SITE */
+Built with semantic HTML, responsive CSS and vanilla JavaScript.
+Brand palette: berry pink, ivory and golden yellow.
+Catalogue note: product imagery, names and prices are demonstration placeholders until approved by the boutique.
