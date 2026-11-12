@@ -1,8 +1,7 @@
 /* TEAM */
-Brand: Bismi Boutique
-Website: https://bismiboutique.online/
-
+Fancy Corner Online
+Website: Zenventora
 /* SITE */
-Built with semantic HTML, responsive CSS and vanilla JavaScript.
-Brand palette: berry pink, ivory and golden yellow.
-Catalogue note: product imagery, names and prices are demonstration placeholders until approved by the boutique.
+Site: Fancy Corner Online
+Location: Coimbatore, Tamil Nadu, India
+Contact: fancycorneronline@gmail.com
