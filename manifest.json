@@ -1,10 +1,9 @@
 {
-  "name": "Bismi Boutique",
-  "short_name": "Bismi",
-  "description": "Fashion for women and kids",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#fffafc",
-  "theme_color": "#9d286b",
-  "icons": [{ "src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml" }]
+  "name":"Fancy Corner Online",
+  "short_name":"Fancy Corner",
+  "start_url":"/FS-website/",
+  "display":"standalone",
+  "background_color":"#fffdf4",
+  "theme_color":"#ffd900",
+  "description":"Toys, crafts, RC cars and miniature vintage cars from Fancy Corner Online."
 }
