@@ -1,10 +1,31 @@
 # Fancy Corner Online
 
-Fancy Corner Online is a Coimbatore-based retail brand focused on toys, craft products, RC cars and miniature/vintage-style cars.
+> Premium online catalogue for Fancy Corner Online, Coimbatore, Tamil Nadu, India.
 
-Website: https://zenventora.github.io/FS-website/
-Address: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India
-Phone/WhatsApp: +91 79046 39830
-Email: fancycorneronline@gmail.com
+## Brand
+- Name: Fancy Corner Online
+- Location: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India.
+- Phone/WhatsApp: +91 79046 39830
+- Email: fancycorneronline@gmail.com
+- Website: https://zenventora.github.io/FS-website/
 
-Ordering is handled directly through WhatsApp. Product Buy Now opens a WhatsApp conversation with the selected product details. The cart can combine multiple products before opening the final WhatsApp message.
+## Collections
+- Mini Racer Bikes
+- Racer Cars
+- Super Bikes
+- Vintage Cars
+- Vintage Materials
+- Craft Materials
+
+## Ordering
+Customers can browse the catalogue, add products to a cart and send their selection directly to Fancy Corner Online through WhatsApp.
+
+## Social profiles
+- Instagram: https://www.instagram.com/fancycorneronline/
+- YouTube: https://www.youtube.com/@FancyCornerOnline
+- Facebook: https://www.facebook.com/profile.php?id=61596729560426
+- Threads: https://www.threads.com/@fancycorneronline
+- X: https://x.com/fancycorner_
+
+## Brand asset
+The canonical Fancy Corner Online logo is stored at `/images/logo.jpeg` and should be used for brand/logo placements, favicon and social metadata.
