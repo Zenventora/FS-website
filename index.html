@@ -80,7 +80,7 @@
 <div class="section-head"><div><div class="eyebrow">PRODUCT CATALOGUE</div><h2>What we <span>have.</span></h2></div><p>Choose a tab, browse the actual images, and open any product directly. Each product has a shareable link that can be sent from WhatsApp, Instagram, YouTube or anywhere else.</p></div>
 <div class="filterbar" id="filters"></div>
 <div class="products" id="products"></div>
-<div class="showall"><button class="btn outline" id="showAll">Show all products</button></div>
+
 </div></section>
 
 <section class="section" id="how"><div class="feature" style="display:block"><div class="feature-copy" style="max-width:100%"><div class="eyebrow">SIMPLE FLOW</div><h2 style="font-size:42px;line-height:1;margin:8px 0 14px">Find the product. <span style="color:#a58332">Then talk to us.</span></h2><p style="max-width:760px;color:var(--muted);font-size:14px;line-height:1.8;margin:0">Browse → open the product → send an enquiry. Final availability and pricing are confirmed directly by Fancy Corner Online.</p></div></div></section>
@@ -137,7 +137,7 @@ function openCart(){$("#drawer").classList.add("open")}function closeCart(){$("#
 $("#cartBtn").onclick=openCart;$("#close").onclick=closeCart;$("#overlay").onclick=closeCart;
 $("#checkout").onclick=()=>{if(!selection.length)return toast("No products selected");const lines=selection.map(id=>{const p=products.find(x=>x.id===id);return "• "+p.n+"\n  "+productUrl(id)}).join("\n");window.open("https://wa.me/"+WA+"?text="+encodeURIComponent("Hi Fancy Corner Online! 👋\n\nI'm interested in these products:\n"+lines+"\n\nPlease share availability and price."),"_blank","noopener")};
 $("#search").oninput=e=>{q=e.target.value.toLowerCase().trim();renderProducts()};
-$("#showAll").onclick=()=>{active="All";q="";$("#search").value="";renderFilters();renderProducts();location.hash="catalog"};
+
 document.querySelectorAll("[data-filter-link]").forEach(a=>a.onclick=()=>{active=a.dataset.filterLink;renderFilters();renderProducts()});
 function focusProduct(){const id=new URLSearchParams(location.search).get("product");if(!id)return;const p=products.find(x=>x.id===+id);if(!p)return;active=p.c;renderFilters();renderProducts();setTimeout(()=>{const el=$("#product-"+id);if(el){el.classList.add("target");el.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>el.classList.remove("target"),2800)}},120)}
 $("#year").textContent=new Date().getFullYear();selection=JSON.parse(localStorage.getItem("fc-selection")||"[]");renderFilters();renderProducts();renderCart();focusProduct();
