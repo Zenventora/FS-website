@@ -280,6 +280,104 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
   .art-collectible{right:3%;bottom:0;width:47%;height:39%}
   .art-caption{left:2%;font-size:7px}
 }
+</style><style>
+/* Signature collection showcase */
+.collection-showcase{
+  position:relative;
+  padding:112px clamp(20px,5vw,80px) 104px;
+  background:#111113;
+  color:#f5f5f7;
+  overflow:hidden;
+}
+.collection-showcase:before{
+  content:"";
+  position:absolute;inset:-30% -10% auto auto;width:620px;height:620px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(178,138,59,.13),transparent 68%);
+  pointer-events:none;
+}
+.showcase-head{
+  max-width:1280px;margin:0 auto 42px;
+  display:flex;align-items:flex-end;justify-content:space-between;gap:40px;
+  position:relative;z-index:1;
+}
+.showcase-kicker{font-size:10px;letter-spacing:.22em;font-weight:800;color:#b28a3b}
+.showcase-head h2{
+  margin:14px 0 0;font-size:clamp(42px,5.5vw,78px);line-height:.96;
+  letter-spacing:-.045em;font-weight:700;
+}
+.showcase-head h2 em{font-style:normal;color:#b28a3b}
+.showcase-head>p{max-width:300px;margin:0 0 5px;color:#96969b;font-size:14px;line-height:1.7}
+.showcase-rail{
+  max-width:1280px;margin:0 auto;
+  display:grid;grid-template-columns:1.65fr 1fr 1fr;
+  gap:12px;min-height:520px;
+  position:relative;z-index:1;
+}
+.showcase-card{
+  position:relative;display:block;overflow:hidden;min-height:520px;
+  background:#1b1b1e;
+  isolation:isolate;
+  text-decoration:none;
+}
+.showcase-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.9);
+  transform:scale(1.01);
+  transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s ease;
+}
+.showcase-card:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.03) 28%,rgba(0,0,0,.78) 100%);
+  z-index:1;
+}
+.showcase-card:hover img{transform:scale(1.06);filter:saturate(1.08)}
+.showcase-card:before{
+  content:"";position:absolute;inset:12px;border:1px solid rgba(255,255,255,.16);
+  z-index:3;pointer-events:none;opacity:.7;
+}
+.showcase-overlay{
+  position:absolute;left:28px;right:24px;bottom:28px;z-index:4;
+  display:flex;flex-direction:column;align-items:flex-start;
+}
+.showcase-overlay span{font-size:10px;letter-spacing:.18em;color:#d7b96f;margin-bottom:12px}
+.showcase-overlay strong{font-size:clamp(24px,2.8vw,40px);line-height:1.05;letter-spacing:-.025em}
+.showcase-overlay small{margin-top:8px;color:#dddde0;font-size:12px}
+.showcase-foot{
+  max-width:1280px;margin:24px auto 0;
+  display:flex;align-items:center;gap:16px;color:#77777d;font-size:9px;letter-spacing:.18em;font-weight:800;
+}
+.showcase-line{height:1px;background:#353539;flex:1}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-visible{opacity:1;transform:none}
+@media(max-width:900px){
+  .showcase-head{align-items:flex-start;flex-direction:column;gap:18px}
+  .showcase-rail{grid-template-columns:1.25fr 1fr 1fr;min-height:430px}
+  .showcase-card{min-height:430px}
+  .showcase-overlay{left:20px;bottom:20px}
+}
+@media(max-width:650px){
+  .collection-showcase{padding:82px 16px 78px}
+  .showcase-head h2{font-size:48px}
+  .showcase-head>p{font-size:13px}
+  .showcase-rail{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:10px;padding-bottom:8px;margin-right:-16px;padding-right:16px;
+    scrollbar-width:none;
+  }
+  .showcase-rail::-webkit-scrollbar{display:none}
+  .showcase-card{
+    flex:0 0 78vw;min-height:460px;scroll-snap-align:start;
+  }
+  .showcase-card-large{flex-basis:84vw}
+  .showcase-overlay strong{font-size:30px}
+  .showcase-overlay small{font-size:11px}
+  .showcase-foot{margin-top:16px}
+}
+/* Tighter social icon rhythm */
+.socials{gap:11px!important}
+.socials a{width:28px!important;height:28px!important;min-height:28px!important}
+.socials a svg{width:20px!important;height:20px!important;flex-basis:20px!important}
 </style></head>
 <body>
 <div class="topbar">Fancy Corner Online · Coimbatore · Product Catalogue</div>
@@ -310,6 +408,30 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 </div>
 </section>
 
+<section class="collection-showcase" id="collections">
+<div class="showcase-head reveal">
+<div>
+<span class="showcase-kicker">THE COLLECTION</span>
+<h2>Made to be seen.<br><em>Made to be kept.</em></h2>
+</div>
+<p>A closer look at the pieces that make Fancy Corner different.</p>
+</div>
+<div class="showcase-rail">
+<a class="showcase-card showcase-card-large reveal" href="#catalog?category=Mini%20Racer%20Bikes">
+<img src="./images/IMG_20261112_002054.jpg" alt="Mini racer bike collection">
+<div class="showcase-overlay"><span>01</span><strong>Mini Racer Bikes</strong><small>Small scale. Serious character.</small></div>
+</a>
+<a class="showcase-card reveal" href="#catalog?category=Vintage%20Collectibles">
+<img src="./images/IMG_20261112_002125.jpg" alt="Vintage collectible collection">
+<div class="showcase-overlay"><span>02</span><strong>Vintage Collectibles</strong><small>Pieces worth displaying.</small></div>
+</a>
+<a class="showcase-card reveal" href="#catalog?category=Craft%20Materials">
+<img src="./images/IMG_20261112_001101.jpg" alt="Vintage collectible detail">
+<div class="showcase-overlay"><span>03</span><strong>Collect & Create</strong><small>Find your next favourite.</small></div>
+</a>
+</div>
+<div class="showcase-foot reveal"><span>SCROLL TO EXPLORE</span><span class="showcase-line"></span><span>03 / 03</span></div>
+</section>
 <section class="catalog" id="catalog">
 <div class="catalog-head"><div><div class="eyebrow">PRODUCT CATALOGUE</div><h2>Browse the <span>collection.</span></h2></div><p>Every card below uses an image from the Fancy Corner image library. Use the tabs or search to narrow the catalogue. Product links can be shared directly and will open the matching item.</p></div>
 <div class="filters" id="filters"></div>
@@ -333,7 +455,7 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 <div class="contact-list">
 <a href="tel:+917904639830"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.8 9.1 2a1.4 1.4 0 0 1 1.7.8l1.3 3.1a1.4 1.4 0 0 1-.4 1.6L10 8.9a14.8 14.8 0 0 0 5.1 5.1l1.4-1.7a1.4 1.4 0 0 1 1.6-.4l3.1 1.3a1.4 1.4 0 0 1 .8 1.7l-.8 2.5a2.8 2.8 0 0 1-3 2C9.2 18.2 5.8 14.8 4.6 5.8a2.8 2.8 0 0 1 2-3z"/></svg><span>+91 79046 39830</span></a>
 <a href="mailto:fancycorneronline@gmail.com"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5zm9 7.1L19.5 7H4.5l7.5 5.1zM5 17h14V9.4l-7 4.8-7-4.8V17z"/></svg><span>fancycorneronline@gmail.com</span></a>
-<a class="whatsapp-link" href="https://wa.me/917904639830" target="_blank" rel="noopener"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.3zM12 21.5h-.1a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.1C2 6.3 6.5 1.9 12 1.9c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.2-.3-.5.3-.4.9-1.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.3 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.1-.4-.2-.7-.4z"/></svg><span>WhatsApp ↗</span></a>
+<a class="whatsapp-link" href="https://wa.me/917904639830" target="_blank" rel="noopener"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.3zM12 21.5h-.1a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.1C2 6.3 6.5 1.9 12 1.9c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.2-.3-.5.3-.4.9-1.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.3 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.1-.4-.2-.7-.4z"/></svg><span>WhatsApp</span></a>
 </div>
 <div class="address-line"><svg class="contact-icon address-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg><span>No.12, Bilal Estate, South Ukkadam,<br>Coimbatore – 641001, Tamil Nadu, India.</span></div>
 </section>
@@ -398,5 +520,16 @@ function focusProduct(){const id=new URLSearchParams(location.search).get("produ
 $("#year").textContent=new Date().getFullYear();selection=JSON.parse(localStorage.getItem("fc-selection")||"[]");renderFilters();renderProducts();renderCart();focusProduct();
 </script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fancy Corner Online","url":"https://zenventora.github.io/FS-website/","logo":"https://zenventora.github.io/FS-website/images/logo.jpeg","email":"fancycorneronline@gmail.com","telephone":"+91 79046 39830","address":{"@type":"PostalAddress","streetAddress":"No.12, Bilal Estate, South Ukkadam","addressLocality":"Coimbatore","postalCode":"641001","addressRegion":"Tamil Nadu","addressCountry":"IN"},"sameAs":["https://www.instagram.com/fancycorneronline/","https://www.youtube.com/@FancyCornerOnline","https://www.facebook.com/profile.php?id=61596729560426","https://www.threads.com/@fancycorneronline","https://x.com/fancycorner_"]},{"@type":"WebSite","name":"Fancy Corner Online","url":"https://zenventora.github.io/FS-website/","potentialAction":{"@type":"SearchAction","target":"https://zenventora.github.io/FS-website/?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
-</body>
+<script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const items=document.querySelectorAll(".reveal");
+  if(!("IntersectionObserver" in window)){items.forEach(el=>el.classList.add("is-visible"));return}
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){entry.target.classList.add("is-visible");io.unobserve(entry.target)}
+    });
+  },{threshold:.14,rootMargin:"0px 0px -40px"});
+  items.forEach(el=>io.observe(el));
+});
+</script></body>
 </html>
