@@ -54,24 +54,80 @@
 @media(max-width:700px){.topbar{font-size:8px;padding:0 10px;text-align:center}.nav{height:72px;padding:0 16px;gap:14px}.navright{gap:6px}.search{width:42px;border:0;background:transparent;padding:0}.search input{display:none}.hero{padding:18px 16px 26px;display:block}.hero-copy{min-height:0;padding:42px 27px 38px;border-radius:24px 24px 0 0}.hero h1{font-size:58px}.hero p{font-size:14px}.hero-note{gap:22px}.hero-note strong{font-size:19px}.hero-visual{min-height:350px;border-radius:0 0 24px 24px;grid-template-rows:1.15fr .85fr}.catalog{padding:0 16px 62px}.catalog-head{display:block;padding-top:10px}.catalog-head h2{font-size:50px}.catalog-head p{margin-top:15px}.products{grid-template-columns:1fr 1fr;gap:12px}.product-info{padding:13px}.product-name{font-size:13px}.product-row{gap:5px}.add,.share{width:36px;height:36px}.footer-inner{grid-template-columns:1fr;padding:44px 16px 28px;gap:32px}.footer-bottom{display:block;padding:16px}.footer-bottom span{display:block;margin:5px 0}.socials{grid-template-columns:1fr 1fr}}
 </style>
 <style>
-/* Final visual refinement */
-.hero{max-width:1320px;margin:auto;padding:96px 24px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.hero-copy{min-height:620px;padding:72px 64px;border-radius:34px;background:#111;box-shadow:0 30px 80px rgba(20,18,15,.16)}
-.hero h1{font-size:clamp(58px,7vw,104px);line-height:.86;letter-spacing:-.075em;margin:22px 0 28px}
-.hero p{font-size:17px;line-height:1.85;max-width:600px}.hero-note{margin-top:48px;gap:42px}.hero-note strong{font-size:26px}
-.hero-visual{min-height:620px;border-radius:34px;grid-template-columns:1.25fr .75fr;gap:10px;box-shadow:0 30px 80px rgba(20,18,15,.16)}
-.hero-side{display:grid;grid-template-rows:1.25fr .75fr;gap:10px}
-.hero-spec{background:#171717;color:#fff;padding:26px;display:flex;flex-direction:column;justify-content:center;gap:5px}
-.hero-spec span{font-size:9px;color:#a7a39c;letter-spacing:.15em}.hero-spec strong{font-size:30px;letter-spacing:-.04em;margin-bottom:16px}
-.catalog{padding-top:96px;padding-bottom:96px}
-.catalog-head{padding-top:0}.catalog-head p{font-size:15px;line-height:1.9}
-.products{gap:20px}
-.footer{margin-top:0}.footer-inner{padding:78px 24px 70px;grid-template-columns:1.2fr .8fr 1fr 1fr;gap:56px}
-.footer-logo{font-size:17px}.footer p,.footer-links a,.socials a{font-size:13px}.footer-links{gap:13px}
-.socials{display:flex;flex-direction:column;gap:12px}.socials a{display:flex;align-items:center;gap:11px;border:0;padding:0;color:#ddd8d0}.socials a:hover{color:#d6b25e}.socials svg{width:18px;height:18px;fill:currentColor;flex:0 0 18px}
-.footer-bottom{padding-top:21px;padding-bottom:24px}
-@media(max-width:1050px){.hero{grid-template-columns:1fr}.hero-visual{min-height:520px}.footer-inner{grid-template-columns:1fr 1fr}}
-@media(max-width:700px){.hero{padding:72px 16px;display:block}.hero-copy{min-height:0;padding:50px 28px;border-radius:26px 26px 0 0}.hero h1{font-size:60px}.hero-visual{min-height:500px;border-radius:0 0 26px 26px;grid-template-columns:1.15fr .85fr}.hero-spec{padding:18px}.hero-spec strong{font-size:24px}.catalog{padding-top:72px;padding-bottom:72px}.footer-inner{grid-template-columns:1fr;padding:64px 16px 48px;gap:42px}}
+/* Apple-inspired premium refinement: tighter hierarchy, deliberate rhythm, product-first */
+:root{
+  --bg:#f5f5f7;--paper:#fff;--ink:#1d1d1f;--muted:#6e6e73;--line:#d2d2d7;
+  --gold:#b28a3b;--dark:#111113;--soft:#e8e8ed;--shadow:0 24px 70px rgba(0,0,0,.10);
+}
+body{background:var(--bg);color:var(--ink);font-size:17px}
+.topbar{height:30px;background:#111113;font-size:9px;letter-spacing:.16em}
+.header{background:rgba(245,245,247,.88);border-bottom:1px solid rgba(210,210,215,.75)}
+.nav{max-width:1280px;height:72px;padding:0 24px;gap:24px}
+.logo{width:42px;height:42px;flex:0 0 42px}.logo img{width:42px;height:42px;border-radius:9px}
+.navlinks{gap:24px}.navlinks a{font-size:11px;color:#333;font-weight:700}
+.navright{gap:12px}.search{width:220px;height:38px;background:rgba(255,255,255,.75)}
+.cartbtn{height:38px;font-size:10px}
+
+.hero{max-width:1280px;padding:80px 24px 96px;grid-template-columns:1.02fr .98fr;gap:16px}
+.hero-copy{min-height:590px;padding:68px 64px;border-radius:28px;background:#111113;box-shadow:0 24px 70px rgba(0,0,0,.12)}
+.eyebrow{font-size:9px;letter-spacing:.18em}
+.hero h1{font-size:clamp(56px,6.5vw,94px);line-height:.9;letter-spacing:-.07em;margin:20px 0 24px}
+.hero p{font-size:16px;line-height:1.75;max-width:560px;color:#b9b9bd}
+.hero-actions{margin-top:28px;gap:8px}.btn{min-height:46px;font-size:10px}
+.hero-note{margin-top:42px;gap:38px}.hero-note strong{font-size:23px}.hero-note span{font-size:9px}
+.hero-visual{min-height:590px;border-radius:28px;gap:8px;box-shadow:0 24px 70px rgba(0,0,0,.10)}
+.hero-side{gap:8px}
+.hero-spec{padding:24px;background:#161618}.hero-spec span{font-size:8px}.hero-spec strong{font-size:28px;margin-bottom:13px}
+.hero-label{font-size:9px}
+
+.catalog{max-width:1280px;padding:0 24px 96px}
+.catalog-head{padding:0 0 30px;align-items:end}
+.catalog-head h2{font-size:clamp(46px,6vw,76px);letter-spacing:-.065em;margin-top:10px}
+.catalog-head p{font-size:14px;line-height:1.8;max-width:470px}
+.filters{margin-bottom:28px;gap:7px}.filter{padding:11px 17px;font-size:10px}
+.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+.product-card{border:1px solid rgba(210,210,215,.9);border-radius:20px;box-shadow:none}
+.product-card:hover{transform:translateY(-3px);box-shadow:0 18px 45px rgba(0,0,0,.08)}
+.product-image{background:#f0f0f2}.product-info{padding:18px}.product-cat{font-size:8px}.product-name{font-size:15px;margin:7px 0 14px}
+.add,.share{width:38px;height:38px}
+
+.footer{background:#111113}
+.footer-inner{max-width:1280px;padding:76px 24px 68px;grid-template-columns:1.25fr .75fr 1fr 1fr;gap:54px}
+.footer h3{font-size:9px;letter-spacing:.18em;margin-bottom:16px}
+.footer-logo{font-size:17px}.footer-logo img{width:46px;height:46px}
+.footer p{font-size:12px;line-height:1.8;color:#a1a1a6}
+.footer-links{gap:11px}.footer-links a{font-size:12px;color:#d6d6d9}
+.socials{display:flex;flex-direction:column;gap:13px}.socials a{padding:0;border:0;font-size:12px;justify-content:flex-start;color:#d6d6d9}.socials svg{width:17px;height:17px;flex-basis:17px}
+.footer-bottom{max-width:1280px;padding:20px 24px 24px;font-size:9px}
+
+@media(max-width:1050px){
+  .hero{grid-template-columns:1fr;max-width:900px}
+  .hero-copy{min-height:520px}.hero-visual{min-height:500px}
+  .products{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .footer-inner{grid-template-columns:1fr 1fr}
+}
+@media(max-width:700px){
+  body{font-size:16px}
+  .topbar{height:28px;font-size:7px}
+  .nav{height:66px;padding:0 16px}
+  .search{width:38px;height:38px}
+  .hero{padding:56px 16px 72px}
+  .hero-copy{min-height:0;padding:44px 26px;border-radius:24px 24px 0 0}
+  .hero h1{font-size:56px;margin-top:18px}
+  .hero p{font-size:14px;line-height:1.7}
+  .hero-note{margin-top:34px;gap:22px}
+  .hero-note strong{font-size:19px}
+  .hero-visual{min-height:430px;border-radius:0 0 24px 24px}
+  .hero-spec{padding:16px}.hero-spec strong{font-size:22px}
+  .catalog{padding:0 16px 72px}
+  .catalog-head{padding-bottom:24px}
+  .catalog-head h2{font-size:48px}
+  .catalog-head p{font-size:13px}
+  .products{grid-template-columns:1fr 1fr;gap:12px}
+  .product-info{padding:13px}.product-name{font-size:13px}
+  .footer-inner{grid-template-columns:1fr;padding:60px 16px 48px;gap:38px}
+  .footer-bottom{padding:18px 16px 22px}
+}
 </style>
 </head>
 <body>
@@ -100,9 +156,23 @@
 
 <footer class="footer" id="footer">
 <div class="footer-inner">
-<section><h3>Explore</h3><a class="footer-logo" href="#home"><img src="./images/logo.jpeg" alt="Fancy Corner Online logo"><span>Fancy Corner Online</span></a><p>Browse the product catalogue, use the FAQ for common questions, and share any product directly from the catalogue.</p><div class="footer-links" style="margin-top:18px"><a href="#catalog">Products</a><a href="./faq.html">FAQ</a><a href="#home">Home</a></div></section>
-<section><h3>Contact</h3><div class="footer-links"><a href="tel:+917904639830">+91 79046 39830</a><a href="mailto:fancycorneronline@gmail.com">fancycorneronline@gmail.com</a><a href="https://wa.me/917904639830" target="_blank" rel="noopener">WhatsApp ↗</a></div><p>No.12, Bilal Estate,<br>South Ukkadam,<br>Coimbatore – 641001,<br>Tamil Nadu, India.</p></section>
-<section><h3>Social Media</h3><div class="socials">
+<section>
+<h3>Fancy Corner Online</h3>
+<a class="footer-logo" href="#home"><img src="./images/logo.jpeg" alt="Fancy Corner Online logo"><span>Fancy Corner Online</span></a>
+<p>A focused product catalogue for mini racer bikes, vintage collectibles and craft materials in Coimbatore.</p>
+</section>
+<section>
+<h3>Explore</h3>
+<div class="footer-links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="./faq.html">FAQ</a></div>
+</section>
+<section>
+<h3>Contact</h3>
+<div class="footer-links"><a href="tel:+917904639830">+91 79046 39830</a><a href="mailto:fancycorneronline@gmail.com">fancycorneronline@gmail.com</a><a href="https://wa.me/917904639830" target="_blank" rel="noopener">WhatsApp ↗</a></div>
+<p>No.12, Bilal Estate,<br>South Ukkadam,<br>Coimbatore – 641001,<br>Tamil Nadu, India.</p>
+</section>
+<section>
+<h3>Social Media</h3>
+<div class="socials">
 <a href="https://www.instagram.com/fancycorneronline/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6.2a1.1 1.1 0 1 1-1.1 1.1 1.1 0 0 1 1.1-1.1z"/></svg>Instagram</a>
 <a href="https://www.youtube.com/@FancyCornerOnline" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M23 12s0-4.2-.5-6.1a3.1 3.1 0 0 0-2.2-2.2C18.4 3.2 12 3.2 12 3.2s-6.4 0-8.3.5a3.1 3.1 0 0 0-2.2 2.2C1 7.8 1 12 1 12s0 4.2.5 6.1a3.1 3.1 0 0 0 2.2 2.2c1.9.5 8.3.5 8.3.5s6.4 0 8.3-.5a3.1 3.1 0 0 0 2.2-2.2C23 16.2 23 12 23 12zM9.6 15.5v-7l6 3.5-6 3.5z"/></svg>YouTube</a>
 <a href="https://www.facebook.com/profile.php?id=61596729560426" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5h1.7V4a22 22 0 0 0-2.5-.1c-2.5 0-4.2 1.5-4.2 4.2V10H7.4v3h2.7v8h3.4z"/></svg>Facebook</a>
@@ -110,7 +180,8 @@
 <a href="https://x.com/fancycorner_" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M18.9 2H22l-6.8 7.8L23 22h-6.1l-4.8-6.3L6.7 22H3.6l7.3-8.3L1 2h6.2l4.4 5.8L18.9 2zm-1.1 17.8h1.7L6.3 4H4.5l13.3 15.8z"/></svg>X</a>
 <a href="mailto:fancycorneronline@gmail.com"><svg viewBox="0 0 24 24"><path d="M2 5h20v14H2V5zm10 7 8-5H4l8 5zm0 2L4 9v8h16V9l-8 5z"/></svg>Email</a>
 <a href="https://wa.me/917904639830" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.3zM12 21.5h-.1a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.1C2 6.3 6.5 1.9 12 1.9c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.2-.3-.5.3-.4.9-1.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.3 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.1-.4-.2-.7-.4z"/></svg>WhatsApp</a>
-</div></section>
+</div>
+</section>
 </div>
 <div class="footer-bottom"><span>© <span id="year"></span> Fancy Corner Online. All rights reserved.</span><span>Product catalogue · Direct enquiry</span></div>
 </footer>
