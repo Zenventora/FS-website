@@ -129,7 +129,24 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
   .footer-bottom{padding:18px 16px 22px}
 }
 </style>
-</head>
+<style>
+/* Final footer polish */
+.footer{background:#111113}
+.footer-inner{max-width:1280px;margin:0 auto;padding:72px 24px 64px;display:grid;grid-template-columns:1.25fr .75fr 1fr .85fr;gap:48px;align-items:start}
+.footer h3{font-size:10px;letter-spacing:.18em;line-height:1.2;margin:0 0 18px;color:#b28a3b}
+.footer p{font-size:14px;line-height:1.8;color:#a7a7ac;margin:18px 0 0}
+.footer-links{display:flex;flex-direction:column;gap:12px}
+.footer-links a{font-size:14px;line-height:1.4;color:#d6d6d9}
+.footer-logo{display:flex;align-items:center;gap:14px;font-size:19px;color:#f5f5f7}
+.footer-logo img{width:46px;height:46px;border-radius:10px;object-fit:cover}
+.socials{display:flex!important;flex-direction:row!important;flex-wrap:wrap!important;align-items:center!important;justify-content:flex-start!important;gap:18px!important}
+.socials a{display:flex!important;width:32px!important;height:32px!important;min-height:32px!important;padding:0!important;border:0!important;border-radius:0!important;background:transparent!important;font-size:0!important;line-height:0!important;color:#d6d6d9!important;align-items:center!important;justify-content:center!important;gap:0!important}
+.socials a svg{width:22px!important;height:22px!important;display:block!important;flex:0 0 22px!important;fill:currentColor!important}
+.socials a:hover{color:#fff!important;transform:translateY(-1px)}
+.footer-bottom{max-width:1280px;margin:0 auto;border-top:1px solid #2e2e31;padding:20px 24px 24px;display:flex;justify-content:space-between;gap:20px;color:#77777d;font-size:10px}
+@media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr;gap:42px}.socials{max-width:220px!important}}
+@media(max-width:600px){.footer-inner{grid-template-columns:1fr;padding:56px 20px 48px;gap:34px}.footer-bottom{padding:18px 20px 22px;flex-direction:column;gap:8px}.socials{gap:16px!important}}
+</style></head>
 <body>
 <div class="topbar">Fancy Corner Online · Coimbatore · Product Catalogue</div>
 <header class="header">
