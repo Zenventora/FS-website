@@ -146,6 +146,17 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .footer-bottom{max-width:1280px;margin:0 auto;border-top:1px solid #2e2e31;padding:20px 24px 24px;display:flex;justify-content:space-between;gap:20px;color:#77777d;font-size:10px}
 @media(max-width:900px){.footer-inner{grid-template-columns:1fr 1fr;gap:42px}.socials{max-width:220px!important}}
 @media(max-width:600px){.footer-inner{grid-template-columns:1fr;padding:56px 20px 48px;gap:34px}.footer-bottom{padding:18px 20px 22px;flex-direction:column;gap:8px}.socials{gap:16px!important}}
+</style><style>
+/* Contact footer refinement */
+.contact-list{display:flex;flex-direction:column;gap:13px;margin-top:0}
+.contact-list a,.address-line{display:flex;align-items:flex-start;gap:11px;color:#d6d6d9;font-size:14px;line-height:1.5}
+.contact-list a:hover{color:#fff}
+.contact-icon{width:18px;height:18px;flex:0 0 18px;margin-top:2px;fill:currentColor}
+.whatsapp-link .contact-icon{fill:#25D366}
+.whatsapp-link span{color:#d6d6d9}
+.address-line{margin-top:20px;max-width:340px;color:#a7a7ac}
+.address-icon{color:#b28a3b}
+@media(max-width:600px){.contact-list a,.address-line{font-size:14px}.address-line{max-width:100%}}
 </style></head>
 <body>
 <div class="topbar">Fancy Corner Online · Coimbatore · Product Catalogue</div>
@@ -184,8 +195,12 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 </section>
 <section>
 <h3>Contact</h3>
-<div class="footer-links"><a href="tel:+917904639830">+91 79046 39830</a><a href="mailto:fancycorneronline@gmail.com">fancycorneronline@gmail.com</a><a href="https://wa.me/917904639830" target="_blank" rel="noopener">WhatsApp ↗</a></div>
-<p>No.12, Bilal Estate,<br>South Ukkadam,<br>Coimbatore – 641001,<br>Tamil Nadu, India.</p>
+<div class="contact-list">
+<a href="tel:+917904639830"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 2.8 9.1 2a1.4 1.4 0 0 1 1.7.8l1.3 3.1a1.4 1.4 0 0 1-.4 1.6L10 8.9a14.8 14.8 0 0 0 5.1 5.1l1.4-1.7a1.4 1.4 0 0 1 1.6-.4l3.1 1.3a1.4 1.4 0 0 1 .8 1.7l-.8 2.5a2.8 2.8 0 0 1-3 2C9.2 18.2 5.8 14.8 4.6 5.8a2.8 2.8 0 0 1 2-3z"/></svg><span>+91 79046 39830</span></a>
+<a href="mailto:fancycorneronline@gmail.com"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5zm9 7.1L19.5 7H4.5l7.5 5.1zM5 17h14V9.4l-7 4.8-7-4.8V17z"/></svg><span>fancycorneronline@gmail.com</span></a>
+<a class="whatsapp-link" href="https://wa.me/917904639830" target="_blank" rel="noopener"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.3zM12 21.5h-.1a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.1C2 6.3 6.5 1.9 12 1.9c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.2-.3-.5.3-.4.9-1.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.3 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.1-.4-.2-.7-.4z"/></svg><span>WhatsApp ↗</span></a>
+</div>
+<div class="address-line"><svg class="contact-icon address-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg><span>No.12, Bilal Estate, South Ukkadam,<br>Coimbatore – 641001, Tamil Nadu, India.</span></div>
 </section>
 <section>
 <h3>Social Media</h3>
