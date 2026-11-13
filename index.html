@@ -281,90 +281,63 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
   .art-caption{left:2%;font-size:7px}
 }
 </style><style>
-/* Signature collection showcase */
+/* Signature collection showcase — fluid auto-scrolling gallery */
 .hero-premium{margin-bottom:110px!important}
 .collection-showcase{
-  position:relative;
-  padding:110px clamp(20px,5vw,80px) 0;
-  margin-bottom:110px;
-  background:#111113;color:#f5f5f7;overflow:visible;
+  position:relative;padding:110px clamp(20px,5vw,80px) 0;margin-bottom:110px;
+  background:#111113;color:#f5f5f7;overflow:hidden;
 }
 .collection-showcase:before{
-  content:"";position:absolute;inset:-30% -10% auto auto;width:620px;height:620px;
-  border-radius:50%;background:radial-gradient(circle,rgba(178,138,59,.13),transparent 68%);
-  pointer-events:none;
+  content:"";position:absolute;inset:-35% -8% auto auto;width:620px;height:620px;border-radius:50%;
+  background:radial-gradient(circle,rgba(178,138,59,.12),transparent 68%);pointer-events:none;
 }
 .showcase-head{
   max-width:1280px;margin:0 auto 38px;display:flex;align-items:flex-end;
-  justify-content:space-between;gap:40px;position:relative;z-index:1;
+  justify-content:space-between;gap:40px;position:relative;z-index:2;
 }
 .showcase-kicker{font-size:10px;letter-spacing:.22em;font-weight:800;color:#b28a3b}
-.showcase-head h2{
-  margin:14px 0 0;font-size:clamp(42px,5.5vw,78px);line-height:.96;
-  letter-spacing:-.045em;font-weight:700;
-}
+.showcase-head h2{margin:14px 0 0;font-size:clamp(42px,5.5vw,78px);line-height:.96;letter-spacing:-.045em;font-weight:700}
 .showcase-head h2 em{font-style:normal;color:#b28a3b}
 .showcase-head>p{max-width:300px;margin:0 0 5px;color:#96969b;font-size:14px;line-height:1.7}
-.showcase-rail{
-  max-width:1280px;margin:0 auto;display:flex;align-items:stretch;gap:10px;
-  height:500px;position:relative;z-index:1;overflow:visible;
+.showcase-viewport{max-width:1280px;margin:0 auto;position:relative;z-index:2;overflow:hidden}
+.showcase-track{
+  display:flex;gap:12px;width:max-content;will-change:transform;
+  animation:showcaseMarquee 32s linear infinite;
 }
+.showcase-track.is-paused{animation-play-state:paused}
 .showcase-card{
-  position:relative;display:block;overflow:hidden;
-  flex:1 1 0;height:460px;min-width:0;
-  background:#1b1b1e;isolation:isolate;text-decoration:none;
-  transition:flex .72s cubic-bezier(.2,.75,.2,1),width .72s cubic-bezier(.2,.75,.2,1),
-             box-shadow .72s ease,transform .72s cubic-bezier(.2,.75,.2,1);
+  position:relative;display:block;flex:0 0 clamp(260px,27vw,410px);height:430px;
+  overflow:hidden;background:#1b1b1e;isolation:isolate;text-decoration:none;
 }
 .showcase-card img{
   width:100%;height:100%;object-fit:cover;display:block;
-  filter:saturate(.88);transform:scale(1.01);
-  transition:transform .9s cubic-bezier(.2,.7,.2,1),filter .9s ease;
+  filter:saturate(.9);transform:scale(1.01);
+  transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s ease;
 }
 .showcase-card:after{
   content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.02) 30%,rgba(0,0,0,.82) 100%);z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.02) 32%,rgba(0,0,0,.78) 100%);z-index:1;
 }
 .showcase-card:before{
   content:"";position:absolute;inset:10px;border:1px solid rgba(255,255,255,.14);
   z-index:3;pointer-events:none;opacity:.65;
-  transition:inset .72s ease,border-color .72s ease;
 }
 .showcase-overlay{
   position:absolute;left:22px;right:20px;bottom:22px;z-index:4;
   display:flex;flex-direction:column;align-items:flex-start;
-  transition:transform .55s cubic-bezier(.2,.7,.2,1);
 }
 .showcase-overlay span{font-size:9px;letter-spacing:.18em;color:#d7b96f;margin-bottom:9px}
-.showcase-overlay strong{
-  font-size:clamp(20px,2.1vw,30px);line-height:1.05;letter-spacing:-.025em;
-  transition:font-size .55s ease;
+.showcase-overlay strong{font-size:clamp(22px,2.2vw,32px);line-height:1.05;letter-spacing:-.025em}
+.showcase-overlay small{margin-top:8px;color:#dddde0;font-size:12px;line-height:1.5;max-width:340px}
+.showcase-card:hover img{transform:scale(1.045);filter:saturate(1.06)}
+.showcase-pause{
+  position:absolute;right:24px;bottom:24px;z-index:8;width:54px;height:54px;
+  border:1px solid rgba(255,255,255,.42);border-radius:50%;background:rgba(17,17,19,.76);
+  backdrop-filter:blur(12px);display:grid;place-items:center;cursor:pointer;
+  color:#fff;transition:transform .25s ease,border-color .25s ease,background .25s ease;
 }
-.showcase-overlay small{
-  margin-top:8px;color:#dddde0;font-size:12px;line-height:1.5;max-width:340px;
-  opacity:0;transform:translateY(8px);
-  transition:opacity .42s ease .06s,transform .5s ease .06s;
-}
-/* Default: first card is the featured panel. All panels keep the same tall height. */
-.showcase-card:first-child{flex:2.15 1 0;box-shadow:0 28px 70px rgba(0,0,0,.22)}
-.showcase-card:first-child .showcase-overlay small{opacity:1;transform:none}
-.showcase-card:first-child .showcase-overlay strong{font-size:clamp(28px,3vw,42px)}
-@media (hover:hover) and (pointer:fine){
-  /* Hover mode: only width changes; height remains constant. */
-  .showcase-rail:has(.showcase-card:hover) .showcase-card{flex:1 1 0;box-shadow:none;transform:none}
-  .showcase-rail:has(.showcase-card:hover) .showcase-card .showcase-overlay small{opacity:0;transform:translateY(8px)}
-  .showcase-rail:has(.showcase-card:hover) .showcase-card .showcase-overlay strong{font-size:clamp(20px,2.1vw,30px)}
-  .showcase-rail:has(.showcase-card:hover) .showcase-card:hover{
-    flex:2.15 1 0;box-shadow:0 34px 80px rgba(0,0,0,.30);transform:translateY(-3px);z-index:8
-  }
-  .showcase-rail:has(.showcase-card:hover) .showcase-card:hover img{transform:scale(1.055);filter:saturate(1.08)}
-  .showcase-rail:has(.showcase-card:hover) .showcase-card:hover:before{
-    inset:14px;border-color:rgba(215,185,111,.38)
-  }
-  .showcase-rail:has(.showcase-card:hover) .showcase-card:hover .showcase-overlay{transform:translateY(-2px)}
-  .showcase-rail:has(.showcase-card:hover) .showcase-card:hover .showcase-overlay strong{font-size:clamp(28px,3vw,42px)}
-  .showcase-rail:has(.showcase-card:hover) .showcase-card:hover .showcase-overlay small{opacity:1;transform:none}
-}
+.showcase-pause:hover{transform:scale(1.06);border-color:#d7b96f;background:rgba(17,17,19,.9)}
+.showcase-pause svg{width:18px;height:18px}
 .showcase-foot{
   max-width:1280px;margin:18px auto 0;display:flex;align-items:center;gap:16px;
   color:#77777d;font-size:9px;letter-spacing:.18em;font-weight:800;
@@ -372,31 +345,25 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .showcase-line{height:1px;background:#353539;flex:1}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
 .reveal.is-visible{opacity:1;transform:none}
+@keyframes showcaseMarquee{from{transform:translate3d(0,0,0)}to{transform:translate3d(calc(-50% - 6px),0,0)}}
 @media(max-width:900px){
   .hero-premium{margin-bottom:100px!important}.collection-showcase{margin-bottom:100px}
   .showcase-head{align-items:flex-start;flex-direction:column;gap:18px}
-  .showcase-rail{height:430px}.showcase-card{height:390px}
-  .showcase-card:first-child{flex:1.45 1 0}
+  .showcase-card{flex-basis:72vw;height:380px}
+  .showcase-track{gap:10px;animation-duration:27s}
 }
 @media(max-width:650px){
   .hero-premium{margin-bottom:100px!important}
   .collection-showcase{padding:82px 16px 0;margin-bottom:100px}
   .showcase-head h2{font-size:48px}.showcase-head>p{font-size:13px}
-  .showcase-rail{
-    display:flex;overflow-x:auto;height:350px;scroll-snap-type:x mandatory;
-    gap:10px;padding-bottom:8px;margin-right:-16px;padding-right:16px;scrollbar-width:none;
-  }
-  .showcase-rail::-webkit-scrollbar{display:none}
-  .showcase-card,.showcase-card:first-child{
-    flex:0 0 78vw;height:300px;min-height:300px;scroll-snap-align:start;box-shadow:none;
-  }
-  .showcase-card:first-child .showcase-overlay strong{font-size:28px}
+  .showcase-viewport{margin-right:-16px}
+  .showcase-card{flex-basis:82vw;height:330px}
+  .showcase-track{gap:9px;animation-duration:24s}
   .showcase-overlay{left:18px;bottom:18px}
   .showcase-overlay strong{font-size:28px}
-  .showcase-overlay small{opacity:1;transform:none;font-size:11px}
+  .showcase-pause{right:18px;bottom:18px;width:48px;height:48px}
   .showcase-foot{margin-top:14px}
 }
-/* Tighter social icon rhythm */
 .socials{gap:11px!important}.socials a{width:28px!important;height:28px!important;min-height:28px!important}
 .socials a svg{width:20px!important;height:20px!important;flex-basis:20px!important}
 </style></head>
@@ -429,33 +396,27 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 </div>
 </section>
 
-<section class="collection-showcase" id="collections">
-<div class="showcase-head reveal">
-<div>
-<span class="showcase-kicker">THE COLLECTION</span>
-<h2>Made to be seen.<br><em>Made to be kept.</em></h2>
-</div>
-<p>A closer look at the pieces that make Fancy Corner different.</p>
-</div>
-<div class="showcase-rail">
-<a class="showcase-card showcase-card-large reveal" href="#catalog?category=Mini%20Racer%20Bikes">
-<img src="./images/IMG_20261112_002054.jpg" alt="Mini racer bike collection">
-<div class="showcase-overlay"><span>01</span><strong>Mini Racer Bikes</strong><small>Small scale. Serious character.</small></div>
-</a>
-<a class="showcase-card reveal" href="#catalog?category=Vintage%20Collectibles">
-<img src="./images/IMG_20261112_002125.jpg" alt="Vintage collectible collection">
-<div class="showcase-overlay"><span>02</span><strong>Vintage Collectibles</strong><small>Pieces worth displaying.</small></div>
-</a>
-<a class="showcase-card reveal" href="#catalog?category=Craft%20Materials">
-<img src="./images/IMG_20261112_001101.jpg" alt="Craft materials collection">
-<div class="showcase-overlay"><span>03</span><strong>Collect & Create</strong><small>Find your next favourite.</small></div>
-</a>
-<a class="showcase-card reveal" href="#catalog?category=Vintage%20Collectibles">
-<img src="./images/IMG_20261112_002217.jpg" alt="Fancy Corner collectible">
-<div class="showcase-overlay"><span>04</span><strong>More to Discover</strong><small>Small pieces. Great finds.</small></div>
-</a>
-</div>
-<div class="showcase-foot reveal"><span>SCROLL TO EXPLORE</span><span class="showcase-line"></span><span>04 / 04</span></div>
+<section class="collection-showcase" aria-label="Featured collections">
+  <div class="showcase-head reveal">
+    <div><div class="showcase-kicker">FANCY CORNER COLLECTION</div><h2>Small things.<br><em>Big character.</em></h2></div>
+    <p>A moving selection of mini racers, vintage collectibles and pieces worth discovering.</p>
+  </div>
+  <div class="showcase-viewport reveal">
+    <div class="showcase-track" id="showcaseTrack">
+      <a class="showcase-card" href="#catalog?category=Mini%20Racer%20Bikes"><img src="./images/IMG_20261112_002054.jpg" alt="Mini racer bike"><div class="showcase-overlay"><span>01</span><strong>Mini Racer Bikes</strong><small>Small scale. Serious character.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Vintage%20Collectibles"><img src="./images/IMG_20261112_002933.jpg" alt="Vintage collectible car"><div class="showcase-overlay"><span>02</span><strong>Vintage Collectibles</strong><small>Classic details made to keep.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Craft%20Materials"><img src="./images/IMG_20261112_001101.jpg" alt="Craft materials"><div class="showcase-overlay"><span>03</span><strong>Collect & Create</strong><small>Find your next favourite.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Vintage%20Collectibles"><img src="./images/IMG_20261112_002217.jpg" alt="Fancy Corner collectible"><div class="showcase-overlay"><span>04</span><strong>More to Discover</strong><small>Small pieces. Great finds.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Mini%20Racer%20Bikes"><img src="./images/IMG_20261112_002054.jpg" alt="Mini racer bike"><div class="showcase-overlay"><span>01</span><strong>Mini Racer Bikes</strong><small>Small scale. Serious character.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Vintage%20Collectibles"><img src="./images/IMG_20261112_002933.jpg" alt="Vintage collectible car"><div class="showcase-overlay"><span>02</span><strong>Vintage Collectibles</strong><small>Classic details made to keep.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Craft%20Materials"><img src="./images/IMG_20261112_001101.jpg" alt="Craft materials"><div class="showcase-overlay"><span>03</span><strong>Collect & Create</strong><small>Find your next favourite.</small></div></a>
+      <a class="showcase-card" href="#catalog?category=Vintage%20Collectibles"><img src="./images/IMG_20261112_002217.jpg" alt="Fancy Corner collectible"><div class="showcase-overlay"><span>04</span><strong>More to Discover</strong><small>Small pieces. Great finds.</small></div></a>
+    </div>
+    <button class="showcase-pause" id="showcasePause" type="button" aria-label="Pause gallery" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+    </button>
+  </div>
+  <div class="showcase-foot reveal"><span>01 — 04</span><div class="showcase-line"></div><span>FEATURED COLLECTIONS</span></div>
 </section>
 <section class="catalog" id="catalog">
 <div class="catalog-head"><div><div class="eyebrow">PRODUCT CATALOGUE</div><h2>Browse the <span>collection.</span></h2></div><p>Every card below uses an image from the Fancy Corner image library. Use the tabs or search to narrow the catalogue. Product links can be shared directly and will open the matching item.</p></div>
@@ -556,5 +517,18 @@ document.addEventListener("DOMContentLoaded",()=>{
   },{threshold:.14,rootMargin:"0px 0px -40px"});
   items.forEach(el=>io.observe(el));
 });
+
+const showcasePause=document.getElementById('showcasePause');
+const showcaseTrack=document.getElementById('showcaseTrack');
+if(showcasePause&&showcaseTrack){
+  showcasePause.addEventListener('click',()=>{
+    const paused=showcaseTrack.classList.toggle('is-paused');
+    showcasePause.setAttribute('aria-pressed',String(paused));
+    showcasePause.setAttribute('aria-label',paused?'Play gallery':'Pause gallery');
+    showcasePause.innerHTML=paused
+      ? '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 5l10 7-10 7V5z" fill="currentColor"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>';
+  });
+}
 </script></body>
 </html>
