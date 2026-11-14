@@ -7,20 +7,20 @@
 <meta name="description" content="Browse Fancy Corner Online's product catalogue in Coimbatore. Explore mini racer bikes, vintage collectibles and craft materials using real product images, then enquire directly on WhatsApp.">
 <meta name="keywords" content="Fancy Corner Online, mini racer bikes, vintage collectibles, craft materials, model bikes, Coimbatore">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-<link rel="canonical" href="https://zenventora.github.io/FS-website/">
+<link rel="canonical" href="https://fancycorner.in/">
 <link rel="icon" type="image/jpeg" href="./images/logo.jpeg">
 <link rel="apple-touch-icon" href="./images/logo.jpeg">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Fancy Corner Online">
 <meta property="og:title" content="Fancy Corner Online | Product Catalogue">
 <meta property="og:description" content="Browse mini racer bikes, vintage collectibles and craft materials from Fancy Corner Online.">
-<meta property="og:url" content="https://zenventora.github.io/FS-website/">
-<meta property="og:image" content="https://zenventora.github.io/FS-website/images/logo.jpeg">
+<meta property="og:url" content="https://fancycorner.in/">
+<meta property="og:image" content="https://fancycorner.in/images/logo.jpeg">
 <meta property="og:image:alt" content="Fancy Corner Online logo">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Fancy Corner Online | Product Catalogue">
 <meta name="twitter:description" content="Browse the Fancy Corner Online product collection.">
-<meta name="twitter:image" content="https://zenventora.github.io/FS-website/images/logo.jpeg">
+<meta name="twitter:image" content="https://fancycorner.in/images/logo.jpeg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -419,14 +419,42 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .footer-bottom span:first-child{display:block!important;white-space:nowrap!important;font-size:9px}
 .footer-bottom span:last-child{margin-top:8px;display:block}
 }
+</style><style>
+/* Final usability fixes */
+.hamb{cursor:pointer}
+@media(max-width:700px){
+  .nav{position:relative}
+  .navright{margin-left:auto}
+  .search{width:180px!important;height:40px!important;border:1px solid var(--line)!important;background:#fff!important;padding:0 13px!important}
+  .search input{display:block!important;width:100%!important;font-size:12px!important}
+  .search-icon{width:17px!important;height:17px!important;flex:0 0 17px!important}
+  .navlinks{
+    position:absolute!important;left:16px!important;right:16px!important;top:calc(100% + 8px)!important;
+    display:none!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;
+    padding:8px!important;background:rgba(255,255,255,.98)!important;border:1px solid var(--line)!important;
+    border-radius:18px!important;box-shadow:0 20px 60px rgba(0,0,0,.14)!important;z-index:50!important;
+  }
+  .navlinks.open{display:flex!important}
+  .navlinks a{padding:14px 15px!important;font-size:11px!important;border-bottom:1px solid #eee!important}
+  .navlinks a:last-child{border-bottom:0!important}
+  .hamb{display:block!important;flex:0 0 auto!important}
+  .footer-bottom{display:flex!important;justify-content:flex-start!important;white-space:nowrap!important;overflow:visible!important;padding:16px!important}
+  .footer-bottom span{display:block!important;white-space:nowrap!important;font-size:8px!important;margin:0!important}
+}
+@media(max-width:420px){
+  .search{width:150px!important}
+}
+.address-line{display:flex!important;align-items:flex-start!important;gap:10px!important;line-height:1.65!important}
+.address-line span{display:block!important;max-width:360px!important}
+.footer-bottom{white-space:nowrap!important}
 </style></head>
 <body>
 <div class="topbar">Fancy Corner Online · Coimbatore · Product Catalogue</div>
 <header class="header">
 <div class="nav">
-<button class="hamb" id="hamb" aria-label="Menu">☰</button>
+<button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false">☰</button>
 <a class="logo" href="#home" aria-label="Fancy Corner Online"><img src="./images/logo.jpeg" alt="Fancy Corner Online"></a>
-<nav class="navlinks"><a href="#catalog">PRODUCTS</a><a href="./faq.html">FAQ</a></nav>
+<nav class="navlinks" id="mainNav"><a href="#catalog">PRODUCTS</a><a href="./faq.html">FAQ</a><a href="./privacy-policy.html">PRIVACY</a><a href="./terms-and-conditions.html">TERMS</a></nav>
 <div class="navright"><label class="search" aria-label="Search products"><svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.7"></circle><path d="M16 16l5 5"></path></svg><input id="search" type="search" placeholder="Search products"></label><button class="cartbtn" id="cartBtn">CART <span id="cartCount">0</span></button></div>
 </div>
 </header>
@@ -486,7 +514,7 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 </section>
 <section>
 <h3>Explore</h3>
-<div class="footer-links"><a href="#home">Home</a><a href="#catalog">Products</a><a href="./faq.html">FAQ</a></div>
+<div class="footer-links"><a href="#home">Home</a><a href="#catalog">Product Catalogue</a><a href="https://wa.me/917904639830" target="_blank" rel="noopener">Enquiry</a><a href="./faq.html">FAQ</a><a href="./privacy-policy.html">Privacy Policy</a><a href="./terms-and-conditions.html">Terms &amp; Conditions</a></div>
 </section>
 <section>
 <h3>Contact</h3>
@@ -495,7 +523,7 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 <a href="mailto:fancycorneronline@gmail.com"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18v14H3V5zm9 7.1L19.5 7H4.5l7.5 5.1zM5 17h14V9.4l-7 4.8-7-4.8V17z"/></svg><span>fancycorneronline@gmail.com</span></a>
 <a class="whatsapp-link" href="https://wa.me/917904639830" target="_blank" rel="noopener"><svg class="contact-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 12 0C5.4 0 .1 5.3.1 11.9c0 2.1.5 4.1 1.6 5.9L0 24l6.4-1.7a12 12 0 0 0 5.6 1.4h.1c6.6 0 11.9-5.3 11.9-11.9 0-3.2-1.2-6.1-3.5-8.3zM12 21.5h-.1a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.8 1 1-3.7-.2-.4a9.7 9.7 0 0 1-1.5-5.1C2 6.3 6.5 1.9 12 1.9c2.6 0 5.1 1 6.9 2.9a9.7 9.7 0 0 1 2.9 6.9c0 5.4-4.4 9.8-9.8 9.8zm5.4-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.7-1.5-3.8-3.2-.3-.5.3-.4.9-1.5.1-.2.1-.4 0-.6l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.2.2 2.2 3.4 5.3 4.8 2 .9 2.8 1 3.8.8.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4-.2-.1-.4-.2-.7-.4z"/></svg><span>WhatsApp</span></a>
 </div>
-<div class="address-line"><svg class="contact-icon address-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg><span>No.12, Bilal Estate, South Ukkadam,<br>Coimbatore – 641001, Tamil Nadu, India.</span></div>
+<div class="address-line"><svg class="contact-icon address-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5a7 7 0 0 0-7 7c0 5 7 12 7 12s7-7 7-12a7 7 0 0 0-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg><span>No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India.</span></div>
 </section>
 <section>
 <h3>Social Media</h3>
@@ -509,7 +537,7 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 </div>
 </section>
 </div>
-<div class="footer-bottom"><span>© <span id="year"></span> Fancy Corner Online. All rights reserved.</span><span>Product catalogue · Direct enquiry</span></div>
+<div class="footer-bottom"><span>© <span id="year"></span> Fancy Corner Online. All rights reserved.</span></div>
 </footer>
 
 <div class="drawer" id="drawer"><div class="overlay" id="overlay"></div><aside class="cart-panel"><div class="cart-head"><div><div class="eyebrow">YOUR SELECTION</div><h2>Products <span id="bagCount">(0)</span></h2></div><button class="close" id="close">×</button></div><div class="cart-body" id="cartBody"></div><div class="checkout"><p>Selected products will be sent to Fancy Corner Online on WhatsApp. Final availability and pricing are confirmed by the store.</p><button class="wa" id="checkout">Send selection to WhatsApp</button></div></aside></div><div class="toast" id="toast"></div>
@@ -580,7 +608,7 @@ setTimeout(()=>{const el=$("#product-"+id);if(el){el.classList.add("target");el.
 }
 $("#year").textContent=new Date().getFullYear();selection=JSON.parse(localStorage.getItem("fc-selection")||"[]");renderFilters();renderProducts();renderCart();focusProduct();
 </script>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fancy Corner Online","url":"https://zenventora.github.io/FS-website/","logo":"https://zenventora.github.io/FS-website/images/logo.jpeg","email":"fancycorneronline@gmail.com","telephone":"+91 79046 39830","address":{"@type":"PostalAddress","streetAddress":"No.12, Bilal Estate, South Ukkadam","addressLocality":"Coimbatore","postalCode":"641001","addressRegion":"Tamil Nadu","addressCountry":"IN"},"sameAs":["https://www.instagram.com/fancycorneronline/","https://www.youtube.com/@FancyCornerOnline","https://www.facebook.com/profile.php?id=61596729560426","https://www.threads.com/@fancycorneronline","https://x.com/fancycorner_"]},{"@type":"WebSite","name":"Fancy Corner Online","url":"https://zenventora.github.io/FS-website/","potentialAction":{"@type":"SearchAction","target":"https://zenventora.github.io/FS-website/?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fancy Corner Online","url":"https://fancycorner.in/","logo":"https://fancycorner.in/images/logo.jpeg","email":"fancycorneronline@gmail.com","telephone":"+91 79046 39830","address":{"@type":"PostalAddress","streetAddress":"No.12, Bilal Estate, South Ukkadam","addressLocality":"Coimbatore","postalCode":"641001","addressRegion":"Tamil Nadu","addressCountry":"IN"},"sameAs":["https://www.instagram.com/fancycorneronline/","https://www.youtube.com/@FancyCornerOnline","https://www.facebook.com/profile.php?id=61596729560426","https://www.threads.com/@fancycorneronline","https://x.com/fancycorner_"]},{"@type":"WebSite","name":"Fancy Corner Online","url":"https://fancycorner.in/","potentialAction":{"@type":"SearchAction","target":"https://fancycorner.in/?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
   const items=document.querySelectorAll(".reveal");
@@ -605,5 +633,24 @@ if(showcasePause&&showcaseTrack){
       : '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>';
   });
 }
+</script><script>
+document.addEventListener("DOMContentLoaded",()=>{
+  const menu=document.getElementById("hamb");
+  const nav=document.getElementById("mainNav");
+  if(menu&&nav){
+    menu.addEventListener("click",()=>{
+      const open=nav.classList.toggle("open");
+      menu.setAttribute("aria-expanded",String(open));
+      menu.setAttribute("aria-label",open?"Close menu":"Open menu");
+      menu.textContent=open?"×":"☰";
+    });
+    nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
+      nav.classList.remove("open");
+      menu.setAttribute("aria-expanded","false");
+      menu.setAttribute("aria-label","Open menu");
+      menu.textContent="☰";
+    }));
+  }
+});
 </script></body>
 </html>
