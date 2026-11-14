@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zenventora.github.io/FS-website/sitemap.xml
+Sitemap: https://fancycorner.in/sitemap.xml
