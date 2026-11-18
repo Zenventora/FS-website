@@ -1618,6 +1618,83 @@ body{background:#f7f8fa!important}
 .product-name{border:0;padding:0;background:transparent;color:#111;font-weight:900;cursor:pointer}
 .product-image:focus-visible,.product-name:focus-visible{outline:3px solid #ffd400;outline-offset:3px}
 </style>
+<style id="fc-product-image-final">
+/* Product-first framing: show the complete item, not a cropped portion. */
+.product-image{
+  aspect-ratio:1/1!important;
+  background:linear-gradient(145deg,#f1f2f4,#fff)!important;
+  padding:10px!important;
+  box-sizing:border-box!important;
+}
+.product-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:none!important;
+}
+.product-card:hover .product-image img{transform:scale(1.015)!important}
+.product-info{
+  padding:10px 12px 11px!important;
+}
+.product-cat{
+  font-size:7px!important;
+  letter-spacing:.10em!important;
+  margin-bottom:2px!important;
+}
+.product-name{
+  font-size:14px!important;
+  line-height:1.14!important;
+  margin:2px 0 7px!important;
+}
+.product-card .price-main{
+  align-items:baseline!important;
+}
+.product-card .price-main b{
+  font-size:23px!important;
+}
+.product-card .price-main small{
+  font-size:8px!important;
+  white-space:nowrap!important;
+}
+.product-card .follower-price{
+  margin-top:6px!important;
+  padding:7px 9px!important;
+}
+.product-card .follower-price span{
+  font-size:8px!important;
+}
+.product-card .follower-price strong{
+  font-size:13px!important;
+}
+.product-card .follower-price em{
+  font-size:7px!important;
+}
+.product-actions{
+  margin-top:7px!important;
+  gap:6px!important;
+}
+.product-actions .buy-now{
+  height:37px!important;
+  font-size:9px!important;
+}
+.product-actions .add,.product-actions .share{
+  width:37px!important;
+  height:37px!important;
+}
+@media(max-width:700px){
+  .product-image{padding:7px!important}
+  .product-info{padding:8px 9px 9px!important}
+  .product-cat{font-size:6.5px!important}
+  .product-name{font-size:12px!important;margin:2px 0 6px!important}
+  .product-card .price-main b{font-size:20px!important}
+  .product-card .follower-price{padding:6px 7px!important;margin-top:5px!important}
+  .product-card .follower-price strong{font-size:11px!important}
+  .product-actions{margin-top:6px!important;gap:5px!important}
+  .product-actions .buy-now{height:34px!important;font-size:8px!important}
+  .product-actions .add,.product-actions .share{width:34px!important;height:34px!important}
+}
+</style>
 </head>
 <body>
 <header class="header">
