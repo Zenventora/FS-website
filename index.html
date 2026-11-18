@@ -2740,6 +2740,169 @@ body{background:#f7f8fa!important}
   }
 }
 </style>
+
+<style id="fc-final-gallery-product-fit">
+/* Product cards: square image stage, zoomed and centered */
+.product-image{
+  width:calc(100% - 16px)!important;
+  aspect-ratio:1/1!important;
+  margin:8px!important;
+  border-radius:18px!important;
+  overflow:hidden!important;
+  background:#f0f1f2!important;
+}
+.product-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:scale(1.08)!important;
+  transform-origin:center center!important;
+  transition:transform .3s ease!important;
+}
+.product-card:hover .product-image img{
+  transform:scale(1.11)!important;
+}
+
+/* Popup: same square + zoom treatment */
+.product-modal-media{
+  aspect-ratio:1/1!important;
+  width:100%!important;
+  overflow:hidden!important;
+  border-radius:22px!important;
+  background:#f0f1f2!important;
+}
+.product-modal-media img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  transform:scale(1.08)!important;
+  transform-origin:center!important;
+}
+
+/* Popup controls match catalogue CTA treatment */
+.product-modal-actions{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 46px!important;
+  gap:8px!important;
+  align-items:center!important;
+}
+.product-modal-actions .buy-now{
+  height:43px!important;
+  border-radius:14px!important;
+  font-size:14px!important;
+  font-weight:900!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  cursor:pointer!important;
+}
+.product-modal-actions .add{
+  width:46px!important;
+  height:43px!important;
+  cursor:pointer!important;
+}
+.product-modal-actions .buy-now svg,
+.product-modal-actions .add svg{
+  pointer-events:none!important;
+}
+
+/* Gallery thumbnails: active image is clearly larger/cleaner */
+.gallery-dots{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  min-height:54px!important;
+  overflow-x:auto!important;
+  scrollbar-width:none!important;
+}
+.gallery-dots::-webkit-scrollbar{display:none!important}
+.gallery-dot{
+  width:48px!important;
+  height:48px!important;
+  flex:0 0 48px!important;
+  border:2px solid #dfe2e6!important;
+  border-radius:12px!important;
+  background-size:cover!important;
+  background-position:center!important;
+  cursor:pointer!important;
+}
+.gallery-dot.active{
+  border-color:#ffd000!important;
+  box-shadow:0 0 0 2px #ffd000!important;
+  transform:scale(1.06)!important;
+}
+
+/* Popup close + navigation are always clickable */
+.product-modal-close,
+.product-modal-arrow{
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.product-modal-close{
+  width:42px!important;
+  height:42px!important;
+}
+
+/* Mobile: keep the square image and prevent CTA wrapping */
+@media(max-width:700px){
+  .product-image{
+    width:calc(100% - 16px)!important;
+    aspect-ratio:1/1!important;
+    margin:8px!important;
+  }
+  .product-image img{transform:scale(1.06)!important}
+  .product-modal-media{
+    aspect-ratio:1/1!important;
+  }
+  .product-modal-media img{transform:scale(1.06)!important}
+  .product-modal-actions{
+    grid-template-columns:minmax(0,1fr) 44px!important;
+  }
+  .product-modal-actions .buy-now{
+    height:42px!important;
+    font-size:14px!important;
+    white-space:nowrap!important;
+  }
+  .product-modal-actions .add{
+    width:44px!important;
+    height:42px!important;
+  }
+  .gallery-dot{
+    width:44px!important;
+    height:44px!important;
+    flex-basis:44px!important;
+  }
+}
+
+/* Cart drawer: keep every compact control on one line */
+.cart-item{
+  display:grid!important;
+  grid-template-columns:64px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+.cart-item strong,
+.cart-item small,
+.cart-item .remove{
+  white-space:nowrap!important;
+}
+.cart-item .remove{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:4px!important;
+  width:auto!important;
+}
+.cart-item .remove svg{
+  width:14px!important;
+  height:14px!important;
+  flex:0 0 14px!important;
+}
+
 </head>
 <body>
 <header class="header">
