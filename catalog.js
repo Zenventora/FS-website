@@ -91,15 +91,17 @@ function renderGallery(){
 
   destroyGallerySliders();
 
-  main.innerHTML=p.images.map((src,i)=>
-    '<div class="gallery-slide">'+
-      '<img src="'+esc(imageSrc(src))+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager">'+
-    '</div>'
-  ).join("");
+  main.innerHTML=p.images.map((src,i)=>{
+    const image=imageSrc(src);
+    return '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
+      '<img src="'+esc(image)+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="'+(i===galleryIndex?"eager":"lazy")+'">'+
+    '</div>';
+  }).join("");
 
-  thumbs.innerHTML=p.images.map((src,i)=>
-    '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url("'+esc(imageSrc(src))+'")"></button>'
-  ).join("");
+  thumbs.innerHTML=p.images.map((src,i)=>{
+    const image=imageSrc(src);
+    return '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url(\''+esc(image)+'\')"></button>';
+  }).join("");
 
   $("#galleryName").textContent=p.name;
   $("#galleryCategory").textContent=p.category+" · "+p.subcategory;
@@ -122,8 +124,11 @@ function renderGallery(){
     arrows:false,
     dots:false,
     infinite:p.images.length>1,
-    autoplay:false,
-    speed:300,
+    autoplay:p.images.length>1,
+    autoplaySpeed:3500,
+    pauseOnHover:true,
+    pauseOnFocus:false,
+    speed:350,
     fade:false,
     swipe:true,
     draggable:true,
@@ -172,6 +177,7 @@ function renderGallery(){
   });
 
   $main.slick("slickGoTo",galleryIndex,true);
+  sync(galleryIndex);
 
   requestAnimationFrame(()=>{
     if($main.hasClass("slick-initialized")) $main.slick("setPosition");
