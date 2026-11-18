@@ -5484,3 +5484,38 @@ a,
 
 </body>
 </html>
+<style id="fc-slick-popup-render-fix">
+/* FINAL SLICK POPUP RENDER FIX — keep the slider inside the square media stage */
+.product-modal-media .slick-slider,
+.product-modal-media .slick-list,
+.product-modal-media .slick-track{
+  width:100%!important;
+  height:100%!important;
+}
+.product-modal-media .slick-list{overflow:hidden!important}
+.product-modal-media .slick-track{display:flex!important;align-items:stretch!important}
+.product-modal-media .slick-slide{
+  height:100%!important;
+  min-height:100%!important;
+  float:none!important;
+}
+.product-modal-media .slick-slide > div,
+.product-modal-media .gallery-slide{
+  width:100%!important;
+  height:100%!important;
+}
+.product-modal-media .gallery-slide img,
+.product-modal-media .slick-slide img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+.product-modal-media .slick-current img{visibility:visible!important;opacity:1!important}
+.gallery-dots .slick-list{width:100%!important}
+.gallery-dots .slick-track{display:flex!important;align-items:center!important}
+.gallery-dots .slick-slide{height:auto!important}
+</style>
