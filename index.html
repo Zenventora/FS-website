@@ -1467,9 +1467,13 @@ body{background:#f7f8fa!important}
   box-shadow:0 7px 22px rgba(17,17,19,.055)!important;
 }
 .product-image{aspect-ratio:1/0.88!important}
-.product-info{padding:14px!important}
-.product-name{font-size:16px!important}
-.product-actions{margin-top:11px!important;gap:7px!important}
+.product-info{padding:12px 14px 13px!important}
+.product-cat{margin-bottom:4px!important}
+.product-name{font-size:16px!important;margin:3px 0 9px!important;line-height:1.18!important}
+.product-actions{margin-top:9px!important;gap:7px!important}
+.product-card .price-main{margin:0!important}
+.product-card .follower-price{margin-top:8px!important;padding:9px 10px!important}
+.image-count{position:absolute!important;right:12px!important;bottom:12px!important;background:rgba(20,20,20,.78)!important;color:#fff!important;border-radius:999px!important;padding:7px 10px!important;font-size:8px!important;font-weight:900!important;letter-spacing:.03em!important}
 .buy-now,.product-actions .add,.product-actions .share{height:40px!important}
 .product-actions .add,.product-actions .share{width:40px!important}
 .product-card:hover{transform:translateY(-2px)!important;box-shadow:0 14px 32px rgba(17,17,19,.09)!important}
@@ -1491,7 +1495,16 @@ body{background:#f7f8fa!important}
  box-shadow:0 6px 20px rgba(0,0,0,.12)
 }
 .product-modal-media{position:relative;min-width:0;background:#f0f1f3;border-radius:20px;overflow:hidden;aspect-ratio:1/1}
-.product-modal-media img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
+.product-modal-media img{width:100%;height:100%;object-fit:contain;display:block;user-select:none;background:#f1f2f4}
+.product-modal-media{background:linear-gradient(145deg,#f7f7f8,#e9eaec)!important}
+.product-modal-info{display:flex!important;flex-direction:column!important;justify-content:center!important}
+.product-modal-info .eyebrow{margin-bottom:2px!important}
+.product-modal-info h2{margin:7px 0 13px!important}
+.product-modal-info .follower-price{margin-top:10px!important}
+.product-modal-panel{grid-template-rows:auto auto!important}
+.gallery-dots{min-height:54px!important}
+.product-modal-close{width:42px!important;height:42px!important;right:12px!important;top:12px!important;font-weight:700!important}
+.product-modal-backdrop{cursor:pointer!important}
 .product-modal-arrow{
  position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;
  border:0;border-radius:50%;background:rgba(255,255,255,.92);font-size:28px;cursor:pointer;
@@ -1533,8 +1546,12 @@ body{background:#f7f8fa!important}
  .catalog{padding:48px 16px 72px!important}
  .catalog-head h2{font-size:46px!important}
  .products{grid-template-columns:1fr 1fr!important;gap:11px!important}
- .product-info{padding:11px!important}
- .product-name{font-size:14px!important}
+ .product-info{padding:10px 10px 11px!important}
+ .product-cat{font-size:8px!important}
+ .product-name{font-size:14px!important;margin:3px 0 8px!important}
+ .product-card .follower-price{padding:7px 8px!important;font-size:9px!important}
+ .product-card .follower-price strong{font-size:12px!important}
+ .product-card .price-main b{font-size:19px!important}
  .product-actions .add,.product-actions .share{width:36px!important;height:36px!important}
  .buy-now{height:36px!important;font-size:8px!important}
  .product-modal-panel{grid-template-columns:1fr!important;width:calc(100vw - 20px)!important;max-height:calc(100vh - 20px)!important;border-radius:20px!important;padding:10px!important;gap:12px!important}
@@ -1562,8 +1579,6 @@ body{background:#f7f8fa!important}
 <nav class="navlinks" id="mainNav">
 <a class="nav-item active" href="#home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
 <a class="nav-item" href="#catalog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg><span>Products</span></a>
-<a class="nav-item nav-cart-mobile" href="#" id="cartNav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H7.2M10 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>Cart</span><b id="cartCountNav">0</b></a>
-
 </nav>
 <div class="navright">
 <button class="cartbtn" id="cartBtn" aria-label="Open cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H7.2M10 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>Cart</span><em id="cartCount">0</em></button>
