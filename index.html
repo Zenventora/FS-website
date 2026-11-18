@@ -2662,6 +2662,49 @@ body{background:#f7f8fa!important}
   .product-modal-arrow.next{right:10px!important}
 }
 </style>
+
+<style id="fc-square-product-images">
+/* Product catalogue — square, edge-to-edge product image treatment */
+.product-image{
+  width:calc(100% - 20px)!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  min-height:0!important;
+  margin:10px!important;
+  padding:0!important;
+  border-radius:17px!important;
+  overflow:hidden!important;
+  background:#f0f1f3!important;
+  position:relative!important;
+}
+.product-image img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  display:block!important;
+  padding:0!important;
+  transform:scale(1.035)!important;
+  transform-origin:center center!important;
+}
+.product-card:hover .product-image img{
+  transform:scale(1.06)!important;
+}
+@media(max-width:700px){
+  .product-image{
+    width:calc(100% - 16px)!important;
+    margin:8px!important;
+    aspect-ratio:1/1!important;
+    border-radius:16px!important;
+  }
+  .product-image img{
+    transform:scale(1.03)!important;
+  }
+  .product-card:hover .product-image img{
+    transform:scale(1.045)!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
