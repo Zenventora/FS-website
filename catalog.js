@@ -47,6 +47,7 @@ function openGallery(id,start=0){
 
   galleryProduct=p;
   galleryIndex=Math.max(0,Math.min(start,p.images.length-1));
+  modal.dataset.productId=p.id;
   modal.classList.add("open");
   modal.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden";
@@ -55,6 +56,10 @@ function openGallery(id,start=0){
   history.replaceState(null,"",url(p));
 
   requestAnimationFrame(()=>{
+    const main=window.jQuery ? window.jQuery("#gallerySlider") : null;
+    const thumbs=window.jQuery ? window.jQuery("#galleryDots") : null;
+    if(main && main.hasClass("slick-initialized")) main.slick("setPosition");
+    if(thumbs && thumbs.hasClass("slick-initialized")) thumbs.slick("setPosition");
     const close=modal.querySelector(".product-modal-close");
     if(close)close.focus({preventScroll:true});
   });
@@ -67,11 +72,12 @@ function closeGallery(){
   destroyGallerySliders();
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden","true");
+  modal.removeAttribute("data-product-id");
   document.body.style.overflow="";
   galleryProduct=null;
   galleryIndex=0;
 
-  // Always return to the normal catalogue URL/view after closing.
+  // Reset the modal stage and return to the normal catalogue URL/view.
   history.replaceState(null,"",location.pathname);
 }
 
@@ -92,7 +98,7 @@ function renderGallery(){
   ).join("");
 
   thumbs.innerHTML=p.images.map((src,i)=>
-    '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url('+esc(imageSrc(src))+')"></button>'
+    '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url("'+esc(imageSrc(src))+'")"></button>'
   ).join("");
 
   $("#galleryName").textContent=p.name;
@@ -103,8 +109,6 @@ function renderGallery(){
 
   const jq=window.jQuery;
   if(!(jq&&jq.fn&&jq.fn.slick)){
-    // The card images already use the same source conversion; this fallback
-    // keeps the popup usable if Slick's CDN is temporarily unavailable.
     main.innerHTML='<div class="gallery-slide"><img src="'+esc(imageSrc(p.images[galleryIndex]))+'" alt="'+esc(p.name)+'"></div>';
     return;
   }
@@ -118,11 +122,9 @@ function renderGallery(){
     arrows:false,
     dots:false,
     infinite:p.images.length>1,
-    autoplay:p.images.length>1,
-    autoplaySpeed:3500,
-    speed:380,
-    fade:true,
-    cssEase:"linear",
+    autoplay:false,
+    speed:300,
+    fade:false,
     swipe:true,
     draggable:true,
     touchMove:true,
@@ -136,8 +138,7 @@ function renderGallery(){
     arrows:false,
     dots:false,
     infinite:false,
-    focusOnSelect:true,
-    asNavFor:"#gallerySlider",
+    focusOnSelect:false,
     swipe:true,
     draggable:true,
     touchMove:true,
@@ -152,26 +153,31 @@ function renderGallery(){
     galleryIndex=index;
     $("#galleryCounter").textContent=(index+1)+" / "+p.images.length;
     $thumbs.find(".gallery-dot").removeClass("active").eq(index).addClass("active");
-    if($thumbs.hasClass("slick-initialized")) $thumbs.slick("slickGoTo",Math.max(0,index-1),true);
+    if($thumbs.hasClass("slick-initialized")){
+      const visible=Math.max(1,Math.min(6,p.images.length));
+      const target=Math.max(0,Math.min(index,Math.max(0,p.images.length-visible)));
+      $thumbs.slick("slickGoTo",target,true);
+    }
   };
 
   $main.on("afterChange.fcGallery",(e,slick,current)=>sync(current));
+
   $thumbs.on("click.fcGallery",".gallery-dot",function(e){
     e.preventDefault();
     e.stopPropagation();
     const index=Number(this.dataset.galleryIndex);
-    if(Number.isInteger(index)) $main.slick("slickGoTo",index);
+    if(Number.isInteger(index) && index>=0 && index<p.images.length){
+      $main.slick("slickGoTo",index);
+    }
   });
 
   $main.slick("slickGoTo",galleryIndex,true);
 
-  // Slick needs a position pass after the modal becomes visible.
   requestAnimationFrame(()=>{
     if($main.hasClass("slick-initialized")) $main.slick("setPosition");
     if($thumbs.hasClass("slick-initialized")) $thumbs.slick("setPosition");
   });
 }
-
 function galleryStep(delta){
   if(!galleryProduct)return;
   const jq=window.jQuery;
