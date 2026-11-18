@@ -4668,6 +4668,146 @@ body{background:#f7f8fa!important}
   visibility:visible!important;
 }
 </style>
+<style id="fc-final-mobile-gallery-render">
+/* FINAL MOBILE GALLERY + CTA PASS
+   Slick must keep its native track/slide geometry. Do not force the
+   Slick track into flex or hide slides with visibility; Slick controls
+   the visible slide through its transform + overflow. */
+.product-modal-media{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  display:block!important;
+}
+.product-modal-media .gallery-slider .slick-list{
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .slick-track{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+}
+.product-modal-media .gallery-slider .slick-slide{
+  float:left!important;
+  height:100%!important;
+  min-height:100%!important;
+  display:block!important;
+  visibility:visible!important;
+}
+.product-modal-media .gallery-slider .slick-slide > div,
+.product-modal-media .gallery-slider .gallery-slide{
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+  display:block!important;
+}
+.product-modal-media .gallery-slider .gallery-slide{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .gallery-slide img,
+.product-modal-media .gallery-slider .slick-slide img{
+  position:relative!important;
+  inset:auto!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:scale(1.045)!important;
+}
+.product-modal-media .gallery-slider .slick-slide[aria-hidden="true"]{
+  visibility:visible!important;
+}
+
+/* Keep the mobile controls compact and consistent with the catalogue. */
+.product-modal-close{
+  width:34px!important;
+  height:34px!important;
+  right:8px!important;
+  top:8px!important;
+  font-size:19px!important;
+  line-height:1!important;
+}
+.product-modal-arrow{
+  width:38px!important;
+  height:38px!important;
+  font-size:26px!important;
+}
+.product-modal-arrow.prev{left:9px!important}
+.product-modal-arrow.next{right:9px!important}
+.product-modal-actions{
+  grid-template-columns:minmax(0,1fr) 40px!important;
+  gap:7px!important;
+}
+.product-modal-actions .buy-now{
+  height:40px!important;
+  min-height:40px!important;
+  font-size:10px!important;
+}
+.product-modal-actions .add{
+  width:40px!important;
+  min-width:40px!important;
+  height:40px!important;
+  font-size:25px!important;
+}
+.product-modal-actions .buy-now svg{
+  width:14px!important;
+  height:14px!important;
+}
+@media(max-width:760px){
+  .product-modal-media{
+    aspect-ratio:1/1!important;
+  }
+  .product-modal-close{
+    width:34px!important;
+    height:34px!important;
+    right:8px!important;
+    top:8px!important;
+    font-size:19px!important;
+  }
+  .product-modal-arrow{
+    width:36px!important;
+    height:36px!important;
+    font-size:25px!important;
+  }
+  .product-modal-actions .buy-now{
+    height:40px!important;
+    min-height:40px!important;
+    font-size:10px!important;
+  }
+  .product-modal-actions .add{
+    width:40px!important;
+    min-width:40px!important;
+    height:40px!important;
+    font-size:24px!important;
+  }
+  .gallery-dots{
+    min-height:48px!important;
+    padding:0 4px 3px!important;
+  }
+  .gallery-dot{
+    width:42px!important;
+    height:42px!important;
+    flex-basis:42px!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
