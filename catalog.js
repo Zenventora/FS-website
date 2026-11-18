@@ -17,7 +17,7 @@ const priceMarkup=p=>{if(p.regularPrice==null)return '<div class="price-unconfir
 const shareIcon=()=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8.5a3 3 0 1 0-2.8-4.1L8.7 8a3 3 0 0 0 0 8l6.5 3.6A3 3 0 1 0 16 17.1l-6.3-3.5a3.1 3.1 0 0 0 0-1.2L16 8.9A3 3 0 0 0 18 8.5z"/></svg>';
 function filters(){
 const groups=["All","Miniatures","RC Cars"];
-const icons={All:"✦",Miniatures:"🏍", "RC Cars":"🎮"};
+const icons={All:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 2 2.1 6.1L20 10l-5.9 2.1L12 18l-2.1-5.9L4 10l5.9-1.9L12 2z"/></svg>',Miniatures:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16.5 7 9h10l2 7.5M7 9l1.5-3h7L17 9M4 17h16M8 19.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm11 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>',"RC Cars":'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 10h14l1.5 4v4H3v-4L4.5 10 7 6h10l2.5 4M7 14h10M7 18a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm13 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/></svg>'};
 const subs=activeCategory==="Miniatures"?["All","Vintage Cars","Super Bikes","Bikes","Cycles","RC Cars"]:activeCategory==="RC Cars"?["All","Racing Drift Car"]:[];
 $("#filters").innerHTML='<div class="filter-row">'+groups.map(x=>'<button class="filter '+(x===activeCategory?"active":"")+'" data-c="'+esc(x)+'"><span class="filter-icon">'+(icons[x]||"•")+'</span>'+esc(x)+'</button>').join("")+'</div>'+(subs.length?'<div class="filter-row sub">'+subs.map(x=>'<button class="filter '+(x===activeSubcategory?"active":"")+'" data-s="'+esc(x)+'">'+esc(x)+'</button>').join("")+'</div>':'');
 document.querySelectorAll("[data-c]").forEach(b=>b.onclick=()=>{activeCategory=b.dataset.c;activeSubcategory="All";filters();render()});
