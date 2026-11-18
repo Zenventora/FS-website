@@ -4611,6 +4611,63 @@ body{background:#f7f8fa!important}
 .gallery-dots .slick-track{display:flex!important;align-items:center!important}
 .gallery-dots .slick-slide{height:auto!important}
 </style>
+<style id="fc-gallery-render-final">
+/* Final gallery render fix */
+.product-modal-media{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.gallery-slider{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  display:block!important;
+}
+.gallery-slider .slick-list,
+.gallery-slider .slick-track,
+.gallery-slider .slick-slide,
+.gallery-slider .slick-slide>div,
+.gallery-slide{
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+}
+.gallery-slider .slick-list{
+  overflow:hidden!important;
+}
+.gallery-slider .slick-track{
+  display:flex!important;
+}
+.gallery-slide{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.gallery-slide img{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  opacity:1!important;
+  visibility:visible!important;
+}
+.gallery-slider .slick-slide[aria-hidden="true"]{
+  visibility:hidden!important;
+}
+.gallery-slider .slick-slide.slick-current{
+  visibility:visible!important;
+}
+</style>
 </head>
 <body>
 <header class="header">
