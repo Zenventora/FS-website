@@ -3915,6 +3915,26 @@ body{background:#f7f8fa!important}
 .product-media img,.product-image,.product-media picture img{transform:scale(1.08)!important}
 @media(max-width:700px){.product-media img,.product-image,.product-media picture img{transform:scale(1.05)!important}}
 </style>
+<style id="fc-gallery-cart-final">
+/* Final gallery + cart interaction layer */
+#cartBtn{cursor:pointer!important;pointer-events:auto!important;position:relative!important;z-index:10002!important}
+.drawer{z-index:10000!important}
+.drawer.open{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+.drawer.open .overlay{display:block!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+.drawer.open .cart-panel{display:flex!important;visibility:visible!important;opacity:1!important;transform:translateX(0)!important;pointer-events:auto!important;z-index:10001!important}
+.product-modal{z-index:11000!important;pointer-events:auto!important}
+.product-modal.open{display:block!important;visibility:visible!important;opacity:1!important}
+.product-modal-panel{z-index:11002!important;pointer-events:auto!important}
+.product-modal-backdrop{z-index:11000!important;pointer-events:auto!important}
+.product-modal-media{aspect-ratio:1/1!important;width:100%!important;height:auto!important;overflow:hidden!important}
+.product-modal-media img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:scale(1.04)!important;cursor:zoom-in!important}
+.product-image{aspect-ratio:1/1!important;height:auto!important;overflow:hidden!important;cursor:pointer!important;pointer-events:auto!important}
+.product-image img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;transform:scale(1.04)!important;transition:transform .25s ease!important}
+.product-image:hover img{transform:scale(1.08)!important}
+.gallery-dots{display:flex!important;overflow-x:auto!important;scrollbar-width:none!important;justify-content:flex-start!important;max-width:100%!important}
+.gallery-dots::-webkit-scrollbar{display:none!important}
+.gallery-dot{cursor:pointer!important;pointer-events:auto!important}
+</style>
 </head>
 <body>
 <header class="header">
@@ -4327,5 +4347,68 @@ a,
   }
 }
 </style>
+<script id="fc-final-interaction-fix">
+(function(){
+  function openCartFinal(e){
+    if(e){e.preventDefault();e.stopPropagation();}
+    const d=document.getElementById("drawer");
+    if(!d)return;
+    if(typeof cart==="function")cart();
+    d.classList.add("open");
+    d.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+  function closeCartFinal(){
+    const d=document.getElementById("drawer");
+    if(!d)return;
+    d.classList.remove("open");
+    d.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+  }
+  document.addEventListener("click",function(e){
+    const cartBtn=e.target.closest&&e.target.closest("#cartBtn");
+    if(cartBtn){openCartFinal(e);return;}
+    const close=e.target.closest&&e.target.closest("#close");
+    if(close){e.preventDefault();e.stopPropagation();closeCartFinal();return;}
+    const overlay=e.target.closest&&e.target.closest("#overlay");
+    if(overlay){closeCartFinal();return;}
+    const view=e.target.closest&&e.target.closest("[data-view]");
+    if(view){
+      e.preventDefault();
+      e.stopPropagation();
+      if(typeof openGallery==="function")openGallery(view.dataset.view,0);
+    }
+  },true);
+
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"){
+      const d=document.getElementById("drawer");
+      if(d&&d.classList.contains("open"))closeCartFinal();
+    }
+  });
+
+  let galleryTimer=null;
+  function startGalleryAuto(){
+    clearInterval(galleryTimer);
+    galleryTimer=setInterval(function(){
+      const m=document.getElementById("productModal");
+      if(m&&m.classList.contains("open")&&typeof galleryStep==="function")galleryStep(1);
+    },3500);
+  }
+  function stopGalleryAuto(){clearInterval(galleryTimer);galleryTimer=null;}
+  const observer=new MutationObserver(function(){
+    const m=document.getElementById("productModal");
+    if(m&&m.classList.contains("open"))startGalleryAuto();else stopGalleryAuto();
+  });
+  const modal=document.getElementById("productModal");
+  if(modal)observer.observe(modal,{attributes:true,attributeFilter:["class"]});
+  document.addEventListener("mouseenter",function(e){
+    if(e.target.closest&&e.target.closest(".product-modal-panel"))stopGalleryAuto();
+  },true);
+  document.addEventListener("mouseleave",function(e){
+    if(e.target.closest&&e.target.closest(".product-modal-panel"))startGalleryAuto();
+  },true);
+})();
+</script>
 </body>
 </html>
