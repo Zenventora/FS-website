@@ -57,40 +57,49 @@ function renderGallery(){
 }
 function galleryStep(delta){if(!galleryProduct)return;galleryIndex=(galleryIndex+delta+galleryProduct.images.length)%galleryProduct.images.length;renderGallery()}
 function bindGallery(){
- const m=$("#productModal");if(!m)return;
+ const m=$("#productModal");
+ if(!m)return;
+
  const panel=m.querySelector(".product-modal-panel");
  const media=m.querySelector(".product-modal-media");
- let swipeStartX=0,swipeStartY=0,swiping=false;
+ const backdrop=m.querySelector(".product-modal-backdrop");
+ const closeButton=m.querySelector("[data-modal-close]");
+ const prev=$("#galleryPrev");
+ const next=$("#galleryNext");
+
+ let swipeStartX=0;
+ let swipeStartY=0;
+ let swiping=false;
 
  const close=()=>{
    if(!m.classList.contains("open"))return;
    closeGallery();
  };
 
- // Single delegated close handler: close button + backdrop are both reliable.
- m.addEventListener("click",e=>{
-   const closeTarget=e.target.closest("[data-modal-close]");
-   if(closeTarget){
-     e.preventDefault();
-     e.stopPropagation();
-     close();
-     return;
-   }
-   if(e.target===m||e.target===m.querySelector(".product-modal-backdrop")){
-     e.preventDefault();
-     close();
-   }
+ // Close button and backdrop are intentionally handled separately.
+ // This prevents clicks inside the popup from being mistaken for outside clicks.
+ if(closeButton)closeButton.addEventListener("click",e=>{
+   e.preventDefault();
+   e.stopPropagation();
+   close();
+ });
+ if(backdrop)backdrop.addEventListener("click",e=>{
+   e.preventDefault();
+   close();
  });
 
- // Prevent clicks inside the dialog from being treated as outside clicks.
+ // Stop panel clicks from bubbling to the modal/backdrop.
  if(panel)panel.addEventListener("click",e=>e.stopPropagation());
 
- const prev=$("#galleryPrev"),next=$("#galleryNext");
  if(prev)prev.addEventListener("click",e=>{
-   e.preventDefault();e.stopPropagation();galleryStep(-1);
+   e.preventDefault();
+   e.stopPropagation();
+   galleryStep(-1);
  });
  if(next)next.addEventListener("click",e=>{
-   e.preventDefault();e.stopPropagation();galleryStep(1);
+   e.preventDefault();
+   e.stopPropagation();
+   galleryStep(1);
  });
 
  const startSwipe=e=>{
@@ -124,7 +133,6 @@ function bindGallery(){
    },{passive:true});
  }
 
- // Keyboard handling while the gallery is open.
  document.addEventListener("keydown",e=>{
    if(!m.classList.contains("open"))return;
    if(e.key==="Escape"){
@@ -139,7 +147,6 @@ function bindGallery(){
    }
  });
 
- // Browser back should close the open gallery cleanly.
  window.addEventListener("popstate",()=>{
    if(m.classList.contains("open"))closeGallery();
  });
