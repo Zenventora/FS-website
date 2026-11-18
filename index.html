@@ -3045,6 +3045,140 @@ body{background:#f7f8fa!important}
   .hero-six-stage{border-radius:19px!important}
 }
 </style>
+
+<style id="fc-final-product-list-reference-match">
+/* Match the approved product-list reference: wide image frame, compact premium card rhythm */
+.products{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:20px 18px!important;
+}
+.product-card{
+  border-radius:25px!important;
+  overflow:hidden!important;
+  background:#fff!important;
+  padding:0!important;
+}
+.product-image{
+  margin:10px!important;
+  width:calc(100% - 20px)!important;
+  height:auto!important;
+  aspect-ratio:1.34!important;
+  min-height:0!important;
+  border-radius:19px!important;
+  overflow:hidden!important;
+  background:#f0f1f2!important;
+}
+.product-image img{
+  width:100%!important;
+  min-width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:100%!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:scale(1.015)!important;
+  transform-origin:center center!important;
+}
+.product-card:hover .product-image img{
+  transform:scale(1.03)!important;
+}
+.product-info{
+  padding:12px 20px 18px!important;
+}
+.product-cat{
+  font-size:10px!important;
+  margin-bottom:7px!important;
+}
+.product-name{
+  font-size:18px!important;
+  line-height:1.18!important;
+  margin-bottom:13px!important;
+}
+.price-main b{
+  font-size:29px!important;
+}
+.price-main small{
+  font-size:11px!important;
+}
+.follower-price{
+  min-height:42px!important;
+  margin:12px 0 13px!important;
+  padding:8px 10px 8px 13px!important;
+}
+.follower-price span{
+  font-size:10px!important;
+}
+.follower-price strong{
+  font-size:19px!important;
+}
+.follower-price em{
+  font-size:9px!important;
+}
+.product-actions{
+  grid-template-columns:minmax(0,1fr) 43px 43px!important;
+  gap:8px!important;
+}
+.product-actions .buy-now{
+  height:43px!important;
+  font-size:14px!important;
+}
+.product-actions .add,
+.product-actions .share{
+  width:43px!important;
+  height:43px!important;
+}
+.product-actions .buy-now,
+.product-actions .add,
+.product-actions .share,
+.product-image,
+.product-name,
+.filter{
+  cursor:pointer!important;
+}
+
+@media(max-width:900px){
+  .products{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:18px 14px!important;
+  }
+}
+@media(max-width:620px){
+  .products{
+    grid-template-columns:1fr!important;
+    gap:16px!important;
+  }
+  .product-image{
+    margin:8px!important;
+    width:calc(100% - 16px)!important;
+    aspect-ratio:1.34!important;
+    border-radius:16px!important;
+  }
+  .product-info{
+    padding:12px 15px 15px!important;
+  }
+  .product-name{
+    font-size:16px!important;
+  }
+  .price-main b{
+    font-size:26px!important;
+  }
+  .product-actions{
+    grid-template-columns:minmax(0,1fr) 38px 38px!important;
+    gap:6px!important;
+  }
+  .product-actions .buy-now{
+    height:38px!important;
+    font-size:14px!important;
+  }
+  .product-actions .add,
+  .product-actions .share{
+    width:38px!important;
+    height:38px!important;
+  }
+}
+</style>
+
 </head>
 <body>
 <header class="header">
