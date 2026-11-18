@@ -101,4 +101,10 @@ body{background:linear-gradient(180deg,#fff 0%,#f5f6f8 100%)!important;color:var
 </div>
 <div class="footer-bottom"><span>© <span id="year"></span> Fancy Corner Online. All rights reserved.</span></div>
 </footer>
+<script>
+(function(){
+ const h=document.getElementById("hamb"),n=document.getElementById("mainNav");
+ if(h&&n){h.addEventListener("click",function(){const open=n.classList.toggle("open");h.setAttribute("aria-expanded",String(open));});}
+})();
+</script>
 </body></html>
