@@ -1,9 +1,10 @@
 {
   "name":"Fancy Corner Online",
   "short_name":"Fancy Corner",
-  "start_url":"/FS-website/",
+  "start_url":"/",
   "display":"standalone",
-  "background_color":"#fffdf4",
-  "theme_color":"#ffd900",
-  "description":"Toys, crafts, RC cars and miniature vintage cars from Fancy Corner Online."
+  "background_color":"#f4f1ea",
+  "theme_color":"#171614",
+  "description":"Miniatures, RC cars, collectible bikes and vintage cars from Fancy Corner Online.",
+  "icons":[{"src":"/images/logo.jpeg","sizes":"512x512","type":"image/jpeg"}]
 }
