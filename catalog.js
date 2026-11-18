@@ -91,17 +91,18 @@ function renderGallery(){
 
   destroyGallerySliders();
 
-  main.innerHTML=p.images.map((src,i)=>{
-    const image=imageSrc(src);
-    return '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
+  const images=p.images.map(imageSrc);
+  main.innerHTML=images.map((image,i)=>
+    '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
       '<img src="'+esc(image)+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="'+(i===galleryIndex?"eager":"lazy")+'">'+
-    '</div>';
-  }).join("");
+    '</div>'
+  ).join("");
 
-  thumbs.innerHTML=p.images.map((src,i)=>{
-    const image=imageSrc(src);
-    return '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url(\''+esc(image)+'\')"></button>';
-  }).join("");
+  thumbs.innerHTML=images.map((image,i)=>
+    '<div class="gallery-thumb-slide">'+
+      '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url(\''+esc(image)+'\')"></button>'+
+    '</div>'
+  ).join("");
 
   $("#galleryName").textContent=p.name;
   $("#galleryCategory").textContent=p.category+" · "+p.subcategory;
@@ -111,16 +112,38 @@ function renderGallery(){
 
   const jq=window.jQuery;
   if(!(jq&&jq.fn&&jq.fn.slick)){
-    main.innerHTML='<div class="gallery-slide"><img src="'+esc(imageSrc(p.images[galleryIndex]))+'" alt="'+esc(p.name)+'"></div>';
+    main.innerHTML='<div class="gallery-slide"><img src="'+esc(images[galleryIndex])+'" alt="'+esc(p.name)+'"></div>';
     return;
   }
 
   const $main=jq(main);
   const $thumbs=jq(thumbs);
 
+  // Slick is the single source of truth for both the large image
+  // and the six-image navigation strip.
+  $thumbs.slick({
+    slidesToShow:Math.min(6,p.images.length),
+    slidesToScroll:1,
+    arrows:false,
+    dots:false,
+    infinite:false,
+    focusOnSelect:true,
+    swipe:true,
+    draggable:true,
+    touchMove:true,
+    variableWidth:false,
+    centerMode:false,
+    asNavFor:"#gallerySlider",
+    responsive:[
+      {breakpoint:760,settings:{slidesToShow:Math.min(5,p.images.length)}},
+      {breakpoint:520,settings:{slidesToShow:Math.min(4,p.images.length)}}
+    ]
+  });
+
   $main.slick({
     slidesToShow:1,
     slidesToScroll:1,
+    initialSlide:galleryIndex,
     arrows:false,
     dots:false,
     infinite:p.images.length>1,
@@ -134,39 +157,24 @@ function renderGallery(){
     draggable:true,
     touchMove:true,
     adaptiveHeight:false,
-    accessibility:true
-  });
-
-  $thumbs.slick({
-    slidesToShow:Math.min(6,p.images.length),
-    slidesToScroll:1,
-    arrows:false,
-    dots:false,
-    infinite:false,
-    focusOnSelect:false,
-    swipe:true,
-    draggable:true,
-    touchMove:true,
-    variableWidth:true,
-    responsive:[
-      {breakpoint:760,settings:{slidesToShow:Math.min(5,p.images.length),variableWidth:true}},
-      {breakpoint:520,settings:{slidesToShow:Math.min(4,p.images.length),variableWidth:true}}
-    ]
+    accessibility:true,
+    asNavFor:"#galleryDots"
   });
 
   const sync=(index)=>{
     galleryIndex=index;
     $("#galleryCounter").textContent=(index+1)+" / "+p.images.length;
     $thumbs.find(".gallery-dot").removeClass("active").eq(index).addClass("active");
-    if($thumbs.hasClass("slick-initialized")){
-      const visible=Math.max(1,Math.min(6,p.images.length));
-      const target=Math.max(0,Math.min(index,Math.max(0,p.images.length-visible)));
-      $thumbs.slick("slickGoTo",target,true);
-    }
   };
 
   $main.on("afterChange.fcGallery",(e,slick,current)=>sync(current));
+  $thumbs.on("afterChange.fcGallery",(e,slick,current)=>{
+    // asNavFor drives the main slider; this keeps the visible
+    // thumbnail strip and active state aligned without double-jumping.
+    if(current===galleryIndex)sync(galleryIndex);
+  });
 
+  // Explicit thumbnail click fallback for touch/desktop browsers.
   $thumbs.on("click.fcGallery",".gallery-dot",function(e){
     e.preventDefault();
     e.stopPropagation();
@@ -176,12 +184,21 @@ function renderGallery(){
     }
   });
 
-  $main.slick("slickGoTo",galleryIndex,true);
   sync(galleryIndex);
 
+  // Recalculate Slick dimensions after the modal has been painted.
   requestAnimationFrame(()=>{
-    if($main.hasClass("slick-initialized")) $main.slick("setPosition");
-    if($thumbs.hasClass("slick-initialized")) $thumbs.slick("setPosition");
+    if($main.hasClass("slick-initialized"))$main.slick("setPosition");
+    if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
+  });
+
+  // If an image is late-loading, recalculate Slick again once it arrives.
+  main.querySelectorAll("img").forEach(img=>{
+    if(!img.complete){
+      img.addEventListener("load",()=>{
+        if($main.hasClass("slick-initialized"))$main.slick("setPosition");
+      },{once:true});
+    }
   });
 }
 function galleryStep(delta){
