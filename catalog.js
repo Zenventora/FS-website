@@ -59,49 +59,81 @@ function galleryStep(delta){if(!galleryProduct)return;galleryIndex=(galleryIndex
 function bindGallery(){
  const m=$("#productModal");if(!m)return;
  const panel=m.querySelector(".product-modal-panel");
- const backdrop=m.querySelector(".product-modal-backdrop");
- const closeBtn=m.querySelector(".product-modal-close");
  const media=m.querySelector(".product-modal-media");
- const close=()=>{if(m.classList.contains("open"))closeGallery()};
- if(closeBtn)closeBtn.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();close()});
- if(backdrop)backdrop.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();close()});
- if(panel)panel.addEventListener("click",e=>e.stopPropagation());
- m.addEventListener("click",e=>{if(e.target===m||e.target===backdrop)close()});
- $("#galleryPrev").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();galleryStep(-1)});
- $("#galleryNext").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();galleryStep(1)});
+ let swipeStartX=0,swipeStartY=0,swiping=false;
 
- let sx=0,sy=0,tracking=false;
- const beginSwipe=e=>{
+ const close=()=>{
+   if(!m.classList.contains("open"))return;
+   closeGallery();
+ };
+
+ // Single delegated close handler: close button + backdrop are both reliable.
+ m.addEventListener("click",e=>{
+   const closeTarget=e.target.closest("[data-modal-close]");
+   if(closeTarget){
+     e.preventDefault();
+     e.stopPropagation();
+     close();
+     return;
+   }
+   if(e.target===m||e.target===m.querySelector(".product-modal-backdrop")){
+     e.preventDefault();
+     close();
+   }
+ });
+
+ // Prevent clicks inside the dialog from being treated as outside clicks.
+ if(panel)panel.addEventListener("click",e=>e.stopPropagation());
+
+ const prev=$("#galleryPrev"),next=$("#galleryNext");
+ if(prev)prev.addEventListener("click",e=>{
+   e.preventDefault();e.stopPropagation();galleryStep(-1);
+ });
+ if(next)next.addEventListener("click",e=>{
+   e.preventDefault();e.stopPropagation();galleryStep(1);
+ });
+
+ const startSwipe=e=>{
    if(!galleryProduct)return;
    const p=e.touches?.[0]||e;
-   sx=p.clientX;sy=p.clientY;tracking=true;
+   swipeStartX=p.clientX;
+   swipeStartY=p.clientY;
+   swiping=true;
  };
  const endSwipe=e=>{
-   if(!tracking||!galleryProduct)return;
-   tracking=false;
+   if(!swiping||!galleryProduct)return;
+   swiping=false;
    const p=e.changedTouches?.[0]||e;
-   const dx=p.clientX-sx,dy=p.clientY-sy;
-   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){
+   const dx=p.clientX-swipeStartX;
+   const dy=p.clientY-swipeStartY;
+   if(Math.abs(dx)>=45&&Math.abs(dx)>Math.abs(dy)){
      galleryStep(dx<0?1:-1);
    }
  };
+
  if(media){
-   media.addEventListener("touchstart",beginSwipe,{passive:true});
+   media.addEventListener("touchstart",startSwipe,{passive:true});
    media.addEventListener("touchend",endSwipe,{passive:true});
-   media.addEventListener("pointerdown",e=>{
-     if(e.pointerType==="mouse")return;
-     beginSwipe(e);
-   },{passive:true});
-   media.addEventListener("pointerup",e=>{
-     if(e.pointerType==="mouse")return;
-     endSwipe(e);
-   },{passive:true});
  }
+
+ // Keyboard handling while the gallery is open.
  document.addEventListener("keydown",e=>{
    if(!m.classList.contains("open"))return;
-   if(e.key==="Escape"){e.preventDefault();close()}
-   else if(e.key==="ArrowLeft"){e.preventDefault();galleryStep(-1)}
-   else if(e.key==="ArrowRight"){e.preventDefault();galleryStep(1)}
+   if(e.key==="Escape"){
+     e.preventDefault();
+     close();
+   }else if(e.key==="ArrowLeft"){
+     e.preventDefault();
+     galleryStep(-1);
+   }else if(e.key==="ArrowRight"){
+     e.preventDefault();
+     galleryStep(1);
+   }
+ });
+
+ // Browser back should close the open gallery cleanly.
+ window.addEventListener("popstate",()=>{
+   if(m.classList.contains("open"))closeGallery();
  });
 }
 
