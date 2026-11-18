@@ -1411,6 +1411,140 @@ body{background:#f7f8fa!important;color:var(--fc-ink)!important}
 .hero-six-dot:after{background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.35))!important}
 .hero-six-dot.active{border-color:#ffd400!important;box-shadow:inset 0 0 0 2px #ffd400,0 0 0 1px #ffd400!important}
 </style>
+<style id="fc-end-to-end-cleanup">
+/* End-to-end gradient; only the inner content is capped at 1280px */
+body{background:#f7f8fa!important}
+.header{background:#fff!important}
+.nav{max-width:1280px!important;width:100%!important;margin:auto!important}
+.hero{
+  width:100%!important;max-width:none!important;margin:0!important;padding:0!important;
+  display:block!important;position:relative!important;overflow:hidden!important;
+  background:
+    radial-gradient(ellipse at 8% 80%,rgba(255,212,0,.62) 0%,rgba(255,212,0,.22) 20%,transparent 42%),
+    radial-gradient(ellipse at 95% 22%,rgba(255,212,0,.34) 0%,rgba(255,212,0,.12) 22%,transparent 44%),
+    linear-gradient(135deg,#fffdf7 0%,#f3f4f7 50%,#fff 100%)!important;
+  border-radius:0!important;
+}
+.hero-inner{
+  width:100%!important;max-width:1280px!important;margin:0 auto!important;
+  padding:54px 28px 62px!important;display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(500px,.94fr)!important;
+  gap:42px!important;align-items:center!important;
+}
+.hero-copy{
+  min-height:0!important;padding:28px 0!important;background:transparent!important;
+  border:0!important;border-radius:0!important;color:#111!important;
+  box-shadow:none!important;display:block!important;
+}
+.hero-copy:after{display:none!important}
+.hero-brand{width:48px!important;height:48px!important;margin-bottom:15px!important}
+.hero h1{font-size:clamp(54px,6vw,80px)!important;max-width:600px!important;margin:12px 0 18px!important}
+.hero p{max-width:560px!important;color:#656970!important}
+.hero-note{margin-top:28px!important;gap:28px!important}
+.hero-art{
+  min-width:0!important;padding:0!important;background:transparent!important;
+  box-shadow:none!important;max-width:none!important;
+}
+.hero-six-stage{
+  width:100%!important;aspect-ratio:1/1!important;max-height:none!important;
+  border-radius:26px!important;overflow:hidden!important;
+  border:1px solid rgba(20,20,20,.08)!important;
+  box-shadow:0 22px 60px rgba(20,20,20,.12)!important;
+}
+.hero-six-image img{object-fit:cover!important;width:100%!important;height:100%!important;transform:scale(1.04)!important;padding:0!important}
+.hero-six-strip{height:42px!important;margin-top:11px!important;gap:7px!important}
+.hero-six-dot{width:42px!important;height:38px!important;border-radius:10px!important}
+.hero-six-dot.active{border-color:#ffd400!important}
+.catalog{
+  max-width:1280px!important;width:100%!important;margin:0 auto!important;
+  padding:58px 28px 90px!important;background:#f7f8fa!important;
+}
+.catalog-head{padding-bottom:22px!important}
+.filters{margin-bottom:22px!important}
+.products{gap:16px!important}
+.product-card{
+  border-radius:18px!important;
+  box-shadow:0 7px 22px rgba(17,17,19,.055)!important;
+}
+.product-image{aspect-ratio:1/0.88!important}
+.product-info{padding:14px!important}
+.product-name{font-size:16px!important}
+.product-actions{margin-top:11px!important;gap:7px!important}
+.buy-now,.product-actions .add,.product-actions .share{height:40px!important}
+.product-actions .add,.product-actions .share{width:40px!important}
+.product-card:hover{transform:translateY(-2px)!important;box-shadow:0 14px 32px rgba(17,17,19,.09)!important}
+
+/* Inline gallery: no product page navigation */
+.product-modal{position:fixed;inset:0;z-index:100;display:none}
+.product-modal.open{display:block}
+.product-modal-backdrop{position:absolute;inset:0;background:rgba(8,9,10,.68);backdrop-filter:blur(10px)}
+.product-modal-panel{
+ position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+ width:min(1040px,calc(100vw - 36px));max-height:calc(100vh - 36px);
+ overflow:auto;background:#fff;border-radius:26px;padding:18px;
+ box-shadow:0 35px 100px rgba(0,0,0,.28);display:grid;
+ grid-template-columns:minmax(0,1.15fr) minmax(300px,.65fr);gap:24px;
+}
+.product-modal-close{
+ position:absolute;right:16px;top:14px;z-index:3;width:38px;height:38px;
+ border:0;border-radius:50%;background:#fff;color:#111;font-size:25px;line-height:1;cursor:pointer;
+ box-shadow:0 6px 20px rgba(0,0,0,.12)
+}
+.product-modal-media{position:relative;min-width:0;background:#f0f1f3;border-radius:20px;overflow:hidden;aspect-ratio:1/1}
+.product-modal-media img{width:100%;height:100%;object-fit:cover;display:block;user-select:none}
+.product-modal-arrow{
+ position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;
+ border:0;border-radius:50%;background:rgba(255,255,255,.92);font-size:28px;cursor:pointer;
+ box-shadow:0 8px 22px rgba(0,0,0,.12)
+}
+.product-modal-arrow.prev{left:14px}.product-modal-arrow.next{right:14px}
+.gallery-counter{
+ position:absolute;right:14px;bottom:14px;background:rgba(0,0,0,.68);color:#fff;
+ border-radius:999px;padding:7px 11px;font-size:9px;font-weight:900
+}
+.product-modal-info{padding:38px 12px 12px}
+.product-modal-info h2{font-size:clamp(34px,4vw,54px);line-height:.95;letter-spacing:-.05em;margin:10px 0 18px}
+.product-modal-info .price-main{margin-top:0}
+.product-modal-actions{display:flex;gap:8px;margin-top:24px}
+.product-modal-actions .buy-now{flex:1;height:46px}
+.product-modal-actions .add{width:46px;height:46px}
+.gallery-dots{
+ grid-column:1/-1;display:flex;justify-content:center;gap:7px;overflow-x:auto;padding:2px 0 4px
+}
+.gallery-dot{width:48px;height:48px;flex:0 0 48px;border:2px solid #e1e2e5;border-radius:10px;padding:0;background-size:cover;background-position:center;cursor:pointer}
+.gallery-dot.active{border-color:#ffd400;box-shadow:0 0 0 2px #ffd400}
+
+/* no mobile menu */
+@media(max-width:1050px){
+ .hero-inner{grid-template-columns:1fr!important;max-width:960px!important}
+ .hero-art{max-width:680px!important;margin:auto!important;width:100%!important}
+ .products{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:700px){
+ .nav{height:68px!important;padding:0 16px!important}
+ .navlinks{gap:2px!important}
+ .navlinks .nav-item{padding:0 10px!important}
+ .navlinks .nav-item span{display:none!important}
+ .hero-inner{padding:38px 16px 46px!important;display:block!important}
+ .hero-copy{padding:10px 8px 28px!important}
+ .hero h1{font-size:52px!important}
+ .hero-art{max-width:100%!important}
+ .hero-six-stage{border-radius:22px!important}
+ .catalog{padding:48px 16px 72px!important}
+ .catalog-head h2{font-size:46px!important}
+ .products{grid-template-columns:1fr 1fr!important;gap:11px!important}
+ .product-info{padding:11px!important}
+ .product-name{font-size:14px!important}
+ .product-actions .add,.product-actions .share{width:36px!important;height:36px!important}
+ .buy-now{height:36px!important;font-size:8px!important}
+ .product-modal-panel{grid-template-columns:1fr!important;width:calc(100vw - 20px)!important;max-height:calc(100vh - 20px)!important;border-radius:20px!important;padding:10px!important;gap:12px!important}
+ .product-modal-media{border-radius:16px!important}
+ .product-modal-info{padding:4px 8px 8px!important}
+ .product-modal-info h2{font-size:38px!important}
+ .product-modal-arrow{width:38px!important;height:38px!important}
+ .gallery-dot{width:42px!important;height:42px!important;flex-basis:42px!important}
+}
+</style>
 </head>
 <body>
 <header class="header">
@@ -1423,11 +1557,11 @@ body{background:#f7f8fa!important;color:var(--fc-ink)!important}
 <a class="nav-item active" href="#home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.8 12 3l9 7.8v9.2a1 1 0 0 1-1 1h-5.5v-6h-5v6H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a>
 <a class="nav-item" href="#catalog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg><span>Products</span></a>
 <a class="nav-item nav-cart-mobile" href="#" id="cartNav"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H7.2M10 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>Cart</span><b id="cartCountNav">0</b></a>
-<a class="nav-extra" href="./faq.html">FAQ</a><a class="nav-extra" href="./privacy-policy.html">Privacy</a><a class="nav-extra" href="./terms-and-conditions.html">Terms</a>
+
 </nav>
 <div class="navright">
 <button class="cartbtn" id="cartBtn" aria-label="Open cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H7.2M10 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>Cart</span><em id="cartCount">0</em></button>
-<button class="hamb" id="hamb" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+
 </div>
 </div>
 </header>
@@ -1438,7 +1572,7 @@ body{background:#f7f8fa!important;color:var(--fc-ink)!important}
 <div class="hero-brand"><img src="./images/logo.jpeg" alt="Fancy Corner Online"></div>
 <div class="eyebrow">FANCY CORNER ONLINE · COIMBATORE</div>
 <h1>Small things.<br><span>Big character.</span></h1>
-<p>Real product images. Clear prices. Followers offers. Choose a product, add it to your cart, or open the product page for the full gallery.</p>
+<p>Real product images. Clear prices. Followers offers. Choose a product, add it to your cart, or view all photos here.</p>
 <div class="hero-actions"><a class="btn gold" href="#catalog">Explore collection ↓</a><a class="btn outline" href="https://wa.me/917904639830?text=Hi%20Fancy%20Corner%20Online%2C%20I%20want%20to%20browse%20your%20collection." target="_blank" rel="noopener">WhatsApp</a></div>
 <div class="hero-note"><div><strong>6</strong><span>Featured products</span></div><div><strong>Real</strong><span>Product images</span></div><div><strong>Direct</strong><span>WhatsApp</span></div></div>
 </div>
@@ -1470,6 +1604,28 @@ body{background:#f7f8fa!important;color:var(--fc-ink)!important}
 </section>
 </main>
 
+<div class="product-modal" id="productModal" aria-hidden="true">
+<div class="product-modal-backdrop" data-modal-close></div>
+<div class="product-modal-panel" role="dialog" aria-modal="true" aria-label="Product gallery">
+<button class="product-modal-close" data-modal-close aria-label="Close">×</button>
+<div class="product-modal-media">
+<button class="product-modal-arrow prev" id="galleryPrev" aria-label="Previous photo">‹</button>
+<img id="galleryImage" src="" alt="">
+<button class="product-modal-arrow next" id="galleryNext" aria-label="Next photo">›</button>
+<div class="gallery-counter" id="galleryCounter">1 / 1</div>
+</div>
+<div class="product-modal-info">
+<div class="eyebrow" id="galleryCategory"></div>
+<h2 id="galleryName"></h2>
+<div id="galleryPrice"></div>
+<div class="product-modal-actions">
+<button class="buy-now" id="galleryBuy">Buy Now</button>
+<button class="add" id="galleryAdd" aria-label="Add to cart">＋</button>
+</div>
+</div>
+<div class="gallery-dots" id="galleryDots"></div>
+</div>
+</div>
 <footer class="footer" id="footer">
 <div class="footer-inner">
 <section>
@@ -1571,57 +1727,38 @@ body{background:#f7f8fa!important;color:var(--fc-ink)!important}
         {
           "@type": "ListItem",
           "position": 1,
-          "url": "https://fancycorner.in/products/vintage-cars-6-combo/"
+          "url": "https://fancycorner.in/?product=vintage-cars-6-combo"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "url": "https://fancycorner.in/products/super-bikes-6-combo/"
+          "url": "https://fancycorner.in/?product=super-bikes-6-combo"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "url": "https://fancycorner.in/products/yamaha-rx100/"
+          "url": "https://fancycorner.in/?product=yamaha-rx100"
         },
         {
           "@type": "ListItem",
           "position": 4,
-          "url": "https://fancycorner.in/products/royal-enfield/"
+          "url": "https://fancycorner.in/?product=royal-enfield"
         },
         {
           "@type": "ListItem",
           "position": 5,
-          "url": "https://fancycorner.in/products/die-cast-cycle/"
+          "url": "https://fancycorner.in/?product=die-cast-cycle"
         },
         {
           "@type": "ListItem",
           "position": 6,
-          "url": "https://fancycorner.in/products/racing-drift-car/"
+          "url": "https://fancycorner.in/?product=racing-drift-car"
         }
       ]
     }
   ]
 }</script>
 <script>
-document.addEventListener("DOMContentLoaded",()=>{
-  const menu=document.getElementById("hamb");
-  const nav=document.getElementById("mainNav");
-  if(menu&&nav){
-    menu.addEventListener("click",()=>{
-      const open=nav.classList.toggle("open");
-      menu.setAttribute("aria-expanded",String(open));
-      menu.setAttribute("aria-label",open?"Close menu":"Open menu");
-      menu.textContent=open?"×":"☰";
-    });
-    nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
-      nav.classList.remove("open");
-      menu.setAttribute("aria-expanded","false");
-      menu.setAttribute("aria-label","Open menu");
-      menu.textContent="☰";
-    }));
-  }
-});
-</script><script>
 document.addEventListener("DOMContentLoaded",()=>{
   const products=[
     {name:"Die Cast Royal Enfield",meta:"Miniatures · Bikes",image:"https://wsrv.nl/?url=https%3A%2F%2Ffancycorner.in%2Fimages%2Fproducts%2Fminiatures%2Fbikes%2Froyal-enfield%2FIMG_20261115_172221.HEIC&output=webp&q=86&fit=cover&w=1600&h=1600"},
