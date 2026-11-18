@@ -4,10 +4,10 @@
 
 ## Brand
 - Name: Fancy Corner Online
+- Website: https://fancycorner.in/
 - Location: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India.
 - Phone/WhatsApp: +91 79046 39830
 - Email: fancycorneronline@gmail.com
-- Website: https://fancycorner.in/
 
 ## Product hierarchy
 - Miniatures
@@ -20,6 +20,12 @@
 - RC Cars
   - Racing Drift Car
 
+## Product image policy
+- Combo products use six unique images selected from their product folder for the main product gallery.
+- Individual products use all unique images in their assigned product folder to represent different product angles.
+- Exact duplicate binary images were checked across the active product folders; no duplicate SHA groups were found.
+- Product cards use one primary image and show the total gallery image count. Product detail pages expose the full assigned gallery.
+
 ## Current pricing
 - Vintage Cars – 6 Car Combo: ₹849; followers price ₹799; free shipping.
 - Super Bikes – 6 Bike Combo: ₹849; followers price ₹799; free shipping.
@@ -29,11 +35,19 @@
 - RC Car Combo: price to be confirmed.
 - Racing Drift Car: ₹2300 + ₹70 shipping; followers price ₹1999 + free shipping.
 
-## Ordering
-Customers can open a product page, use Buy Now to send that product directly to WhatsApp, or add products to the cart and send the selection to WhatsApp.
+## Customer flow
+- Buy Now opens WhatsApp with the selected product name and canonical product URL.
+- Add to Cart stores multiple selected products locally.
+- Cart checkout sends the complete selected product list to WhatsApp.
+- Share uses the product's canonical URL so the recipient lands on the exact product page.
+- Product pages contain product-specific title, description, Open Graph metadata and Product structured data.
 
-## Sharing
-Each product has a dedicated canonical URL with product-specific title, description and Open Graph image metadata for social link previews.
+## Search / AEO / LLM
+- Homepage includes Organization/OnlineStore, LocalBusiness, WebSite and product ItemList structured data.
+- Product pages include Product structured data, product images, price/member-price information where available, canonical URLs and social metadata.
+- Sitemap includes all active product URLs.
+- robots.txt allows crawling and references the sitemap.
+- llms.txt documents the product hierarchy, pricing and customer flows.
 
 ## Social profiles
 - Instagram: https://www.instagram.com/fancycorneronline/
@@ -43,4 +57,5 @@ Each product has a dedicated canonical URL with product-specific title, descript
 - X: https://x.com/fancycorner_
 
 ## Brand asset
-The canonical Fancy Corner Online logo is stored at /images/logo.jpeg and is used for brand/logo placements, favicon and site metadata.
+- Canonical logo: /images/logo.jpeg
+- Favicon uses the same brand asset.
