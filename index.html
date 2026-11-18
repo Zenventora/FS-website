@@ -3284,5 +3284,141 @@ document.addEventListener("DOMContentLoaded",()=>{
   dots.forEach((d,i)=>d.addEventListener("click",()=>show(i,true)));
   restart();
 });
-</script></body>
+</script>
+<style id="fc-final-mobile-hero-and-image-fit">
+/* Final mobile visual pass: smooth gradient, no harsh curved bands */
+@media (max-width:700px){
+  .hero-premium{
+    width:100%!important;
+    max-width:100%!important;
+    min-height:0!important;
+    padding:28px 16px 54px!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:20px!important;
+    overflow:hidden!important;
+    background:
+      radial-gradient(circle at 85% 22%,rgba(255,212,0,.18),transparent 34%),
+      radial-gradient(circle at 15% 72%,rgba(255,212,0,.10),transparent 38%),
+      linear-gradient(180deg,#fff 0%,#fafafa 52%,#f1f2f4 100%)!important;
+  }
+  .hero-premium:before,
+  .hero-premium:after{
+    display:none!important;
+    content:none!important;
+  }
+  .hero-copy-premium,
+  .hero-inner,
+  .hero-copy{
+    min-height:0!important;
+    background:transparent!important;
+  }
+  .hero-copy-premium{
+    padding:18px 4px 4px!important;
+  }
+  .hero-copy-premium h1{
+    margin:14px 0 18px!important;
+    max-width:100%!important;
+    font-size:clamp(48px,14vw,58px)!important;
+    line-height:.92!important;
+    letter-spacing:-.065em!important;
+  }
+  .hero-copy-premium p{
+    margin:0!important;
+    max-width:100%!important;
+    font-size:14px!important;
+    line-height:1.7!important;
+  }
+  .hero-product-carousel.hero-six-products{
+    width:100%!important;
+    max-width:100%!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:0!important;
+  }
+  .hero-six-stage{
+    width:100%!important;
+    aspect-ratio:1/1!important;
+    border-radius:21px!important;
+    overflow:hidden!important;
+    box-shadow:0 14px 34px rgba(17,19,23,.10)!important;
+  }
+}
+
+/* Product image must actually fill the square and crop/zoom cleanly */
+.product-image{
+  width:calc(100% - 16px)!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  margin:8px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  display:block!important;
+  position:relative!important;
+  background:#f0f1f2!important;
+}
+.product-image img{
+  display:block!important;
+  width:100%!important;
+  min-width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:100%!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:scale(1.14)!important;
+  transform-origin:center center!important;
+}
+
+/* Popup uses the same square, filled and zoomed treatment */
+.product-modal-media{
+  width:100%!important;
+  aspect-ratio:1/1!important;
+  overflow:hidden!important;
+}
+.product-modal-media img{
+  display:block!important;
+  width:100%!important;
+  min-width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:100%!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:scale(1.14)!important;
+  transform-origin:center center!important;
+}
+
+/* Every interactive control gets a pointer cursor */
+button,
+a,
+[role="button"],
+.product-image,
+.product-name,
+.product-modal-close,
+.product-modal-arrow,
+.gallery-dot,
+.buy-now,
+.add,
+.share,
+.cartbtn,
+.filter,
+.nav-item{
+  cursor:pointer!important;
+}
+
+/* Gallery close/backdrop must remain clickable */
+.product-modal,
+.product-modal-backdrop,
+.product-modal-close{
+  pointer-events:auto!important;
+}
+.product-modal-panel{
+  position:relative!important;
+}
+</style>
+</body>
 </html>
