@@ -51,7 +51,8 @@ function renderGallery(){
 function galleryStep(delta){if(!galleryProduct)return;galleryIndex=(galleryIndex+delta+galleryProduct.images.length)%galleryProduct.images.length;renderGallery()}
 function bindGallery(){
  const m=$("#productModal");if(!m)return;
- document.querySelectorAll("[data-modal-close]").forEach(b=>b.onclick=closeGallery);
+ document.querySelectorAll("[data-modal-close]").forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();closeGallery()});
+ m.addEventListener("click",e=>{if(e.target===m)closeGallery()});
  $("#galleryPrev").onclick=()=>galleryStep(-1);$("#galleryNext").onclick=()=>galleryStep(1);
  let sx=0,sy=0;
  const media=$("#galleryImage");
