@@ -4013,6 +4013,268 @@ body{background:#f7f8fa!important}
   }
 }
 </style>
+<style id="fc-final-product-gallery-slick-fix">
+/* PRODUCT CARD — exact square, centered, edge-to-edge image */
+.product-image{
+  width:calc(100% - 16px)!important;
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  margin:8px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  position:relative!important;
+  display:block!important;
+  border-radius:18px!important;
+  background:#f0f1f3!important;
+}
+.product-image img{
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+
+/* POPUP — always centered in viewport */
+.product-modal{
+  position:fixed!important;
+  inset:0!important;
+  z-index:1000!important;
+  display:none!important;
+  place-items:center!important;
+  padding:14px!important;
+}
+.product-modal.open{display:grid!important}
+.product-modal-backdrop{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  cursor:pointer!important;
+}
+.product-modal-panel{
+  position:relative!important;
+  left:auto!important;
+  top:auto!important;
+  transform:none!important;
+  z-index:1!important;
+  width:min(1040px,calc(100vw - 28px))!important;
+  max-height:calc(100vh - 28px)!important;
+  margin:auto!important;
+  overflow:hidden!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:14px!important;
+  padding:12px!important;
+  border-radius:28px!important;
+}
+
+/* POPUP MAIN IMAGE — same square framing as product cards */
+.product-modal-media{
+  position:relative!important;
+  min-width:0!important;
+  min-height:0!important;
+  width:100%!important;
+  aspect-ratio:1 / 1!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+  background:#f0f1f3!important;
+  grid-column:1!important;
+  grid-row:1!important;
+}
+.gallery-slider,
+.gallery-slider .slick-list,
+.gallery-slider .slick-track,
+.gallery-slide{
+  width:100%!important;
+  height:100%!important;
+}
+.gallery-slider .slick-slide>div,
+.gallery-slide{
+  height:100%!important;
+}
+.gallery-slide img{
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  user-select:none!important;
+}
+
+/* Popup arrows are always visible and clickable */
+.product-modal-arrow{
+  position:absolute!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  z-index:30!important;
+  width:46px!important;
+  height:46px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:rgba(17,17,17,.88)!important;
+  color:#fff!important;
+  font-size:34px!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.22)!important;
+}
+.product-modal-arrow.prev{left:14px!important}
+.product-modal-arrow.next{right:14px!important}
+.product-modal-arrow:hover{background:#ffd000!important;color:#111!important}
+
+/* Counter */
+.gallery-counter{
+  position:absolute!important;
+  right:14px!important;
+  bottom:14px!important;
+  z-index:25!important;
+  padding:8px 11px!important;
+  border-radius:999px!important;
+  background:rgba(17,17,17,.82)!important;
+  color:#fff!important;
+  font-size:10px!important;
+  font-weight:800!important;
+}
+
+/* Popup info stays on the right; whole panel remains centered */
+.product-modal-info{
+  grid-column:2!important;
+  grid-row:1!important;
+  min-width:0!important;
+  min-height:0!important;
+  overflow:auto!important;
+  padding:30px 22px 22px!important;
+}
+.product-modal-close{
+  position:absolute!important;
+  top:10px!important;
+  right:10px!important;
+  z-index:50!important;
+  width:42px!important;
+  height:42px!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  background:#111!important;
+  color:#fff!important;
+  font-size:27px!important;
+  line-height:1!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.product-modal-close:hover{background:#ffd000!important;color:#111!important}
+
+/* Slick thumbnail navigation — 6 small images */
+.gallery-dots{
+  grid-column:1 / -1!important;
+  grid-row:2!important;
+  width:100%!important;
+  min-height:58px!important;
+  margin:0!important;
+  padding:2px 34px 0!important;
+  display:block!important;
+  overflow:hidden!important;
+}
+.gallery-dots .slick-list{margin:0 auto!important}
+.gallery-dots .slick-track{
+  display:flex!important;
+  align-items:center!important;
+  margin:0 auto!important;
+}
+.gallery-dots .slick-slide{
+  width:58px!important;
+  margin:0 5px!important;
+}
+.gallery-dot{
+  width:50px!important;
+  height:50px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  border:2px solid #d9d9dc!important;
+  border-radius:11px!important;
+  background-size:cover!important;
+  background-position:center center!important;
+  background-repeat:no-repeat!important;
+  cursor:pointer!important;
+  display:block!important;
+  opacity:.82!important;
+  transition:.18s ease!important;
+}
+.gallery-dot:hover{opacity:1!important}
+.gallery-dot.active{
+  opacity:1!important;
+  border-color:#ffd000!important;
+  box-shadow:0 0 0 2px #ffd000!important;
+}
+
+/* Hide Slick's default generated buttons/arrows — our controls are custom */
+.gallery-slider .slick-arrow,
+.gallery-dots .slick-arrow{display:none!important}
+.gallery-slider .slick-dots,
+.gallery-dots .slick-dots{display:none!important}
+
+@media(max-width:760px){
+  .product-modal{
+    padding:10px!important;
+  }
+  .product-modal-panel{
+    width:calc(100vw - 20px)!important;
+    max-height:calc(100vh - 20px)!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:8px!important;
+    padding:8px!important;
+    border-radius:22px!important;
+  }
+  .product-modal-media{
+    width:100%!important;
+    aspect-ratio:1 / 1!important;
+    flex:0 0 auto!important;
+    border-radius:17px!important;
+  }
+  .product-modal-info{
+    order:2!important;
+    width:100%!important;
+    padding:8px 12px 2px!important;
+    overflow:visible!important;
+  }
+  .gallery-dots{
+    order:3!important;
+    min-height:50px!important;
+    padding:0 20px 2px!important;
+  }
+  .gallery-dots .slick-slide{width:52px!important;margin:0 4px!important}
+  .gallery-dot{width:46px!important;height:46px!important}
+  .product-modal-arrow{
+    width:40px!important;
+    height:40px!important;
+    font-size:29px!important;
+  }
+  .product-modal-arrow.prev{left:10px!important}
+  .product-modal-arrow.next{right:10px!important}
+  .product-modal-close{
+    width:38px!important;
+    height:38px!important;
+    top:8px!important;
+    right:8px!important;
+    font-size:24px!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
@@ -4074,7 +4336,7 @@ body{background:#f7f8fa!important}
 <button class="product-modal-close" data-modal-close aria-label="Close">×</button>
 <div class="product-modal-media">
 <button class="product-modal-arrow prev" id="galleryPrev" aria-label="Previous photo">‹</button>
-<img id="galleryImage" src="" alt="">
+<div id="gallerySlider" class="gallery-slider" aria-label="Product photos"></div>
 <button class="product-modal-arrow next" id="galleryNext" aria-label="Next photo">›</button>
 <div class="gallery-counter" id="galleryCounter">1 / 1</div>
 </div>
@@ -4127,6 +4389,9 @@ body{background:#f7f8fa!important}
 
 <div class="drawer" id="drawer"><div class="overlay" id="overlay"></div><aside class="cart-panel"><div class="cart-head"><div><div class="eyebrow">YOUR SELECTION</div><h2>Products <span id="bagCount">(0)</span></h2></div><button class="close" id="close">×</button></div><div class="cart-body" id="cartBody"></div><div class="checkout"><p>Selected products will be sent to Fancy Corner Online on WhatsApp. Final availability and pricing are confirmed by the store.</p><button class="wa" id="checkout">Send selection to WhatsApp</button></div></aside></div><div class="toast" id="toast"></div>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="./catalog.js"></script>
 <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -4450,12 +4715,6 @@ a,
     if(close){e.preventDefault();e.stopPropagation();closeCartFinal();return;}
     const overlay=e.target.closest&&e.target.closest("#overlay");
     if(overlay){closeCartFinal();return;}
-    const view=e.target.closest&&e.target.closest("[data-view]");
-    if(view){
-      e.preventDefault();
-      e.stopPropagation();
-      if(typeof openGallery==="function")openGallery(view.dataset.view,0);
-    }
   },true);
 
   document.addEventListener("keydown",function(e){
@@ -4464,28 +4723,6 @@ a,
       if(d&&d.classList.contains("open"))closeCartFinal();
     }
   });
-
-  let galleryTimer=null;
-  function startGalleryAuto(){
-    clearInterval(galleryTimer);
-    galleryTimer=setInterval(function(){
-      const m=document.getElementById("productModal");
-      if(m&&m.classList.contains("open")&&typeof galleryStep==="function")galleryStep(1);
-    },3500);
-  }
-  function stopGalleryAuto(){clearInterval(galleryTimer);galleryTimer=null;}
-  const observer=new MutationObserver(function(){
-    const m=document.getElementById("productModal");
-    if(m&&m.classList.contains("open"))startGalleryAuto();else stopGalleryAuto();
-  });
-  const modal=document.getElementById("productModal");
-  if(modal)observer.observe(modal,{attributes:true,attributeFilter:["class"]});
-  document.addEventListener("mouseenter",function(e){
-    if(e.target.closest&&e.target.closest(".product-modal-panel"))stopGalleryAuto();
-  },true);
-  document.addEventListener("mouseleave",function(e){
-    if(e.target.closest&&e.target.closest(".product-modal-panel"))startGalleryAuto();
-  },true);
 })();
 </script>
 </body>
