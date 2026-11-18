@@ -3900,6 +3900,14 @@ body{background:#f7f8fa!important}
 .cart-panel{z-index:1001!important;pointer-events:auto!important}
 #cartBtn{position:relative;z-index:20!important;pointer-events:auto!important;cursor:pointer!important}
 </style>
+<style id="fc-cart-hard-fix">
+#cartBtn{position:relative!important;z-index:2000!important;cursor:pointer!important;pointer-events:auto!important}
+.drawer{display:block!important;visibility:visible!important}
+.drawer.open{z-index:9999!important;display:block!important;visibility:visible!important;pointer-events:auto!important}
+.drawer.open .overlay{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+.drawer.open .cart-panel{transform:translateX(0)!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important}
+.cart-panel{z-index:10000!important;visibility:visible!important}
+</style>
 </head>
 <body>
 <header class="header">
@@ -3913,7 +3921,7 @@ body{background:#f7f8fa!important}
 <a class="nav-item" href="#catalog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h6v6H4V4zm10 0h6v6h-6V4zM4 14h6v6H4v-6zm10 0h6v6h-6v-6z"/></svg><span>Products</span></a>
 </nav>
 <div class="navright">
-<button class="cartbtn" id="cartBtn" aria-label="Open cart"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H7.2M10 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>Cart</span><em id="cartCount">0</em></button>
+<button class="cartbtn" id="cartBtn" type="button" aria-label="Open cart" onclick="(function(){var d=document.getElementById('drawer');if(d){d.classList.add('open');d.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';}})()"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h2l2.1 11.1a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 1.9-1.4L21 8H7.2M10 20a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm8 0a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/></svg><span>Cart</span><em id="cartCount">0</em></button>
 
 </div>
 </div>
