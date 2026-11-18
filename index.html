@@ -3951,7 +3951,7 @@ body{background:#f7f8fa!important}
 #cartBtn{pointer-events:auto!important;cursor:pointer!important;z-index:2000!important}
 </style>
 <style id="fc-square-image-fit-fix">
-/* Product cards: keep every product image inside a clean square frame */
+/* Product-card image: reference-style square media, full image visible */
 .product-card .product-image,
 .product-card .product-media,
 .product-card .image-wrap,
@@ -3961,6 +3961,7 @@ body{background:#f7f8fa!important}
   height: auto !important;
   overflow: hidden !important;
   border-radius: 24px !important;
+  background: #f1f1f1 !important;
 }
 .product-card .product-image img,
 .product-card .product-media img,
@@ -3968,9 +3969,9 @@ body{background:#f7f8fa!important}
 .product-card .product-photo img {
   width: 100% !important;
   height: 100% !important;
+  display: block !important;
   object-fit: cover !important;
   object-position: center !important;
-  display: block !important;
 }
 </style>
 </head>
