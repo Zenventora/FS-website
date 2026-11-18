@@ -1383,6 +1383,71 @@ body{background:#f7f8fa!important;color:var(--fc-ink)!important}
 .hero-note strong{color:#111!important;font-size:21px!important}
 .hero-note span{color:#8a8d92!important;font-size:8px!important}
 
+/* Premium hero CTA refinement */
+.hero-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:14px!important;
+  margin-top:28px!important;
+}
+.hero-actions .btn{
+  position:relative!important;
+  overflow:hidden!important;
+  min-height:54px!important;
+  padding:0 28px!important;
+  border-radius:999px!important;
+  font-size:12px!important;
+  font-weight:900!important;
+  letter-spacing:.055em!important;
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease!important;
+}
+.hero-actions .btn.gold{
+  background:linear-gradient(135deg,#ffe45a 0%,#ffd000 48%,#ffbf00 100%)!important;
+  color:#111!important;
+  border:1px solid rgba(255,190,0,.9)!important;
+  box-shadow:0 12px 30px rgba(255,193,0,.22),inset 0 1px 0 rgba(255,255,255,.55)!important;
+}
+.hero-actions .btn.gold::after{
+  content:""!important;
+  position:absolute!important;
+  top:0!important;
+  left:-80%!important;
+  width:42%!important;
+  height:100%!important;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent)!important;
+  transform:skewX(-18deg)!important;
+  transition:left .55s ease!important;
+}
+.hero-actions .btn.gold:hover::after{
+  left:135%!important;
+}
+.hero-actions .btn.gold:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 16px 36px rgba(255,193,0,.28),inset 0 1px 0 rgba(255,255,255,.6)!important;
+}
+.hero-actions .btn.outline{
+  background:rgba(255,255,255,.82)!important;
+  color:#151515!important;
+  border:1px solid #d9dce1!important;
+  box-shadow:0 8px 24px rgba(20,22,25,.07),inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+.hero-actions .btn.outline:hover{
+  transform:translateY(-2px)!important;
+  border-color:#c8cbd0!important;
+  box-shadow:0 14px 30px rgba(20,22,25,.11),inset 0 1px 0 rgba(255,255,255,.95)!important;
+}
+@media(max-width:620px){
+  .hero-actions{
+    gap:10px!important;
+    margin-top:22px!important;
+  }
+  .hero-actions .btn{
+    min-height:50px!important;
+    padding:0 20px!important;
+    font-size:11px!important;
+  }
+}
+
 /* Hero product stage: exact square, image fills edge-to-edge */
 .hero-art.hero-product-carousel{
   min-height:0!important;height:auto!important;
