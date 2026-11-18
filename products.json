@@ -20,7 +20,8 @@
         "./images/products/miniatures/vintage-cars/IMG_20261112_003813.HEIC",
         "./images/products/miniatures/vintage-cars/IMG_20261112_003917.HEIC",
         "./images/products/miniatures/vintage-cars/IMG_20261112_003921.HEIC"
-      ]
+      ],
+      "active": true
     },
     {
       "id": "super-bikes-6-combo",
@@ -40,7 +41,8 @@
         "./images/products/miniatures/super-bikes/IMG_20261112_002217.jpg",
         "./images/products/miniatures/super-bikes/IMG_20261112_002226.jpg",
         "./images/products/miniatures/super-bikes/IMG_20261112_002232.jpg"
-      ]
+      ],
+      "active": true
     },
     {
       "id": "yamaha-rx100",
@@ -58,7 +60,8 @@
         "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172954.HEIC",
         "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172956.HEIC",
         "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172958.HEIC"
-      ]
+      ],
+      "active": true
     },
     {
       "id": "royal-enfield",
@@ -76,7 +79,8 @@
         "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172243.HEIC",
         "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172650.HEIC",
         "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172740.HEIC"
-      ]
+      ],
+      "active": true
     },
     {
       "id": "die-cast-cycle",
@@ -93,7 +97,8 @@
         "./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173445.jpg",
         "./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173454.HEIC",
         "./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173812.HEIC"
-      ]
+      ],
+      "active": true
     },
     {
       "id": "rc-car-combo",
@@ -113,7 +118,8 @@
         "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002933.HEIC",
         "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002942.HEIC",
         "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_003009.HEIC"
-      ]
+      ],
+      "active": false
     },
     {
       "id": "racing-drift-car",
@@ -133,7 +139,8 @@
         "./images/products/rc-cars/racing-drift-car/IMG_20261115_174402.jpg",
         "./images/products/rc-cars/racing-drift-car/IMG_20261115_174408.jpg",
         "./images/products/rc-cars/racing-drift-car/IMG_20261115_174410.jpg"
-      ]
+      ],
+      "active": true
     }
   ]
 }
