@@ -35,9 +35,16 @@ function openGallery(id,start=0){
  galleryProduct=p;galleryIndex=Math.max(0,Math.min(start,p.images.length-1));
  const m=$("#productModal");if(!m)return;
  m.classList.add("open");m.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";
- renderGallery();history.replaceState(null,"",url(p));
+ renderGallery();
+ history.replaceState(null,"",url(p));
+ requestAnimationFrame(()=>$("#galleryImage")?.focus?.());
 }
-function closeGallery(){const m=$("#productModal");if(!m)return;m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.style.overflow="";history.replaceState(null,"",location.pathname+location.hash)}
+function closeGallery(){
+ const m=$("#productModal");if(!m)return;
+ m.classList.remove("open");m.setAttribute("aria-hidden","true");document.body.style.overflow="";
+ galleryProduct=null;galleryIndex=0;
+ history.replaceState(null,"",location.pathname);
+}
 function renderGallery(){
  const p=galleryProduct;if(!p)return;
  const img=$("#galleryImage");img.src=imageSrc(p.images[galleryIndex]);img.alt=p.name;
@@ -51,8 +58,13 @@ function renderGallery(){
 function galleryStep(delta){if(!galleryProduct)return;galleryIndex=(galleryIndex+delta+galleryProduct.images.length)%galleryProduct.images.length;renderGallery()}
 function bindGallery(){
  const m=$("#productModal");if(!m)return;
- document.querySelectorAll("[data-modal-close]").forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();closeGallery()});
- m.addEventListener("click",e=>{if(e.target===m)closeGallery()});
+ document.querySelectorAll("[data-modal-close]").forEach(b=>b.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();closeGallery()}));
+ const backdrop=m.querySelector(".product-modal-backdrop");
+ if(backdrop)backdrop.addEventListener("pointerdown",e=>{e.preventDefault();closeGallery()});
+ document.addEventListener("pointerdown",e=>{
+   if(!m.classList.contains("open"))return;
+   if(e.target===m || e.target===backdrop)closeGallery();
+ });
  $("#galleryPrev").onclick=()=>galleryStep(-1);$("#galleryNext").onclick=()=>galleryStep(1);
  let sx=0,sy=0;
  const media=$("#galleryImage");
