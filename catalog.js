@@ -13,7 +13,7 @@ const toast=t=>{const e=$("#toast");if(!e)return;e.textContent=t;e.classList.add
 const get=id=>catalog.find(p=>p.id===id);
 const url=p=>"https://fancycorner.in/?product="+encodeURIComponent(p.id)+"#product-"+encodeURIComponent(p.id);
 const wa=t=>"https://wa.me/"+WA+"?text="+encodeURIComponent(t);
-const priceMarkup=p=>{if(p.regularPrice==null)return '<div class="price-unconfirmed"><strong>Price to be confirmed</strong><small>Contact us for current price</small></div>';return '<div class="price-main"><b>₹'+p.regularPrice+'</b><small>'+esc(p.shipping||"")+'</small></div>'+(p.followerPrice!=null?'<div class="follower-price"><span>Followers Price</span><strong>₹'+p.followerPrice+'</strong><em>Offer</em></div>':'')};
+const priceMarkup=p=>{if(p.regularPrice==null)return '<div class="price-unconfirmed"><strong>Price to be confirmed</strong><small>Contact us for current price</small></div>';const shippingText="+ shipping charges";return '<div class="price-main"><b>₹'+p.regularPrice+'</b><small>'+shippingText+'</small></div>'+(p.followerPrice!=null?'<div class="follower-price"><span>Followers Price</span><strong>₹'+p.followerPrice+'</strong><em>Offer</em></div>':'')};
 const shareIcon=()=>'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8.5a3 3 0 1 0-2.8-4.1L8.7 8a3 3 0 0 0 0 8l6.5 3.6A3 3 0 1 0 16 17.1l-6.3-3.5a3.1 3.1 0 0 0 0-1.2L16 8.9A3 3 0 0 0 18 8.5z"/></svg>';
 function filters(){
 const groups=["All","Miniatures","RC Cars"];
