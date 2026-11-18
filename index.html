@@ -360,6 +360,110 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .hero-product-progress span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);transition:all .3s ease}.hero-product-progress span.active{width:24px;border-radius:999px;background:#fff}
 @media(max-width:900px){.hero-product-carousel{min-height:500px}}
 @media(max-width:650px){.hero-product-carousel{min-height:430px;grid-template-columns:1.15fr .85fr;gap:9px;padding:9px;border-radius:24px}.hero-tile{border-radius:17px}.hero-tile span{left:13px;bottom:13px;font-size:9px}.hero-product-progress{right:17px;bottom:17px}}
+</style><style>
+/* FINAL PRODUCT-FIRST RESTRUCTURE */
+.hero-premium{
+  min-height:auto!important;
+  padding:70px clamp(20px,5vw,72px) 110px!important;
+  grid-template-columns:minmax(0,.9fr) minmax(520px,1.1fr)!important;
+  gap:clamp(28px,5vw,78px)!important;
+  background:#f5f5f7!important;
+}
+.hero-copy-premium{background:#111113!important;min-height:560px!important;border-radius:28px!important;padding:64px!important}
+.hero-product-carousel.hero-six-products{
+  min-height:560px!important;
+  display:grid!important;
+  grid-template-rows:minmax(0,1fr) auto!important;
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+  padding:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  border-radius:0!important;
+}
+.hero-six-stage{
+  position:relative!important;
+  min-height:0!important;
+  aspect-ratio:1/1!important;
+  overflow:hidden!important;
+  border-radius:28px!important;
+  background:#e9e9eb!important;
+  box-shadow:0 28px 80px rgba(0,0,0,.12)!important;
+}
+.hero-six-image{position:absolute!important;inset:0!important}
+.hero-six-image img{
+  width:100%!important;height:100%!important;object-fit:cover!important;display:block!important;
+  transition:opacity .22s ease,transform .5s ease!important;
+}
+.hero-six-image img.is-changing{opacity:.15!important;transform:scale(1.02)!important}
+.hero-six-stage:after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.62) 100%);
+  pointer-events:none;
+}
+.hero-six-overlay{position:absolute;left:28px;right:28px;bottom:26px;z-index:2;color:#fff}
+.hero-six-kicker{font-size:9px;font-weight:900;letter-spacing:.18em;color:#d6b25e;margin-bottom:8px}
+.hero-six-name{font-size:clamp(25px,3vw,42px);font-weight:900;line-height:.98;letter-spacing:-.045em}
+.hero-six-meta{font-size:11px;color:rgba(255,255,255,.78);margin-top:8px}
+.hero-six-strip{
+  display:grid!important;
+  grid-template-columns:repeat(6,1fr)!important;
+  gap:8px!important;
+}
+.hero-six-dot{
+  height:64px!important;
+  min-width:0!important;
+  border:1px solid #d2d2d7!important;
+  border-radius:16px!important;
+  background:#e7e7e9!important;
+  cursor:pointer!important;
+  position:relative!important;
+  overflow:hidden!important;
+}
+.hero-six-dot:after{
+  content:"";position:absolute;inset:0;background:#111113;opacity:0;transition:opacity .2s ease;
+}
+.hero-six-dot.active{border-color:#111113!important;box-shadow:inset 0 0 0 2px #111113!important}
+.hero-six-dot.active:after{opacity:.08}
+.catalog{padding-bottom:120px!important}
+.catalog-head{padding-bottom:34px!important}
+.filters{margin-bottom:34px!important}
+.filter-row{gap:10px!important}
+.filter{font-size:11px!important;padding:13px 20px!important}
+.filter-row.sub{padding-left:0!important}
+.products{gap:22px!important}
+.product-card{border-radius:24px!important}
+.product-image{aspect-ratio:1/1!important}
+.product-info{padding:20px!important}
+.product-name{font-size:17px!important;line-height:1.25!important}
+.price-main b{font-size:22px!important}
+.follower-price{margin-top:8px!important;margin-bottom:16px!important;padding:11px 12px!important}
+.follower-price strong{font-size:18px!important}
+.product-actions{grid-template-columns:minmax(0,1fr) 42px 42px!important}
+.buy-now{height:42px!important}
+.product-actions .add,.product-actions .share{width:42px!important;height:42px!important}
+.image-count{position:absolute;right:12px;bottom:12px;z-index:2;background:rgba(17,17,19,.76);color:#fff;padding:6px 8px;border-radius:999px;font-size:8px;font-weight:800;letter-spacing:.08em}
+.product-image{display:block!important}
+@media(max-width:1050px){
+  .hero-premium{grid-template-columns:1fr!important;max-width:980px!important}
+  .hero-product-carousel.hero-six-products{max-width:720px!important;margin:auto!important}
+}
+@media(max-width:700px){
+  .hero-premium{padding:48px 16px 80px!important;gap:18px!important}
+  .hero-copy-premium{min-height:0!important;padding:42px 26px!important}
+  .hero-product-carousel.hero-six-products{min-height:0!important}
+  .hero-six-stage{aspect-ratio:1/1!important;border-radius:24px!important}
+  .hero-six-overlay{left:20px;right:20px;bottom:20px}
+  .hero-six-strip{gap:5px!important}
+  .hero-six-dot{height:44px!important;border-radius:10px!important}
+  .products{gap:12px!important}
+  .product-info{padding:14px!important}
+  .product-name{font-size:14px!important}
+  .price-main b{font-size:18px!important}
+  .product-actions{grid-template-columns:minmax(0,1fr) 36px 36px!important}
+  .buy-now{height:36px!important}
+  .product-actions .add,.product-actions .share{width:36px!important;height:36px!important}
+}
 </style></head>
 <body>
 <div class="topbar">Fancy Corner Online · Coimbatore · Product Catalogue</div>
@@ -377,16 +481,28 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 <div class="hero-copy hero-copy-premium">
 <div class="eyebrow">FANCY CORNER ONLINE · COIMBATORE</div>
 <h1>Small things.<br><span>Big character.</span></h1>
-<p>Miniature bikes, vintage cars, RC cars and collectible pieces — discover small products with big character, all available through Fancy Corner Online.</p>
+<p>Real product images. Clear prices. Followers offers. Choose a product, add it to your cart, or open the product page for the full gallery.</p>
 <div class="hero-actions"><a class="btn gold" href="#catalog">Explore collection ↓</a><a class="btn outline" href="https://wa.me/917904639830?text=Hi%20Fancy%20Corner%20Online%2C%20I%20want%20to%20browse%20your%20collection." target="_blank" rel="noopener">WhatsApp</a></div>
-<div class="hero-note"><div><strong>7</strong><span>Product groups</span></div><div><strong>2</strong><span>Main collections</span></div><div><strong>Direct</strong><span>Enquiry</span></div></div>
+<div class="hero-note"><div><strong>6</strong><span>Featured products</span></div><div><strong>Real</strong><span>Product images</span></div><div><strong>Direct</strong><span>WhatsApp</span></div></div>
 </div>
-<div class="hero-art hero-product-carousel" aria-label="Featured Fancy Corner products">
-  <div class="hero-tile hero-tile-a" data-hero-slot="0"><img src="./images/products/miniatures/super-bikes/IMG_20261112_001843.HEIC" alt="Super Bikes 6 Bike Combo"><span>Super Bikes</span></div>
-  <div class="hero-tile hero-tile-b" data-hero-slot="1"><img src="./images/products/miniatures/vintage-cars/IMG_20261112_003732.HEIC" alt="Vintage Cars 6 Car Combo"><span>Vintage Cars</span></div>
-  <div class="hero-tile hero-tile-c" data-hero-slot="2"><img src="./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002722.HEIC" alt="RC Car Combo"><span>RC Cars</span></div>
-  <div class="hero-product-progress"><span class="active"></span><span></span><span></span></div>
-</div>
+<div class="hero-art hero-product-carousel hero-six-products" aria-label="Featured Fancy Corner products">
+  <div class="hero-six-stage">
+    <div class="hero-six-image"><img id="heroProductImage" src="./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172221.HEIC" alt="Die Cast Royal Enfield"></div>
+    <div class="hero-six-overlay">
+      <div class="hero-six-kicker">FEATURED PRODUCT</div>
+      <div class="hero-six-name" id="heroProductName">Die Cast Royal Enfield</div>
+      <div class="hero-six-meta" id="heroProductMeta">Miniatures · Bikes</div>
+    </div>
+  </div>
+  <div class="hero-six-strip">
+    <button class="hero-six-dot active" data-hero-index="0" aria-label="Die Cast Royal Enfield"></button>
+    <button class="hero-six-dot" data-hero-index="1" aria-label="Die Cast Cycle"></button>
+    <button class="hero-six-dot" data-hero-index="2" aria-label="Yamaha RX100"></button>
+    <button class="hero-six-dot" data-hero-index="3" aria-label="Super Bikes"></button>
+    <button class="hero-six-dot" data-hero-index="4" aria-label="Vintage Cars"></button>
+    <button class="hero-six-dot" data-hero-index="5" aria-label="Racing Drift Car"></button>
+  </div>
+</div></div>
 </section>
 
 
@@ -555,18 +671,33 @@ document.addEventListener("DOMContentLoaded",()=>{
 });
 </script><script>
 document.addEventListener("DOMContentLoaded",()=>{
- const slots=[
-  {el:document.querySelector('[data-hero-slot="0"]'),label:"Super Bikes",images:["./images/products/miniatures/super-bikes/IMG_20261112_001843.HEIC","./images/products/miniatures/super-bikes/IMG_20261112_002054.jpg","./images/products/miniatures/super-bikes/IMG_20261112_002125.jpg","./images/products/miniatures/super-bikes/IMG_20261112_002217.jpg","./images/products/miniatures/super-bikes/IMG_20261112_002226.jpg","./images/products/miniatures/super-bikes/IMG_20261112_002232.jpg"]},
-  {el:document.querySelector('[data-hero-slot="1"]'),label:"Vintage Cars",images:["./images/products/miniatures/vintage-cars/IMG_20261112_003732.HEIC","./images/products/miniatures/vintage-cars/IMG_20261112_003750.HEIC","./images/products/miniatures/vintage-cars/IMG_20261112_003809.HEIC","./images/products/miniatures/vintage-cars/IMG_20261112_003813.HEIC","./images/products/miniatures/vintage-cars/IMG_20261112_003917.HEIC","./images/products/miniatures/vintage-cars/IMG_20261112_003921.HEIC"]},
-  {el:document.querySelector('[data-hero-slot="2"]'),label:"RC Cars",images:["./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002722.HEIC","./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002855.HEIC","./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002907.HEIC","./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002933.HEIC","./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002942.HEIC","./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_003009.HEIC"]}
- ];
- let step=0;
- const dots=[...document.querySelectorAll(".hero-product-progress span")];
- setInterval(()=>{
-   step=(step+1)%6;
-   slots.forEach((s,i)=>{if(!s.el)return;s.el.classList.add("is-changing");setTimeout(()=>{s.el.querySelector("img").src=s.images[step%s.images.length];s.el.classList.remove("is-changing")},260)});
-   dots.forEach((d,i)=>d.classList.toggle("active",i===step%3));
- },5200);
+  const products=[
+    {name:"Die Cast Royal Enfield",meta:"Miniatures · Bikes",image:"./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172221.HEIC"},
+    {name:"Die Cast Cycle",meta:"Miniatures · Cycles",image:"./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173445.jpg"},
+    {name:"Yamaha RX100",meta:"Miniatures · Bikes",image:"./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172946.HEIC"},
+    {name:"Super Bikes – 6 Bike Combo",meta:"Miniatures · Super Bikes",image:"./images/products/miniatures/super-bikes/IMG_20261112_002054.jpg"},
+    {name:"Vintage Cars – 6 Car Combo",meta:"Miniatures · Vintage Cars",image:"./images/products/miniatures/vintage-cars/IMG_20261112_003732.HEIC"},
+    {name:"Racing Drift Car",meta:"RC Cars · Racing Drift Car",image:"./images/products/rc-cars/racing-drift-car/IMG_20261115_174158.jpg"}
+  ];
+  const image=document.getElementById("heroProductImage"),name=document.getElementById("heroProductName"),meta=document.getElementById("heroProductMeta");
+  const dots=[...document.querySelectorAll(".hero-six-dot")];
+  let index=0,timer;
+  function show(i,manual=false){
+    index=(i+products.length)%products.length;
+    image.classList.add("is-changing");
+    setTimeout(()=>{
+      image.src=products[index].image;
+      image.alt=products[index].name;
+      name.textContent=products[index].name;
+      meta.textContent=products[index].meta;
+      image.classList.remove("is-changing");
+    },180);
+    dots.forEach((d,n)=>d.classList.toggle("active",n===index));
+    if(manual) restart();
+  }
+  function restart(){clearInterval(timer);timer=setInterval(()=>show(index+1),5200)}
+  dots.forEach((d,i)=>d.addEventListener("click",()=>show(i,true)));
+  restart();
 });
 </script></body>
 </html>
