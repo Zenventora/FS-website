@@ -3940,6 +3940,16 @@ body{background:#f7f8fa!important}
 .footer-bottom span{display:inline!important;white-space:nowrap!important}
 @media(max-width:700px){.footer-bottom{white-space:nowrap!important;overflow:hidden!important}.footer-bottom span{white-space:nowrap!important}}
 </style>
+<style id="fc-overlay-final-fix">
+/* Keep cart overlay completely inert until the cart is actually open */
+.drawer{pointer-events:none!important;visibility:hidden!important;opacity:0!important}
+.drawer .overlay{pointer-events:none!important;opacity:0!important;visibility:hidden!important}
+.drawer .cart-panel{pointer-events:none!important;visibility:hidden!important}
+.drawer.open{pointer-events:auto!important;visibility:visible!important;opacity:1!important}
+.drawer.open .overlay{pointer-events:auto!important;opacity:1!important;visibility:visible!important}
+.drawer.open .cart-panel{pointer-events:auto!important;visibility:visible!important;opacity:1!important;transform:translateX(0)!important}
+#cartBtn{pointer-events:auto!important;cursor:pointer!important;z-index:2000!important}
+</style>
 </head>
 <body>
 <header class="header">
