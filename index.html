@@ -3950,6 +3950,29 @@ body{background:#f7f8fa!important}
 .drawer.open .cart-panel{pointer-events:auto!important;visibility:visible!important;opacity:1!important;transform:translateX(0)!important}
 #cartBtn{pointer-events:auto!important;cursor:pointer!important;z-index:2000!important}
 </style>
+<style id="fc-square-image-fit-fix">
+/* Product cards: keep every product image inside a clean square frame */
+.product-card .product-image,
+.product-card .product-media,
+.product-card .image-wrap,
+.product-card .product-photo {
+  aspect-ratio: 1 / 1 !important;
+  width: 100% !important;
+  height: auto !important;
+  overflow: hidden !important;
+  border-radius: 24px !important;
+}
+.product-card .product-image img,
+.product-card .product-media img,
+.product-card .image-wrap img,
+.product-card .product-photo img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+}
+</style>
 </head>
 <body>
 <header class="header">
