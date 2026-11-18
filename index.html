@@ -5216,5 +5216,271 @@ a,
   }
 }
 </style>
+
+<style id="fc-final-interaction-verification">
+/* FINAL PRODUCT IMAGE FRAME */
+.product-card .product-image{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  display:block!important;
+  position:relative!important;
+  border-radius:20px!important;
+  background:#f0f1f3!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.product-card .product-image img{
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  transform:scale(1.06)!important;
+  transform-origin:center center!important;
+}
+
+/* MODAL — always centered, square media, no page-layer interference */
+.product-modal{
+  position:fixed!important;
+  inset:0!important;
+  z-index:11000!important;
+  display:none!important;
+  place-items:center!important;
+  align-items:center!important;
+  justify-items:center!important;
+  padding:14px!important;
+  pointer-events:none!important;
+}
+.product-modal.open{
+  display:grid!important;
+  pointer-events:auto!important;
+}
+.product-modal-backdrop{
+  position:absolute!important;
+  inset:0!important;
+  z-index:0!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+.product-modal-panel{
+  position:relative!important;
+  z-index:2!important;
+  inset:auto!important;
+  top:auto!important;
+  left:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  margin:0!important;
+  transform:none!important;
+  width:min(1040px,calc(100vw - 28px))!important;
+  max-height:calc(100vh - 28px)!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.22fr) minmax(300px,.78fr)!important;
+  grid-template-rows:auto auto!important;
+  gap:14px!important;
+  padding:12px!important;
+  overflow:hidden!important;
+  border-radius:28px!important;
+  background:#fff!important;
+  pointer-events:auto!important;
+}
+.product-modal-media{
+  position:relative!important;
+  z-index:3!important;
+  width:100%!important;
+  aspect-ratio:1 / 1!important;
+  min-width:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+  border-radius:22px!important;
+  background:#f0f1f3!important;
+}
+.gallery-slider,
+.gallery-slider .slick-list,
+.gallery-slider .slick-track,
+.gallery-slider .slick-slide,
+.gallery-slider .slick-slide>div,
+.gallery-slide{
+  width:100%!important;
+  height:100%!important;
+}
+.gallery-slider .slick-list{overflow:hidden!important}
+.gallery-slide{
+  position:relative!important;
+  overflow:hidden!important;
+  aspect-ratio:1 / 1!important;
+}
+.gallery-slide img{
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:50% 50%!important;
+  transform:scale(1.05)!important;
+  transform-origin:center center!important;
+  pointer-events:none!important;
+  user-select:none!important;
+}
+
+/* Modal controls */
+.product-modal-close,
+.product-modal-arrow,
+.product-modal-actions .add{
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+.product-modal-close{
+  z-index:100!important;
+}
+.product-modal-arrow{
+  z-index:60!important;
+}
+.product-modal-actions .add{
+  color:#fff!important;
+  background:#111!important;
+}
+.product-modal-actions .add:hover{
+  background:#ffd000!important;
+  color:#111!important;
+}
+
+/* Slick thumbnail strip */
+.gallery-dots{
+  grid-column:1 / -1!important;
+  grid-row:2!important;
+  width:100%!important;
+  min-height:58px!important;
+  padding:2px 30px 0!important;
+  display:block!important;
+  overflow:hidden!important;
+}
+.gallery-dots .slick-list{
+  width:100%!important;
+  overflow:hidden!important;
+}
+.gallery-dots .slick-track{
+  display:flex!important;
+  align-items:center!important;
+  margin:0 auto!important;
+}
+.gallery-dots .slick-slide{
+  width:58px!important;
+  margin:0 5px!important;
+}
+.gallery-dot{
+  width:50px!important;
+  height:50px!important;
+  margin:0 auto!important;
+  padding:0!important;
+  display:block!important;
+  border:2px solid #d9d9dc!important;
+  border-radius:11px!important;
+  background-size:cover!important;
+  background-position:center!important;
+  background-repeat:no-repeat!important;
+  cursor:pointer!important;
+  pointer-events:auto!important;
+}
+.gallery-dot.active{
+  border-color:#ffd000!important;
+  box-shadow:0 0 0 2px #ffd000!important;
+  opacity:1!important;
+}
+
+/* Cart layer is inert when closed and clickable only when open */
+.drawer{
+  z-index:10000!important;
+  pointer-events:none!important;
+  visibility:hidden!important;
+  opacity:0!important;
+}
+.drawer.open{
+  pointer-events:auto!important;
+  visibility:visible!important;
+  opacity:1!important;
+}
+.drawer .overlay{
+  pointer-events:none!important;
+}
+.drawer.open .overlay{
+  pointer-events:auto!important;
+}
+.drawer .cart-panel{
+  pointer-events:none!important;
+  z-index:10001!important;
+}
+.drawer.open .cart-panel{
+  pointer-events:auto!important;
+}
+#cartBtn{
+  position:relative!important;
+  z-index:2000!important;
+  pointer-events:auto!important;
+  cursor:pointer!important;
+}
+
+@media(max-width:760px){
+  .product-card .product-image{
+    aspect-ratio:1 / 1!important;
+    border-radius:16px!important;
+  }
+  .product-card .product-image img{
+    transform:scale(1.05)!important;
+  }
+  .product-modal{
+    padding:10px!important;
+  }
+  .product-modal-panel{
+    width:calc(100vw - 20px)!important;
+    max-height:calc(100vh - 20px)!important;
+    display:flex!important;
+    flex-direction:column!important;
+    gap:8px!important;
+    padding:8px!important;
+    border-radius:22px!important;
+  }
+  .product-modal-media{
+    width:100%!important;
+    aspect-ratio:1 / 1!important;
+    flex:0 0 auto!important;
+    border-radius:17px!important;
+  }
+  .gallery-slide{
+    aspect-ratio:1 / 1!important;
+  }
+  .product-modal-info{
+    order:2!important;
+    width:100%!important;
+    padding:8px 12px 2px!important;
+    overflow:visible!important;
+  }
+  .gallery-dots{
+    order:3!important;
+    min-height:50px!important;
+    padding:0 18px 2px!important;
+  }
+  .gallery-dots .slick-slide{
+    width:52px!important;
+    margin:0 4px!important;
+  }
+  .gallery-dot{
+    width:46px!important;
+    height:46px!important;
+  }
+}
+</style>
+
 </body>
 </html>
