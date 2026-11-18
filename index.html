@@ -3974,6 +3974,45 @@ body{background:#f7f8fa!important}
   object-position: center !important;
 }
 </style>
+
+<style id="fc-product-card-square-zoom-final">
+/* FINAL PRODUCT CARD IMAGE FIX — square, centered and zoomed like the reference */
+.product-card .product-image{
+  width:100%!important;
+  aspect-ratio:1 / 1!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  background:#f0f1f3!important;
+  border-radius:18px!important;
+}
+.product-card .product-image img{
+  width:100%!important;
+  height:100%!important;
+  display:block!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:scale(1.055)!important;
+  transform-origin:center center!important;
+  transition:transform .35s ease!important;
+}
+.product-card:hover .product-image img{
+  transform:scale(1.075)!important;
+}
+@media(max-width:700px){
+  .product-card .product-image{
+    aspect-ratio:1 / 1!important;
+    border-radius:16px!important;
+  }
+  .product-card .product-image img{
+    transform:scale(1.05)!important;
+  }
+  .product-card:hover .product-image img{
+    transform:scale(1.065)!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
