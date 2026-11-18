@@ -60,7 +60,7 @@ function renderGallery(){
  destroyGallerySliders();
 
  main.innerHTML=p.images.map((src,i)=>'<div class="gallery-slide"><img src="'+esc(imageSrc(src))+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false"></div>').join("");
- thumbs.innerHTML=p.images.map((src,i)=>'<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" style="background-image:url(\\''+esc(imageSrc(src))+'\\')" aria-label="Photo '+(i+1)+'"></button>').join("");
+ thumbs.innerHTML=p.images.map((src,i)=>'<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" style="background-image:url(&quot;'+esc(imageSrc(src))+'&quot;)" aria-label="Photo '+(i+1)+'"></button>').join("");
 
  $("#galleryName").textContent=p.name;
  $("#galleryCategory").textContent=p.category+" · "+p.subcategory;
