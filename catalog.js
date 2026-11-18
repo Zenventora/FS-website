@@ -61,40 +61,41 @@ function bindGallery(){
  if(!m)return;
 
  const media=m.querySelector(".product-modal-media");
+ const panel=m.querySelector(".product-modal-panel");
+ const closeButton=m.querySelector("[data-modal-close]");
+ const backdrop=m.querySelector(".product-modal-backdrop");
+ const prev=m.querySelector("#galleryPrev");
+ const next=m.querySelector("#galleryNext");
  let swipeStartX=0;
  let swipeStartY=0;
  let swiping=false;
 
- // One delegated handler keeps close/backdrop and arrow controls reliable.
- m.addEventListener("click",e=>{
-   const closeButton=e.target.closest("[data-modal-close]");
-   if(closeButton){
-     e.preventDefault();
-     e.stopPropagation();
-     closeGallery();
-     return;
-   }
-   if(e.target===m.querySelector(".product-modal-backdrop")){
-     e.preventDefault();
-     e.stopPropagation();
-     closeGallery();
-     return;
-   }
-   const prev=e.target.closest("#galleryPrev");
-   if(prev){
-     e.preventDefault();
-     e.stopPropagation();
-     galleryStep(-1);
-     return;
-   }
-   const next=e.target.closest("#galleryNext");
-   if(next){
-     e.preventDefault();
-     e.stopPropagation();
-     galleryStep(1);
-     return;
-   }
- });
+ const closeFromUI=e=>{
+   if(e){e.preventDefault();e.stopPropagation();}
+   closeGallery();
+ };
+ if(closeButton) closeButton.onclick=closeFromUI;
+ if(backdrop) backdrop.onclick=closeFromUI;
+
+ // Keep clicks inside the dialog from bubbling to the modal surface.
+ if(panel) panel.addEventListener("click",e=>e.stopPropagation());
+
+ if(prev) prev.onclick=e=>{
+   e.preventDefault();
+   e.stopPropagation();
+   galleryStep(-1);
+ };
+ if(next) next.onclick=e=>{
+   e.preventDefault();
+   e.stopPropagation();
+   galleryStep(1);
+ };
+
+ // Extra outside-click safety: clicking anywhere on the modal surface
+ // that is not the dialog itself closes the gallery.
+ m.onclick=e=>{
+   if(e.target===m || e.target===backdrop) closeFromUI(e);
+ };
 
  const startSwipe=e=>{
    if(!galleryProduct)return;
