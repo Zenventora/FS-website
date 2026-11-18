@@ -297,12 +297,6 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .hero-art .art-caption{position:static!important;grid-column:1/-1;justify-content:space-between;margin-top:2px}
 .art-glow{display:none!important}
 
-.collection-showcase{margin-bottom:120px!important;padding-top:110px!important}
-.showcase-track{animation-duration:38s!important;will-change:transform;transform:translate3d(0,0,0)}
-.showcase-card{height:390px!important;flex-basis:clamp(260px,27vw,400px)!important}
-.showcase-card img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important}
-.showcase-pause{bottom:20px!important}
-
 .product-row{display:grid!important;grid-template-columns:minmax(0,1fr) 40px 40px!important;align-items:center!important;gap:8px!important}
 .buy-now{height:40px;border:0;border-radius:999px;background:#1d1d1f;color:#fff;padding:0 17px;cursor:pointer;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .buy-now:hover{background:#b28a3b;color:#111113}
@@ -310,28 +304,20 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .share{display:grid!important;place-items:center!important;padding:0!important}
 .share svg{width:18px;height:18px;display:block;fill:currentColor}
 .product-card .product-name{min-height:42px}
-.footer-bottom{white-space:nowrap!important}
 @media(max-width:900px){
 .hero-premium{grid-template-columns:1fr!important}
 .hero-art{grid-template-columns:repeat(3,minmax(0,1fr))!important}
-.hero-art .art-square{border-radius:20px!important}
-.showcase-card{height:360px!important}
-}
+.hero-art .art-square{border-radius:20px!important}}
 @media(max-width:650px){
 .hero-premium{padding:52px 20px 70px!important}
 .hero-art{gap:8px!important}
 .hero-art .art-square{border-radius:16px!important}
 .hero-art .art-square span{left:10px;bottom:10px;font-size:7px}
-.hero-art .art-caption{font-size:7px}
-.showcase-track{animation-duration:30s!important}
-.showcase-card{height:310px!important;flex-basis:82vw!important}
-.product-row{grid-template-columns:minmax(0,1fr) 36px 36px!important;gap:5px!important}
+.hero-art .art-caption{font-size:7px}.product-row{grid-template-columns:minmax(0,1fr) 36px 36px!important;gap:5px!important}
 .buy-now{height:36px;padding:0 12px;font-size:9px}
 .add,.share{width:36px!important;height:36px!important}
 .share svg{width:16px;height:16px}
-.footer-bottom{white-space:normal!important;display:block!important}
-.footer-bottom span:first-child{display:block!important;white-space:nowrap!important;font-size:9px}
-.footer-bottom span:last-child{margin-top:8px;display:block}
+.footer-bottom{white-space:nowrap!important;display:flex!important;justify-content:center!important}.footer-bottom span{white-space:nowrap!important;font-size:9px}
 }
 </style><style>
 /* Final usability fixes */
