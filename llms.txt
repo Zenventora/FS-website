@@ -1,25 +1,39 @@
 # Fancy Corner Online
 
-> Premium online catalogue for Fancy Corner Online, Coimbatore, Tamil Nadu, India.
+> Premium online product catalogue for Fancy Corner Online, Coimbatore, Tamil Nadu, India.
 
 ## Brand
 - Name: Fancy Corner Online
 - Location: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India.
 - Phone/WhatsApp: +91 79046 39830
 - Email: fancycorneronline@gmail.com
-- Website: https://zenventora.github.io/FS-website/
+- Website: https://fancycorner.in/
 
-## Collections
+## Product hierarchy
 - Miniatures
-- Vintage Cars
-- Super Bikes
-- Bikes
-- Cycles
-- Miniature RC Cars
-- RC Drifting / Racing
+  - Vintage Cars → Vintage Cars – 6 Car Combo
+  - Super Bikes → Super Bikes – 6 Bike Combo
+  - Bikes → Yamaha RX100
+  - Bikes → Die Cast Royal Enfield
+  - Cycles → Die Cast Cycle
+  - RC Cars → RC Car Combo
+- RC Cars
+  - Racing Drift Car
+
+## Current pricing
+- Vintage Cars – 6 Car Combo: ₹849; followers price ₹799; free shipping.
+- Super Bikes – 6 Bike Combo: ₹849; followers price ₹799; free shipping.
+- Yamaha RX100: ₹899; followers price ₹799; free shipping.
+- Die Cast Royal Enfield: ₹899; followers price ₹799; free shipping.
+- Die Cast Cycle: ₹240 + ₹70 shipping; followers price ₹199 + shipping.
+- RC Car Combo: price to be confirmed.
+- Racing Drift Car: ₹2300 + ₹70 shipping; followers price ₹1999 + free shipping.
 
 ## Ordering
-Customers can browse the catalogue, add products to a cart and send their selection directly to Fancy Corner Online through WhatsApp.
+Customers can open a product page, use Buy Now to send that product directly to WhatsApp, or add products to the cart and send the selection to WhatsApp.
+
+## Sharing
+Each product has a dedicated canonical URL with product-specific title, description and Open Graph image metadata for social link previews.
 
 ## Social profiles
 - Instagram: https://www.instagram.com/fancycorneronline/
@@ -29,4 +43,4 @@ Customers can browse the catalogue, add products to a cart and send their select
 - X: https://x.com/fancycorner_
 
 ## Brand asset
-The canonical Fancy Corner Online logo is stored at `/images/logo.jpeg` and should be used for brand/logo placements, favicon and social metadata.
+The canonical Fancy Corner Online logo is stored at /images/logo.jpeg and is used for brand/logo placements, favicon and site metadata.
