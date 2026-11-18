@@ -245,7 +245,27 @@ if(cartNav)cartNav.onclick=openCart;
 const closeBtn=$("#close");
 if(closeBtn)closeBtn.onclick=closeCart;
 const overlay=$("#overlay");
-if(overlay)overlay.onclick=closeCart;
+if(overlay){
+  overlay.onclick=e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    closeCart();
+  };
+  overlay.onpointerdown=e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    closeCart();
+  };
+}
+if(drawer){
+  drawer.onclick=e=>{
+    if(e.target===drawer || e.target===overlay){
+      e.preventDefault();
+      e.stopPropagation();
+      closeCart();
+    }
+  };
+}
 $("#checkout").onclick=checkout;
 
 const params=new URLSearchParams(location.search),id=params.get("product"),cat=params.get("category");
