@@ -1,13 +1,139 @@
 {
-  "version": 1,
+  "version": 2,
   "updated": "2026-11-18",
   "products": [
-    {"id":"vintage-cars-6-combo","name":"Vintage Cars – 6 Car Combo","category":"Miniatures","subcategory":"Vintage Cars","regular":"₹849","follower":"₹799","shipping":"Free Shipping","badge":"Followers Offer","description":"Compact die-cast vintage car combo with 6 cars in one collectible pack.","image":"./images/IMG_20261112_001101.jpg","folder":"images/products/miniatures/vintage-cars"},
-    {"id":"super-bikes-6-combo","name":"Super Bikes – 6 Bike Combo","category":"Miniatures","subcategory":"Super Bikes","regular":"₹849","follower":"₹799","shipping":"Free Shipping","badge":"Followers Offer","description":"A 6-bike miniature combo for collectors, display and gifting.","image":"./images/IMG_20261112_002054.jpg","folder":"images/products/miniatures/super-bikes"},
-    {"id":"yamaha-rx100","name":"Yamaha RX100","category":"Miniatures","subcategory":"Bikes","regular":"₹899","follower":"₹799","shipping":"Free Shipping","badge":"Followers Offer","description":"Die-cast Yamaha RX100 miniature with a classic bike profile.","image":"./images/IMG_20261112_002217.jpg","folder":"images/products/miniatures/bikes/yamaha-rx100"},
-    {"id":"royal-enfield","name":"Die Cast Royal Enfield","category":"Miniatures","subcategory":"Bikes","regular":"₹899","follower":"₹799","shipping":"Free Shipping","badge":"Followers Offer","description":"Die-cast Royal Enfield miniature in red with multi-colour tank detailing.","image":"./images/IMG_20261112_002226.jpg","folder":"images/products/miniatures/bikes/royal-enfield"},
-    {"id":"die-cast-cycle","name":"Die Cast Cycle","category":"Miniatures","subcategory":"Cycles","regular":"₹240","follower":"₹199","shipping":"₹70 shipping","badge":"Followers Offer","description":"Blue die-cast cycle miniature. Follower price is ₹199 plus shipping.","image":"./images/IMG_20261112_001108.jpg","folder":"images/products/miniatures/cycles/die-cast-cycle"},
-    {"id":"rc-car-combo","name":"RC Car Combo","category":"Miniatures","subcategory":"RC Cars","regular":null,"follower":null,"shipping":null,"badge":"Price to be confirmed","description":"Miniature RC car combo. Price and shipping will be shown once confirmed.","image":"./images/IMG_20261112_000841.jpg","folder":"images/products/miniatures/rc-cars/rc-car-combo"},
-    {"id":"racing-drift-car","name":"Racing Drift Car","category":"RC Cars","subcategory":"Racing Drift Car","regular":"₹2300","follower":"₹1999","shipping":"₹70 shipping / Free for followers","badge":"Followers Offer","description":"Blue racing drift RC car. Regular price ₹2300 + ₹70 shipping; followers price ₹1999 with free shipping.","image":"./images/products/rc-cars/racing-drift-car/IMG_20261115_174139.jpg","folder":"images/products/rc-cars/racing-drift-car"}
+    {
+      "id": "vintage-cars-6-combo",
+      "name": "Vintage Cars – 6 Car Combo",
+      "category": "Miniatures",
+      "subcategory": "Vintage Cars",
+      "type": "combo",
+      "regularPrice": 849,
+      "followerPrice": 799,
+      "shipping": "Free Shipping",
+      "badge": "Followers Offer",
+      "description": "Compact die-cast vintage car combo with six cars in one collectible pack.",
+      "images": [
+        "./images/products/miniatures/vintage-cars/IMG_20261112_003732.HEIC",
+        "./images/products/miniatures/vintage-cars/IMG_20261112_003750.HEIC",
+        "./images/products/miniatures/vintage-cars/IMG_20261112_003809.HEIC",
+        "./images/products/miniatures/vintage-cars/IMG_20261112_003813.HEIC",
+        "./images/products/miniatures/vintage-cars/IMG_20261112_003917.HEIC",
+        "./images/products/miniatures/vintage-cars/IMG_20261112_003921.HEIC"
+      ]
+    },
+    {
+      "id": "super-bikes-6-combo",
+      "name": "Super Bikes – 6 Bike Combo",
+      "category": "Miniatures",
+      "subcategory": "Super Bikes",
+      "type": "combo",
+      "regularPrice": 849,
+      "followerPrice": 799,
+      "shipping": "Free Shipping",
+      "badge": "Followers Offer",
+      "description": "A six-bike miniature combo for collectors, display and gifting.",
+      "images": [
+        "./images/products/miniatures/super-bikes/IMG_20261112_001843.HEIC",
+        "./images/products/miniatures/super-bikes/IMG_20261112_002054.jpg",
+        "./images/products/miniatures/super-bikes/IMG_20261112_002125.jpg",
+        "./images/products/miniatures/super-bikes/IMG_20261112_002217.jpg",
+        "./images/products/miniatures/super-bikes/IMG_20261112_002226.jpg",
+        "./images/products/miniatures/super-bikes/IMG_20261112_002232.jpg"
+      ]
+    },
+    {
+      "id": "yamaha-rx100",
+      "name": "Yamaha RX100",
+      "category": "Miniatures",
+      "subcategory": "Bikes",
+      "type": "individual",
+      "regularPrice": 899,
+      "followerPrice": 799,
+      "shipping": "Free Shipping",
+      "badge": "Followers Offer",
+      "description": "Die-cast Yamaha RX100 miniature with a classic bike profile.",
+      "images": [
+        "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172946.HEIC",
+        "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172954.HEIC",
+        "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172956.HEIC",
+        "./images/products/miniatures/bikes/yamaha-rx100/IMG_20261115_172958.HEIC"
+      ]
+    },
+    {
+      "id": "royal-enfield",
+      "name": "Die Cast Royal Enfield",
+      "category": "Miniatures",
+      "subcategory": "Bikes",
+      "type": "individual",
+      "regularPrice": 899,
+      "followerPrice": 799,
+      "shipping": "Free Shipping",
+      "badge": "Followers Offer",
+      "description": "Die-cast Royal Enfield miniature in red with multi-colour tank detailing.",
+      "images": [
+        "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172221.HEIC",
+        "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172243.HEIC",
+        "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172650.HEIC",
+        "./images/products/miniatures/bikes/royal-enfield/IMG_20261115_172740.HEIC"
+      ]
+    },
+    {
+      "id": "die-cast-cycle",
+      "name": "Die Cast Cycle",
+      "category": "Miniatures",
+      "subcategory": "Cycles",
+      "type": "individual",
+      "regularPrice": 240,
+      "followerPrice": 199,
+      "shipping": "₹70 shipping",
+      "badge": "Followers Offer",
+      "description": "Blue die-cast cycle miniature. Follower price is ₹199 plus shipping.",
+      "images": [
+        "./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173445.jpg",
+        "./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173454.HEIC",
+        "./images/products/miniatures/cycles/die-cast-cycle/IMG_20261115_173812.HEIC"
+      ]
+    },
+    {
+      "id": "rc-car-combo",
+      "name": "RC Car Combo",
+      "category": "Miniatures",
+      "subcategory": "RC Cars",
+      "type": "combo",
+      "regularPrice": null,
+      "followerPrice": null,
+      "shipping": null,
+      "badge": "Price to be confirmed",
+      "description": "Miniature RC car combo. Price and shipping will be confirmed on WhatsApp.",
+      "images": [
+        "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002722.HEIC",
+        "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002855.HEIC",
+        "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002907.HEIC",
+        "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002933.HEIC",
+        "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_002942.HEIC",
+        "./images/products/miniatures/rc-cars/rc-car-combo/IMG_20261112_003009.HEIC"
+      ]
+    },
+    {
+      "id": "racing-drift-car",
+      "name": "Racing Drift Car",
+      "category": "RC Cars",
+      "subcategory": "Racing Drift Car",
+      "type": "individual",
+      "regularPrice": 2300,
+      "followerPrice": 1999,
+      "shipping": "₹70 shipping / Free for followers",
+      "badge": "Followers Offer",
+      "description": "Blue racing drift RC car. Regular price ₹2300 + ₹70 shipping; followers price ₹1999 with free shipping.",
+      "images": [
+        "./images/products/rc-cars/racing-drift-car/IMG_20261115_174139.HEIC",
+        "./images/products/rc-cars/racing-drift-car/IMG_20261115_174158.jpg",
+        "./images/products/rc-cars/racing-drift-car/IMG_20261115_174201.jpg",
+        "./images/products/rc-cars/racing-drift-car/IMG_20261115_174402.jpg",
+        "./images/products/rc-cars/racing-drift-car/IMG_20261115_174408.jpg",
+        "./images/products/rc-cars/racing-drift-car/IMG_20261115_174410.jpg"
+      ]
+    }
   ]
 }
