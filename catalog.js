@@ -114,6 +114,14 @@ function bindGallery(){
  if(media){
    media.addEventListener("touchstart",startSwipe,{passive:true});
    media.addEventListener("touchend",endSwipe,{passive:true});
+   media.addEventListener("pointerdown",e=>{
+     if(e.pointerType==="mouse")return;
+     startSwipe(e);
+   },{passive:true});
+   media.addEventListener("pointerup",e=>{
+     if(e.pointerType==="mouse")return;
+     endSwipe(e);
+   },{passive:true});
  }
 
  // Keyboard handling while the gallery is open.
