@@ -129,9 +129,9 @@
       "type": "individual",
       "regularPrice": 2300,
       "followerPrice": 1999,
-      "shipping": "+ ₹70 shipping",
+      "shipping": "+ shipping charges",
       "badge": "Followers Offer",
-      "description": "Blue racing drift RC car. Regular price ₹2300 + ₹70 shipping; followers price ₹1999 + ₹70 shipping.",
+      "description": "Blue racing drift RC car. Regular price ₹2300 + shipping charges; followers price ₹1999 + shipping charges.",
       "images": [
         "./images/products/rc-cars/racing-drift-car/IMG_20261115_174139.HEIC",
         "./images/products/rc-cars/racing-drift-car/IMG_20261115_174158.jpg",
