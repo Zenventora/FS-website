@@ -60,46 +60,40 @@ function bindGallery(){
  const m=$("#productModal");
  if(!m)return;
 
- const panel=m.querySelector(".product-modal-panel");
  const media=m.querySelector(".product-modal-media");
- const backdrop=m.querySelector(".product-modal-backdrop");
- const closeButton=m.querySelector("[data-modal-close]");
- const prev=$("#galleryPrev");
- const next=$("#galleryNext");
-
  let swipeStartX=0;
  let swipeStartY=0;
  let swiping=false;
 
- const close=()=>{
-   if(!m.classList.contains("open"))return;
-   closeGallery();
- };
-
- // Close button and backdrop are intentionally handled separately.
- // This prevents clicks inside the popup from being mistaken for outside clicks.
- if(closeButton)closeButton.addEventListener("click",e=>{
-   e.preventDefault();
-   e.stopPropagation();
-   close();
- });
- if(backdrop)backdrop.addEventListener("click",e=>{
-   e.preventDefault();
-   close();
- });
-
- // Stop panel clicks from bubbling to the modal/backdrop.
- if(panel)panel.addEventListener("click",e=>e.stopPropagation());
-
- if(prev)prev.addEventListener("click",e=>{
-   e.preventDefault();
-   e.stopPropagation();
-   galleryStep(-1);
- });
- if(next)next.addEventListener("click",e=>{
-   e.preventDefault();
-   e.stopPropagation();
-   galleryStep(1);
+ // One delegated handler keeps close/backdrop and arrow controls reliable.
+ m.addEventListener("click",e=>{
+   const closeButton=e.target.closest("[data-modal-close]");
+   if(closeButton){
+     e.preventDefault();
+     e.stopPropagation();
+     closeGallery();
+     return;
+   }
+   if(e.target===m.querySelector(".product-modal-backdrop")){
+     e.preventDefault();
+     e.stopPropagation();
+     closeGallery();
+     return;
+   }
+   const prev=e.target.closest("#galleryPrev");
+   if(prev){
+     e.preventDefault();
+     e.stopPropagation();
+     galleryStep(-1);
+     return;
+   }
+   const next=e.target.closest("#galleryNext");
+   if(next){
+     e.preventDefault();
+     e.stopPropagation();
+     galleryStep(1);
+     return;
+   }
  });
 
  const startSwipe=e=>{
@@ -115,40 +109,19 @@ function bindGallery(){
    const p=e.changedTouches?.[0]||e;
    const dx=p.clientX-swipeStartX;
    const dy=p.clientY-swipeStartY;
-   if(Math.abs(dx)>=45&&Math.abs(dx)>Math.abs(dy)){
-     galleryStep(dx<0?1:-1);
-   }
+   if(Math.abs(dx)>=45&&Math.abs(dx)>Math.abs(dy))galleryStep(dx<0?1:-1);
  };
 
  if(media){
    media.addEventListener("touchstart",startSwipe,{passive:true});
    media.addEventListener("touchend",endSwipe,{passive:true});
-   media.addEventListener("pointerdown",e=>{
-     if(e.pointerType==="mouse")return;
-     startSwipe(e);
-   },{passive:true});
-   media.addEventListener("pointerup",e=>{
-     if(e.pointerType==="mouse")return;
-     endSwipe(e);
-   },{passive:true});
  }
 
  document.addEventListener("keydown",e=>{
    if(!m.classList.contains("open"))return;
-   if(e.key==="Escape"){
-     e.preventDefault();
-     close();
-   }else if(e.key==="ArrowLeft"){
-     e.preventDefault();
-     galleryStep(-1);
-   }else if(e.key==="ArrowRight"){
-     e.preventDefault();
-     galleryStep(1);
-   }
- });
-
- window.addEventListener("popstate",()=>{
-   if(m.classList.contains("open"))closeGallery();
+   if(e.key==="Escape"){e.preventDefault();closeGallery();}
+   else if(e.key==="ArrowLeft"){e.preventDefault();galleryStep(-1);}
+   else if(e.key==="ArrowRight"){e.preventDefault();galleryStep(1);}
  });
 }
 
