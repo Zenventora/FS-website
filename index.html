@@ -447,7 +447,7 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 .address-line{display:flex!important;align-items:flex-start!important;gap:10px!important;line-height:1.65!important}
 .address-line span{display:block!important;max-width:360px!important}
 .footer-bottom{white-space:nowrap!important}
-</style></head>
+</style><style>.filters{display:flex;flex-direction:column;gap:10px;margin-bottom:30px}.filter-row{display:flex;flex-wrap:wrap;gap:8px}.filter-row.sub{padding-left:18px}.price-main{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 0 8px}.price-main b{font-size:19px}.price-main small{font-size:10px;color:#6e6e73}.follower-price{padding:9px 10px;border-radius:10px;background:#f6f0df;border:1px solid #e4d6b5;display:flex;gap:8px;align-items:center;margin-bottom:14px}.follower-price span{font-size:9px;font-weight:800;text-transform:uppercase;color:#6f5830}.follower-price strong{margin-left:auto;font-size:16px}.follower-price em{font-size:8px;font-style:normal;font-weight:900;color:#8d6418}.price-unconfirmed{padding:11px 12px;background:#f7f7f8;border-radius:10px;margin-bottom:14px}.price-unconfirmed strong{display:block;font-size:14px}.price-unconfirmed small{display:block;margin-top:3px;color:#6e6e73;font-size:9px}.product-actions{display:grid;grid-template-columns:minmax(0,1fr) 40px 40px;gap:7px}.buy-now{height:40px;border:0;border-radius:999px;background:#111113;color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}.buy-now:hover{background:#b28a3b;color:#111}.product-actions .add,.product-actions .share{width:40px;height:40px}.share svg{width:18px;height:18px;display:block;margin:auto;fill:currentColor}.product-name{display:block}.catalog-note{grid-column:1/-1;font-size:10px;color:#8a8a90;line-height:1.7;padding:6px 4px 0}@media(max-width:700px){.filter-row.sub{padding-left:0}.price-main{align-items:flex-start;flex-direction:column;gap:3px}.product-actions{grid-template-columns:minmax(0,1fr) 36px 36px}.product-actions .add,.product-actions .share{width:36px;height:36px}.buy-now{height:36px;font-size:9px}}</style></head>
 <body>
 <div class="topbar">Fancy Corner Online · Coimbatore · Product Catalogue</div>
 <header class="header">
@@ -540,66 +540,7 @@ body{background:var(--bg);color:var(--ink);font-size:17px}
 
 <div class="drawer" id="drawer"><div class="overlay" id="overlay"></div><aside class="cart-panel"><div class="cart-head"><div><div class="eyebrow">YOUR SELECTION</div><h2>Products <span id="bagCount">(0)</span></h2></div><button class="close" id="close">×</button></div><div class="cart-body" id="cartBody"></div><div class="checkout"><p>Selected products will be sent to Fancy Corner Online on WhatsApp. Final availability and pricing are confirmed by the store.</p><button class="wa" id="checkout">Send selection to WhatsApp</button></div></aside></div><div class="toast" id="toast"></div>
 
-<script>
-const WA="917904639830";
-const products=[
-{id:1,i:"./images/IMG_20261112_002054.jpg",n:"Mini Racer Bike 01",c:"Mini Racer Bikes",t:"Bike"},
-{id:2,i:"./images/IMG_20261112_002125.jpg",n:"Mini Racer Bike 02",c:"Mini Racer Bikes",t:"Bike"},
-{id:3,i:"./images/IMG_20261112_002217.jpg",n:"Mini Racer Bike 03",c:"Mini Racer Bikes",t:"Display"},
-{id:4,i:"./images/IMG_20261112_002226.jpg",n:"Mini Racer Bike 04",c:"Mini Racer Bikes",t:"Collector"},
-{id:5,i:"./images/IMG_20261112_002232.jpg",n:"Mini Racer Bike 05",c:"Mini Racer Bikes",t:"Sport"},
-{id:12,i:"./images/IMG_20261112_000841.jpg",n:"Vintage Collectible 01",c:"Vintage Collectibles",t:"Vintage"},
-{id:13,i:"./images/IMG_20261112_001101.jpg",n:"Vintage Collectible 02",c:"Vintage Collectibles",t:"Classic"},
-{id:14,i:"./images/IMG_20261112_001108.jpg",n:"Vintage Collectible 03",c:"Vintage Collectibles",t:"Display"},
-{id:15,i:"./images/IMG_20261112_001117.jpg",n:"Vintage Collectible 04",c:"Vintage Collectibles",t:"Collector"},
-{id:16,i:"./images/IMG_20261112_001130.jpg",n:"Vintage Collectible 05",c:"Vintage Collectibles",t:"Classic"},
-];
-
-const cats=["All","Mini Racer Bikes","Vintage Collectibles"];
-let active="All",q="",selection=[];
-const $=s=>document.querySelector(s);
-function toast(t){$("#toast").textContent=t;$("#toast").classList.add("show");clearTimeout(window.__t);window.__t=setTimeout(()=>$("#toast").classList.remove("show"),1800)}
-function productUrl(id){return "https://fancycorner.in/?product="+id+"#catalog"}
-function renderFilters(){ $("#filters").innerHTML=cats.map(c=>'<button class="filter '+(c===active?"active":"")+'" data-f="'+c+'">'+c+'</button>').join("");document.querySelectorAll("[data-f]").forEach(b=>b.onclick=()=>{active=b.dataset.f;renderFilters();renderProducts()})}
-function shareIconSvg(){
-return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8.5a3 3 0 1 0-2.8-4.1L8.7 8a3 3 0 0 0 0 8l6.5 3.6A3 3 0 1 0 16 17.1l-6.3-3.5a3.1 3.1 0 0 0 0-1.2L16 8.9A3 3 0 0 0 18 8.5z"></path></svg>';
-}
-function renderProducts(){
-const list=products.filter(p=>(active==="All"||p.c===active)&&((p.n+" "+p.c).toLowerCase().includes(q)));
-$("#products").innerHTML=list.length?list.map(p=>'<article class="product-card" id="product-'+p.id+'"><div class="product-image"><img src="'+p.i+'" alt="'+p.n+'" loading="lazy"><span class="tag">'+p.t+'</span></div><div class="product-info"><div class="product-cat">'+p.c+'</div><div class="product-name">'+p.n+'</div><div class="product-row"><button class="buy-now" data-buy="'+p.id+'">Buy Now</button><button class="add" data-add="'+p.id+'" aria-label="Add '+p.n+' to cart">＋</button><button class="share" data-share="'+p.id+'" aria-label="Share '+p.n+'">'+shareIconSvg()+'</button></div></div></article>').join(""):'<div class="empty">No products match this search.</div>';
-document.querySelectorAll("[data-add]").forEach(b=>b.onclick=()=>add(+b.dataset.add));
-document.querySelectorAll("[data-buy]").forEach(b=>b.onclick=()=>buyNow(+b.dataset.buy));
-document.querySelectorAll("[data-share]").forEach(b=>b.onclick=()=>share(+b.dataset.share));
-}
-function add(id){if(!selection.includes(id))selection.push(id);save();toast("Added to cart")}
-function buyNow(id){
-const p=products.find(x=>x.id===id);if(!p)return;
-const url=productUrl(id);
-const text="Hi Fancy Corner Online! 👋\n\nI'm interested in this product:\n• "+p.n+"\n"+url+"\n\nPlease share availability and price.";
-window.open("https://wa.me/"+WA+"?text="+encodeURIComponent(text),"_blank","noopener");
-}
-function save(){localStorage.setItem("fc-selection",JSON.stringify(selection));renderCart()}
-function renderCart(){const rows=selection.map(id=>products.find(p=>p.id===id)).filter(Boolean);$("#cartCount").textContent=rows.length;$("#bagCount").textContent="("+rows.length+")";$("#cartBody").innerHTML=rows.length?rows.map(p=>'<div class="cart-item"><img src="'+p.i+'" alt=""><div><strong>'+p.n+'</strong><small>'+p.c+'</small><button class="remove" data-r="'+p.id+'">Remove</button></div><button class="share" data-share="'+p.id+'" aria-label="Share '+p.n+'">'+shareIconSvg()+'</button></div>').join(""):'<div style="padding:60px 10px;text-align:center;color:#777;font-size:12px">No products selected yet.<br>Use ＋ on any product.</div>';document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{selection=selection.filter(x=>x!==+b.dataset.r);save()});document.querySelectorAll("[data-share]").forEach(b=>b.onclick=()=>share(+b.dataset.share))}
-async function share(id){const p=products.find(x=>x.id===id);if(!p)return;const url=productUrl(id);try{if(navigator.share){await navigator.share({title:p.n,text:p.n+" — Fancy Corner Online",url});return}await navigator.clipboard.writeText(url);toast("Product link copied")}catch(e){}}
-function openCart(){$("#drawer").classList.add("open")}function closeCart(){$("#drawer").classList.remove("open")}
-$("#cartBtn").onclick=openCart;$("#close").onclick=closeCart;$("#overlay").onclick=closeCart;
-$("#checkout").onclick=()=>{if(!selection.length)return toast("No products selected");const lines=selection.map(id=>{const p=products.find(x=>x.id===id);return "• "+p.n+"\n  "+productUrl(id)}).join("\n");window.open("https://wa.me/"+WA+"?text="+encodeURIComponent("Hi Fancy Corner Online! 👋\n\nI'm interested in these products:\n"+lines+"\n\nPlease share availability and price."),"_blank","noopener")};
-$("#search").oninput=e=>{q=e.target.value.toLowerCase().trim();renderProducts()};
-function focusProduct(){
-const params=new URLSearchParams(location.search);
-const id=params.get("product");
-const category=params.get("category");
-if(category&&cats.includes(category)){
-active=category;renderFilters();renderProducts();
-setTimeout(()=>$("#catalog")?.scrollIntoView({behavior:"smooth",block:"start"}),80);
-}
-if(!id)return;
-const p=products.find(x=>x.id===+id);if(!p)return;
-active=p.c;renderFilters();renderProducts();
-setTimeout(()=>{const el=$("#product-"+id);if(el){el.classList.add("target");el.scrollIntoView({behavior:"smooth",block:"center"});setTimeout(()=>el.classList.remove("target"),2800)}},120);
-}
-$("#year").textContent=new Date().getFullYear();selection=JSON.parse(localStorage.getItem("fc-selection")||"[]");renderFilters();renderProducts();renderCart();focusProduct();
-</script>
+<script src="./catalog.js"></script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"Fancy Corner Online","url":"https://fancycorner.in/","logo":"https://fancycorner.in/images/logo.jpeg","email":"fancycorneronline@gmail.com","telephone":"+91 79046 39830","address":{"@type":"PostalAddress","streetAddress":"No.12, Bilal Estate, South Ukkadam","addressLocality":"Coimbatore","postalCode":"641001","addressRegion":"Tamil Nadu","addressCountry":"IN"},"sameAs":["https://www.instagram.com/fancycorneronline/","https://www.youtube.com/@FancyCornerOnline","https://www.facebook.com/profile.php?id=61596729560426","https://www.threads.com/@fancycorneronline","https://x.com/fancycorner_"]},{"@type":"WebSite","name":"Fancy Corner Online","url":"https://fancycorner.in/","potentialAction":{"@type":"SearchAction","target":"https://fancycorner.in/?q={search_term_string}","query-input":"required name=search_term_string"}}]}</script>
 <script>
 document.addEventListener("DOMContentLoaded",()=>{
