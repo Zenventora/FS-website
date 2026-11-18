@@ -2705,6 +2705,41 @@ body{background:#f7f8fa!important}
   }
 }
 </style>
+
+<style id="fc-gallery-square-media">
+/* Gallery popup — same square product presentation as catalogue */
+.product-modal-media{
+  width:100%!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  min-height:0!important;
+  border-radius:22px!important;
+  overflow:hidden!important;
+  background:#f0f1f3!important;
+}
+.product-modal-media img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  display:block!important;
+  transform:scale(1.035)!important;
+  transform-origin:center center!important;
+}
+.product-modal-media img.is-loading{
+  opacity:.25!important;
+}
+@media(max-width:700px){
+  .product-modal-media{
+    width:100%!important;
+    aspect-ratio:1/1!important;
+    border-radius:17px!important;
+  }
+  .product-modal-media img{
+    transform:scale(1.03)!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
