@@ -69,7 +69,15 @@ function closeGallery(){
   const modal=$("#productModal");
   if(!modal)return;
 
+  // Fully reset the gallery before hiding it so reopening always starts
+  // from a clean, measurable stage.
   destroyGallerySliders();
+
+  const main=$("#gallerySlider");
+  const thumbs=$("#galleryDots");
+  if(main)main.innerHTML="";
+  if(thumbs)thumbs.innerHTML="";
+
   modal.classList.remove("open");
   modal.setAttribute("aria-hidden","true");
   modal.removeAttribute("data-product-id");
@@ -77,7 +85,7 @@ function closeGallery(){
   galleryProduct=null;
   galleryIndex=0;
 
-  // Reset the modal stage and return to the normal catalogue URL/view.
+  // Return to the normal catalogue URL/view with no stale product hash.
   history.replaceState(null,"",location.pathname);
 }
 
@@ -94,9 +102,10 @@ function renderGallery(){
   // Load every gallery image immediately. This avoids blank Slick slides
   // when the modal changes to a slide whose image was still lazy-loading.
   const images=p.images.map(imageSrc);
+  const originals=p.images.map(v=>String(v||"").replace(/^\.\//,"https://fancycorner.in/"));
   main.innerHTML=images.map((image,i)=>
     '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
-      '<img src="'+esc(image)+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager">'+
+      '<img src="'+esc(image)+'" data-original-src="'+esc(originals[i])+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager" decoding="async">'+
     '</div>'
   ).join("");
 
@@ -207,15 +216,50 @@ function renderGallery(){
     if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
   });
 
+  const refreshGalleryLayout=()=>{
+    if($main.hasClass("slick-initialized"))$main.slick("setPosition");
+    if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
+
+    // Slick can calculate a zero/incorrect slide size when a modal has just
+    // changed from display:none to visible. Force the current image to occupy
+    // the measurable square stage after every layout pass.
+    main.querySelectorAll(".slick-slide img, .gallery-slide img").forEach(img=>{
+      img.style.display="block";
+      img.style.visibility="visible";
+      img.style.opacity="1";
+      img.style.width="100%";
+      img.style.height="100%";
+    });
+  };
+
   main.querySelectorAll("img").forEach(img=>{
     const refresh=()=>{
-      if($main.hasClass("slick-initialized"))$main.slick("setPosition");
-      if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
+      refreshGalleryLayout();
+      if(typeof img.decode==="function"){
+        img.decode().then(refreshGalleryLayout).catch(()=>{});
+      }
     };
+
+    img.addEventListener("load",refresh,{once:true});
+    img.addEventListener("error",()=>{
+      // HEIC proxy failures should not leave a blank modal. Try the direct
+      // source once as a fallback before giving up.
+      const fallback=img.dataset.originalSrc;
+      if(fallback && img.src!==fallback && !img.dataset.fallbackTried){
+        img.dataset.fallbackTried="1";
+        img.src=fallback;
+      }
+      refreshGalleryLayout();
+    });
+
     if(img.complete)refresh();
-    else img.addEventListener("load",refresh,{once:true});
-    img.addEventListener("error",refresh,{once:true});
   });
+
+  // Recalculate after the modal has painted and again after the browser has
+  // completed its next layout passes. This is important for Slick in a
+  // container that was previously display:none.
+  [0,50,150,300].forEach(ms=>setTimeout(refreshGalleryLayout,ms));
+  window.addEventListener("resize",refreshGalleryLayout,{passive:true});
 }
 function galleryStep(delta){
   if(!galleryProduct)return;
