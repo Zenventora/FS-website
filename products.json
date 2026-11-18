@@ -10,7 +10,7 @@
       "type": "combo",
       "regularPrice": 849,
       "followerPrice": 799,
-      "shipping": "Free Shipping",
+      "shipping": "+ shipping charges",
       "badge": "Followers Offer",
       "description": "Compact die-cast vintage car combo with six cars in one collectible pack.",
       "images": [
@@ -31,7 +31,7 @@
       "type": "combo",
       "regularPrice": 849,
       "followerPrice": 799,
-      "shipping": "Free Shipping",
+      "shipping": "+ shipping charges",
       "badge": "Followers Offer",
       "description": "A six-bike miniature combo for collectors, display and gifting.",
       "images": [
@@ -52,7 +52,7 @@
       "type": "individual",
       "regularPrice": 899,
       "followerPrice": 799,
-      "shipping": "Free Shipping",
+      "shipping": "+ shipping charges",
       "badge": "Followers Offer",
       "description": "Die-cast Yamaha RX100 miniature with a classic bike profile.",
       "images": [
@@ -71,7 +71,7 @@
       "type": "individual",
       "regularPrice": 899,
       "followerPrice": 799,
-      "shipping": "Free Shipping",
+      "shipping": "+ shipping charges",
       "badge": "Followers Offer",
       "description": "Die-cast Royal Enfield miniature in red with multi-colour tank detailing.",
       "images": [
@@ -90,7 +90,7 @@
       "type": "individual",
       "regularPrice": 240,
       "followerPrice": 199,
-      "shipping": "₹70 shipping",
+      "shipping": "+ shipping charges",
       "badge": "Followers Offer",
       "description": "Blue die-cast cycle miniature. Follower price is ₹199 plus shipping.",
       "images": [
@@ -129,7 +129,7 @@
       "type": "individual",
       "regularPrice": 2300,
       "followerPrice": 1999,
-      "shipping": "₹70 shipping / Free for followers",
+      "shipping": "+ ₹70 shipping",
       "badge": "Followers Offer",
       "description": "Blue racing drift RC car. Regular price ₹2300 + ₹70 shipping; followers price ₹1999 with free shipping.",
       "images": [
