@@ -105,7 +105,7 @@ function renderGallery(){
   const originals=p.images.map(v=>String(v||"").replace(/^\.\//,"https://fancycorner.in/"));
   main.innerHTML=images.map((image,i)=>
     '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
-      '<img src="'+esc(image)+'" data-original-src="'+esc(originals[i])+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager" decoding="async">'+
+      '<img src="'+esc(image)+'" data-original-src="'+esc(originals[i])+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager" decoding="async" style="display:block;width:100%;height:100%;visibility:visible;opacity:1;object-fit:cover;object-position:center center">'+
     '</div>'
   ).join("");
 
@@ -132,6 +132,10 @@ function renderGallery(){
 
   // Initialize the main Slick first. The thumbnails are synchronized
   // explicitly below so Slick never depends on an uninitialized partner.
+  // The popup is already visible here; keeping the slider measurable before
+  // initialization prevents Slick from creating zero-width/blank slides.
+  main.style.visibility="visible";
+  main.style.opacity="1";
   $main.slick({
     slidesToShow:1,
     slidesToScroll:1,
@@ -209,6 +213,14 @@ function renderGallery(){
 
   sync(galleryIndex,true);
 
+  // Force Slick onto the requested slide after initialization. This also
+  // makes the first image deterministic when the popup was opened from a
+  // product URL rather than by a card click.
+  if($main.hasClass("slick-initialized")){
+    $main.slick("slickGoTo",galleryIndex,true);
+    $main.slick("setPosition");
+  }
+
   // The modal is painted only after .open is applied. Recalculate both
   // Slick instances after paint and after all images report loaded.
   requestAnimationFrame(()=>{
@@ -217,7 +229,10 @@ function renderGallery(){
   });
 
   const refreshGalleryLayout=()=>{
-    if($main.hasClass("slick-initialized"))$main.slick("setPosition");
+    if($main.hasClass("slick-initialized")){
+      $main.slick("setPosition");
+      $main.slick("slickGoTo",galleryIndex,true);
+    }
     if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
 
     // Slick can calculate a zero/incorrect slide size when a modal has just
@@ -229,6 +244,8 @@ function renderGallery(){
       img.style.opacity="1";
       img.style.width="100%";
       img.style.height="100%";
+      img.style.objectFit="cover";
+      img.style.objectPosition="center center";
     });
   };
 
@@ -335,7 +352,7 @@ function bindGallery(){
   });
 }
 
-function init(){fetch("./products.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{catalog=(d.products||[]).map(p=>({...p,images:[...new Set(p.images||[])]}));filters();render();cart();$("#year").textContent=new Date().getFullYear();$("#search").oninput=e=>{q=e.target.value.toLowerCase().trim();render()};const drawer=$("#drawer");
+function init(){fetch("./products.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{catalog=(d.products||[]).map(p=>({...p,images:[...new Set(p.images||[])]}));filters();render();cart();$("#year").textContent=new Date().getFullYear();const searchInput=$("#search");if(searchInput)searchInput.oninput=e=>{q=e.target.value.toLowerCase().trim();render()};const drawer=$("#drawer");
 const openCart=e=>{
   if(e){e.preventDefault();e.stopPropagation()}
   if(drawer){
