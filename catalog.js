@@ -91,10 +91,12 @@ function renderGallery(){
 
   destroyGallerySliders();
 
+  // Load every gallery image immediately. This avoids blank Slick slides
+  // when the modal changes to a slide whose image was still lazy-loading.
   const images=p.images.map(imageSrc);
   main.innerHTML=images.map((image,i)=>
     '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
-      '<img src="'+esc(image)+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="'+(i===galleryIndex?"eager":"lazy")+'">'+
+      '<img src="'+esc(image)+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager">'+
     '</div>'
   ).join("");
 
@@ -119,27 +121,8 @@ function renderGallery(){
   const $main=jq(main);
   const $thumbs=jq(thumbs);
 
-  // Slick is the single source of truth for both the large image
-  // and the six-image navigation strip.
-  $thumbs.slick({
-    slidesToShow:Math.min(6,p.images.length),
-    slidesToScroll:1,
-    arrows:false,
-    dots:false,
-    infinite:false,
-    focusOnSelect:true,
-    swipe:true,
-    draggable:true,
-    touchMove:true,
-    variableWidth:false,
-    centerMode:false,
-    asNavFor:"#gallerySlider",
-    responsive:[
-      {breakpoint:760,settings:{slidesToShow:Math.min(5,p.images.length)}},
-      {breakpoint:520,settings:{slidesToShow:Math.min(4,p.images.length)}}
-    ]
-  });
-
+  // Initialize the main Slick first. The thumbnails are synchronized
+  // explicitly below so Slick never depends on an uninitialized partner.
   $main.slick({
     slidesToShow:1,
     slidesToScroll:1,
@@ -157,24 +140,44 @@ function renderGallery(){
     draggable:true,
     touchMove:true,
     adaptiveHeight:false,
-    accessibility:true,
-    asNavFor:"#galleryDots"
+    accessibility:true
   });
 
-  const sync=(index)=>{
+  $thumbs.slick({
+    slidesToShow:Math.min(6,p.images.length),
+    slidesToScroll:1,
+    arrows:false,
+    dots:false,
+    infinite:false,
+    focusOnSelect:false,
+    swipe:true,
+    draggable:true,
+    touchMove:true,
+    variableWidth:false,
+    centerMode:false,
+    responsive:[
+      {breakpoint:760,settings:{slidesToShow:Math.min(5,p.images.length)}},
+      {breakpoint:520,settings:{slidesToShow:Math.min(4,p.images.length)}}
+    ]
+  });
+
+  const sync=(index,moveThumb=true)=>{
     galleryIndex=index;
     $("#galleryCounter").textContent=(index+1)+" / "+p.images.length;
     $thumbs.find(".gallery-dot").removeClass("active").eq(index).addClass("active");
+
+    if(moveThumb && $thumbs.hasClass("slick-initialized")){
+      const visible=Math.max(1,Math.min(6,p.images.length));
+      const maxStart=Math.max(0,p.images.length-visible);
+      const target=Math.max(0,Math.min(index,maxStart));
+      $thumbs.slick("slickGoTo",target,true);
+    }
   };
 
-  $main.on("afterChange.fcGallery",(e,slick,current)=>sync(current));
-  $thumbs.on("afterChange.fcGallery",(e,slick,current)=>{
-    // asNavFor drives the main slider; this keeps the visible
-    // thumbnail strip and active state aligned without double-jumping.
-    if(current===galleryIndex)sync(galleryIndex);
+  $main.on("afterChange.fcGallery",(e,slick,current)=>{
+    sync(current,true);
   });
 
-  // Explicit thumbnail click fallback for touch/desktop browsers.
   $thumbs.on("click.fcGallery",".gallery-dot",function(e){
     e.preventDefault();
     e.stopPropagation();
@@ -184,21 +187,34 @@ function renderGallery(){
     }
   });
 
-  sync(galleryIndex);
+  // Keep the thumbnail slider's own movement independent, while ensuring
+  // the active thumbnail always follows the current main image.
+  $thumbs.on("afterChange.fcGallery",(e,slick,current)=>{
+    const visible=Math.max(1,Math.min(6,p.images.length));
+    const start=Math.max(0,Math.min(galleryIndex,p.images.length-visible));
+    if(current>start || current+visible-1<galleryIndex){
+      $thumbs.slick("slickGoTo",start,true);
+    }
+    $thumbs.find(".gallery-dot").removeClass("active").eq(galleryIndex).addClass("active");
+  });
 
-  // Recalculate Slick dimensions after the modal has been painted.
+  sync(galleryIndex,true);
+
+  // The modal is painted only after .open is applied. Recalculate both
+  // Slick instances after paint and after all images report loaded.
   requestAnimationFrame(()=>{
     if($main.hasClass("slick-initialized"))$main.slick("setPosition");
     if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
   });
 
-  // If an image is late-loading, recalculate Slick again once it arrives.
   main.querySelectorAll("img").forEach(img=>{
-    if(!img.complete){
-      img.addEventListener("load",()=>{
-        if($main.hasClass("slick-initialized"))$main.slick("setPosition");
-      },{once:true});
-    }
+    const refresh=()=>{
+      if($main.hasClass("slick-initialized"))$main.slick("setPosition");
+      if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
+    };
+    if(img.complete)refresh();
+    else img.addEventListener("load",refresh,{once:true});
+    img.addEventListener("error",refresh,{once:true});
   });
 }
 function galleryStep(delta){
@@ -225,22 +241,53 @@ function bindGallery(){
   const prev=modal.querySelector("#galleryPrev");
   const next=modal.querySelector("#galleryNext");
 
-  if(closeButton)closeButton.onclick=e=>{e.preventDefault();e.stopPropagation();closeGallery()};
-  if(backdrop)backdrop.onclick=e=>{e.preventDefault();e.stopPropagation();closeGallery()};
-  if(prev)prev.onclick=e=>{e.preventDefault();e.stopPropagation();galleryStep(-1)};
-  if(next)next.onclick=e=>{e.preventDefault();e.stopPropagation();galleryStep(1)};
-
-  if(panel)panel.onclick=e=>e.stopPropagation();
-
-  modal.onclick=e=>{
-    if(e.target===modal||e.target===backdrop)closeGallery();
+  const closeFromEvent=e=>{
+    if(e){
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    closeGallery();
   };
+
+  if(closeButton)closeButton.addEventListener("click",closeFromEvent);
+  if(backdrop)backdrop.addEventListener("click",closeFromEvent);
+
+  if(prev)prev.addEventListener("click",e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    galleryStep(-1);
+  });
+
+  if(next)next.addEventListener("click",e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    galleryStep(1);
+  });
+
+  // Clicking anywhere on the modal surface outside the actual panel closes it.
+  modal.addEventListener("click",e=>{
+    if(!modal.classList.contains("open"))return;
+    if(e.target===modal || e.target===backdrop){
+      closeFromEvent(e);
+    }
+  });
+
+  // Do not let clicks inside the panel bubble to the modal backdrop.
+  if(panel)panel.addEventListener("click",e=>e.stopPropagation());
 
   document.addEventListener("keydown",e=>{
     if(!modal.classList.contains("open"))return;
-    if(e.key==="Escape"){e.preventDefault();closeGallery()}
-    else if(e.key==="ArrowLeft"){e.preventDefault();galleryStep(-1)}
-    else if(e.key==="ArrowRight"){e.preventDefault();galleryStep(1)}
+
+    if(e.key==="Escape"){
+      e.preventDefault();
+      closeGallery();
+    }else if(e.key==="ArrowLeft"){
+      e.preventDefault();
+      galleryStep(-1);
+    }else if(e.key==="ArrowRight"){
+      e.preventDefault();
+      galleryStep(1);
+    }
   });
 }
 
