@@ -60,18 +60,43 @@ function bindGallery(){
  const m=$("#productModal");if(!m)return;
  const panel=m.querySelector(".product-modal-panel");
  const backdrop=m.querySelector(".product-modal-backdrop");
- const close=()=>closeGallery();
- const closeBtn=m.querySelector("[data-modal-close]");
- if(closeBtn)closeBtn.onclick=e=>{e.preventDefault();e.stopPropagation();close()};
- if(backdrop)backdrop.onclick=e=>{e.preventDefault();close()};
- if(panel)panel.onclick=e=>e.stopPropagation();
- m.onclick=e=>{if(e.target===m)close()};
- $("#galleryPrev").onclick=e=>{e.preventDefault();galleryStep(-1)};
- $("#galleryNext").onclick=e=>{e.preventDefault();galleryStep(1)};
- let sx=0,sy=0;
- const media=$("#galleryImage");
- media.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
- media.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy))galleryStep(dx<0?1:-1)},{passive:true});
+ const closeBtn=m.querySelector(".product-modal-close");
+ const media=m.querySelector(".product-modal-media");
+ const close=()=>{if(m.classList.contains("open"))closeGallery()};
+ if(closeBtn)closeBtn.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();close()});
+ if(backdrop)backdrop.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();close()});
+ if(panel)panel.addEventListener("click",e=>e.stopPropagation());
+ m.addEventListener("click",e=>{if(e.target===m||e.target===backdrop)close()});
+ $("#galleryPrev").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();galleryStep(-1)});
+ $("#galleryNext").addEventListener("click",e=>{e.preventDefault();e.stopPropagation();galleryStep(1)});
+
+ let sx=0,sy=0,tracking=false;
+ const beginSwipe=e=>{
+   if(!galleryProduct)return;
+   const p=e.touches?.[0]||e;
+   sx=p.clientX;sy=p.clientY;tracking=true;
+ };
+ const endSwipe=e=>{
+   if(!tracking||!galleryProduct)return;
+   tracking=false;
+   const p=e.changedTouches?.[0]||e;
+   const dx=p.clientX-sx,dy=p.clientY-sy;
+   if(Math.abs(dx)>45&&Math.abs(dx)>Math.abs(dy)){
+     galleryStep(dx<0?1:-1);
+   }
+ };
+ if(media){
+   media.addEventListener("touchstart",beginSwipe,{passive:true});
+   media.addEventListener("touchend",endSwipe,{passive:true});
+   media.addEventListener("pointerdown",e=>{
+     if(e.pointerType==="mouse")return;
+     beginSwipe(e);
+   },{passive:true});
+   media.addEventListener("pointerup",e=>{
+     if(e.pointerType==="mouse")return;
+     endSwipe(e);
+   },{passive:true});
+ }
  document.addEventListener("keydown",e=>{
    if(!m.classList.contains("open"))return;
    if(e.key==="Escape"){e.preventDefault();close()}
