@@ -1457,26 +1457,33 @@ body{background:#f7f8fa!important}
 .hero-six-dot.active{border-color:#ffd400!important}
 .catalog{
   max-width:1280px!important;width:100%!important;margin:0 auto!important;
-  padding:58px 28px 90px!important;background:#f7f8fa!important;
+  padding:42px 28px 72px!important;background:#f7f8fa!important;
 }
-.catalog-head{padding-bottom:22px!important}
-.filters{margin-bottom:22px!important}
-.products{gap:16px!important}
+.catalog-head{padding-bottom:16px!important}
+.catalog-head h2{margin:5px 0 8px!important;font-size:clamp(42px,5vw,64px)!important;line-height:.98!important}
+.catalog-head p{font-size:12px!important;line-height:1.5!important;max-width:650px!important}
+.filters{margin-bottom:18px!important}
+.products{gap:14px!important}
 .product-card{
-  border-radius:18px!important;
-  box-shadow:0 7px 22px rgba(17,17,19,.055)!important;
+  border-radius:16px!important;
+  box-shadow:0 5px 18px rgba(17,17,19,.05)!important;
+  overflow:hidden!important;
 }
-.product-image{aspect-ratio:1/0.88!important}
-.product-info{padding:12px 14px 13px!important}
-.product-cat{margin-bottom:4px!important}
-.product-name{font-size:16px!important;margin:3px 0 9px!important;line-height:1.18!important}
-.product-actions{margin-top:9px!important;gap:7px!important}
+.product-image{aspect-ratio:1/0.82!important}
+.product-info{padding:10px 12px 11px!important}
+.product-cat{margin-bottom:3px!important;font-size:8px!important;letter-spacing:.08em!important}
+.product-name{font-size:15px!important;margin:2px 0 7px!important;line-height:1.12!important}
 .product-card .price-main{margin:0!important}
-.product-card .follower-price{margin-top:8px!important;padding:9px 10px!important}
-.image-count{position:absolute!important;right:12px!important;bottom:12px!important;background:rgba(20,20,20,.78)!important;color:#fff!important;border-radius:999px!important;padding:7px 10px!important;font-size:8px!important;font-weight:900!important;letter-spacing:.03em!important}
-.buy-now,.product-actions .add,.product-actions .share{height:40px!important}
-.product-actions .add,.product-actions .share{width:40px!important}
-.product-card:hover{transform:translateY(-2px)!important;box-shadow:0 14px 32px rgba(17,17,19,.09)!important}
+.product-card .price-main b{font-size:24px!important}
+.product-card .price-main small{font-size:9px!important}
+.product-card .follower-price{margin-top:6px!important;padding:7px 9px!important;font-size:8px!important}
+.product-card .follower-price strong{font-size:13px!important}
+.product-actions{margin-top:7px!important;gap:6px!important}
+.image-count{position:absolute!important;right:10px!important;bottom:10px!important;background:rgba(20,20,20,.78)!important;color:#fff!important;border-radius:999px!important;padding:6px 9px!important;font-size:8px!important;font-weight:900!important;letter-spacing:.03em!important}
+.buy-now,.product-actions .add,.product-actions .share{height:38px!important}
+.product-actions .add,.product-actions .share{width:38px!important}
+.product-card:hover{transform:translateY(-2px)!important;box-shadow:0 12px 28px rgba(17,17,19,.08)!important}
+.catalog-note{margin-top:18px!important;font-size:9px!important;line-height:1.45!important;opacity:.55!important}
 
 /* Inline gallery: no product page navigation */
 .product-modal{position:fixed;inset:0;z-index:100;display:none}
@@ -1484,11 +1491,25 @@ body{background:#f7f8fa!important}
 .product-modal-backdrop{position:absolute;inset:0;background:rgba(8,9,10,.68);backdrop-filter:blur(10px)}
 .product-modal-panel{
  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
- width:min(1040px,calc(100vw - 36px));max-height:calc(100vh - 36px);
- overflow:auto;background:#fff;border-radius:26px;padding:18px;
- box-shadow:0 35px 100px rgba(0,0,0,.28);display:grid;
- grid-template-columns:minmax(0,1.15fr) minmax(300px,.65fr);gap:24px;
+ width:min(960px,calc(100vw - 40px));max-height:calc(100vh - 40px);
+ overflow:auto;background:#fff;border-radius:24px;padding:14px;
+ box-shadow:0 35px 100px rgba(0,0,0,.30);display:grid;
+ grid-template-columns:minmax(0,1.16fr) minmax(280px,.64fr);gap:18px;
 }
+.product-modal-panel:focus{outline:none}
+.product-modal-media{aspect-ratio:1/0.92!important}
+.product-modal-info{padding:28px 14px 12px!important}
+.product-modal-info h2{font-size:clamp(30px,3.5vw,46px)!important;line-height:1!important;margin:6px 0 10px!important}
+.product-modal-info .eyebrow{font-size:8px!important;letter-spacing:.14em!important}
+.product-modal-info .price-main b{font-size:30px!important}
+.product-modal-info .price-main small{font-size:9px!important}
+.product-modal-info .follower-price{padding:8px 10px!important;margin-top:8px!important}
+.product-modal-actions{margin-top:16px!important}
+.product-modal-close{background:#111!important;color:#fff!important;border:1px solid rgba(255,255,255,.2)!important}
+.product-modal-close:hover{background:#ffd400!important;color:#111!important}
+.product-modal-backdrop{cursor:pointer!important}
+.gallery-dots{padding:0!important;min-height:46px!important}
+.gallery-dot{width:44px!important;height:44px!important;flex-basis:44px!important;border-radius:9px!important}
 .product-modal-close{
  position:absolute;right:16px;top:14px;z-index:3;width:38px;height:38px;
  border:0;border-radius:50%;background:#fff;color:#111;font-size:25px;line-height:1;cursor:pointer;
@@ -1543,23 +1564,28 @@ body{background:#f7f8fa!important}
  .hero h1{font-size:52px!important}
  .hero-art{max-width:100%!important}
  .hero-six-stage{border-radius:22px!important}
- .catalog{padding:48px 16px 72px!important}
- .catalog-head h2{font-size:46px!important}
+ .catalog{padding:36px 14px 58px!important}
+ .catalog-head{padding-bottom:12px!important}
+ .catalog-head h2{font-size:40px!important}
+ .catalog-head p{font-size:10px!important}
+ .filters{margin-bottom:13px!important}
  .products{grid-template-columns:1fr 1fr!important;gap:11px!important}
- .product-info{padding:10px 10px 11px!important}
- .product-cat{font-size:8px!important}
- .product-name{font-size:14px!important;margin:3px 0 8px!important}
+ .product-info{padding:8px 9px 9px!important}
+ .product-cat{font-size:7px!important}
+ .product-name{font-size:13px!important;margin:2px 0 6px!important}
  .product-card .follower-price{padding:7px 8px!important;font-size:9px!important}
  .product-card .follower-price strong{font-size:12px!important}
  .product-card .price-main b{font-size:19px!important}
  .product-actions .add,.product-actions .share{width:36px!important;height:36px!important}
  .buy-now{height:36px!important;font-size:8px!important}
- .product-modal-panel{grid-template-columns:1fr!important;width:calc(100vw - 20px)!important;max-height:calc(100vh - 20px)!important;border-radius:20px!important;padding:10px!important;gap:12px!important}
- .product-modal-media{border-radius:16px!important}
- .product-modal-info{padding:4px 8px 8px!important}
- .product-modal-info h2{font-size:38px!important}
- .product-modal-arrow{width:38px!important;height:38px!important}
- .gallery-dot{width:42px!important;height:42px!important;flex-basis:42px!important}
+ .product-modal-panel{grid-template-columns:1fr!important;width:calc(100vw - 18px)!important;max-height:calc(100vh - 18px)!important;border-radius:18px!important;padding:8px!important;gap:8px!important}
+ .product-modal-media{border-radius:14px!important;aspect-ratio:1/0.92!important}
+ .product-modal-info{padding:2px 7px 5px!important}
+ .product-modal-info h2{font-size:30px!important}
+ .product-modal-actions{margin-top:10px!important}
+ .product-modal-arrow{width:36px!important;height:36px!important}
+ .gallery-dot{width:40px!important;height:40px!important;flex-basis:40px!important}
+ .gallery-dots{min-height:42px!important}
 }
 </style>
 <style id="fc-inline-card-reset">
