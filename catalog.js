@@ -43,7 +43,7 @@ function renderGallery(){
  const img=$("#galleryImage");img.src=imageSrc(p.images[galleryIndex]);img.alt=p.name;
  $("#galleryName").textContent=p.name;$("#galleryCategory").textContent=p.category+" · "+p.subcategory;
  $("#galleryPrice").innerHTML=priceMarkup(p);$("#galleryCounter").textContent=(galleryIndex+1)+" / "+p.images.length;
- $("#galleryDots").innerHTML=p.images.map((src,i)=>'<button class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" style="background-image:url("'+esc(imageSrc(src))+')" aria-label="Photo '+(i+1)+'"></button>').join("");
+ $("#galleryDots").innerHTML=p.images.map((src,i)=>'<button class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" style="background-image:url(\''+esc(imageSrc(src))+'\')" aria-label="Photo '+(i+1)+'"></button>').join("");
  document.querySelectorAll("[data-gallery-index]").forEach(b=>b.onclick=()=>{galleryIndex=Number(b.dataset.galleryIndex);renderGallery()});
  $("#galleryBuy").onclick=()=>buy(p.id);
  $("#galleryAdd").onclick=()=>{if(!selection.includes(p.id))selection.push(p.id);save();toast("Added to cart")};
