@@ -7,7 +7,7 @@ const imageSrc=path=>{
   const p=String(path||"");
   if(!/\.heic$/i.test(p)) return p;
   const absolute="https://fancycorner.in/"+p.replace(/^\.\//,"");
-  return "https://wsrv.nl/?url="+encodeURIComponent(absolute)+"&output=webp&q=86&fit=cover&w=1200&h=1200";
+  return "https://wsrv.nl/?url="+encodeURIComponent(absolute)+"&output=webp&q=90&fit=contain&w=1400&h=1400";
 };
 const toast=t=>{const e=$("#toast");if(!e)return;e.textContent=t;e.classList.add("show");clearTimeout(window.__t);window.__t=setTimeout(()=>e.classList.remove("show"),1800)};
 const get=id=>catalog.find(p=>p.id===id);
