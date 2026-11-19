@@ -3294,15 +3294,19 @@ body{background:#f7f8fa!important}
 }
 .gallery-dots{
   grid-area:dots!important;
+  width:100%!important;
   min-width:0!important;
   min-height:56px!important;
   display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:nowrap!important;
   align-items:center!important;
   justify-content:flex-start!important;
   gap:9px!important;
   overflow-x:auto!important;
   overflow-y:hidden!important;
   padding:2px 3px 5px!important;
+  box-sizing:border-box!important;
   scrollbar-width:none!important;
 }
 .gallery-dots::-webkit-scrollbar{display:none!important}
