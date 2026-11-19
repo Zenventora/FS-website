@@ -4945,6 +4945,34 @@ body{background:#f7f8fa!important}
   }
 }
 </style>
+<style id="fc-gallery-image-visibility-final">
+/* FINAL FIX: Slick must not hide the gallery image itself.
+   Slick controls which slide is visible; the image inside each slide
+   must remain paintable after modal/layout recalculation. */
+.product-modal-media .gallery-slider .slick-slide .gallery-slide img,
+.product-modal-media .gallery-slider .gallery-slide img{
+  display:block!important;
+  visibility:visible!important;
+  opacity:1!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+}
+.product-modal-media .gallery-slider .slick-slide[aria-hidden="true"] .gallery-slide img{
+  opacity:1!important;
+  visibility:visible!important;
+}
+/* Slick itself handles slide positioning; don't let the image visibility
+   state become dependent on aria-hidden/current timing. */
+.product-modal-media .gallery-slider .slick-slide{
+  visibility:visible!important;
+}
+</style>
 </head>
 <body>
 <header class="header">
