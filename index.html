@@ -4900,6 +4900,51 @@ body{background:#f7f8fa!important}
   }
 }
 </style>
+<style id="fc-final-card-action-spacing">
+/* FINAL MOBILE PRODUCT CARD ACTION SPACING */
+.product-card .product-actions{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 52px 52px!important;
+  gap:10px!important;
+  align-items:center!important;
+  width:100%!important;
+}
+.product-card .product-actions .buy-now{
+  min-width:0!important;
+  width:100%!important;
+}
+.product-card .product-actions .add,
+.product-card .product-actions .share{
+  width:52px!important;
+  min-width:52px!important;
+  height:52px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+}
+.product-card .product-actions .add{
+  padding:0!important;
+}
+.product-card .product-actions .share{
+  padding:0!important;
+}
+.product-card .product-actions .share svg{
+  width:21px!important;
+  height:21px!important;
+}
+@media(max-width:700px){
+  .product-card .product-actions{
+    grid-template-columns:minmax(0,1fr) 50px 50px!important;
+    gap:9px!important;
+  }
+  .product-card .product-actions .add,
+  .product-card .product-actions .share{
+    width:50px!important;
+    min-width:50px!important;
+    height:50px!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
