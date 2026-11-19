@@ -1,55 +1,75 @@
 # Fancy Corner Online
 
-> Premium online product catalogue for Fancy Corner Online, Coimbatore, Tamil Nadu, India.
+> Fancy Corner Online is a Coimbatore, Tamil Nadu, India product catalogue for miniatures, RC cars, collectible bikes, vintage cars and related collectibles.
 
-## Brand
-- Name: Fancy Corner Online
-- Website: https://fancycorner.in/
-- Location: No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India.
-- Phone/WhatsApp: +91 79046 39830
-- Email: fancycorneronline@gmail.com
+## Primary sources
+
+- https://fancycorner.in/
+- https://fancycorner.in/products.json
+- https://fancycorner.in/faq.html
+- https://fancycorner.in/privacy-policy.html
+- https://fancycorner.in/terms-and-conditions.html
+- https://fancycorner.in/sitemap.xml
 
 ## Product hierarchy
+
 - Miniatures
   - Vintage Cars → Vintage Cars – 6 Car Combo
   - Super Bikes → Super Bikes – 6 Bike Combo
   - Bikes → Yamaha RX100
   - Bikes → Die Cast Royal Enfield
   - Cycles → Die Cast Cycle
-  - RC Cars → RC Car Combo
+  - RC Cars → RC Car Combo (inactive)
 - RC Cars
   - Racing Drift Car
 
-## Product image policy
-- Combo products use six unique images selected from their product folder for the main product gallery.
-- Individual products use all unique images in their assigned product folder to represent different product angles.
-- Exact duplicate binary images were checked across the active product folders; no duplicate SHA groups were found.
-- Product cards use one primary image and show the total gallery image count. Product detail pages expose the full assigned gallery.
+## Product data
 
-## Current pricing
-- Vintage Cars – 6 Car Combo: ₹849; followers price ₹799; free shipping.
-- Super Bikes – 6 Bike Combo: ₹849; followers price ₹799; free shipping.
-- Yamaha RX100: ₹899; followers price ₹799; free shipping.
-- Die Cast Royal Enfield: ₹899; followers price ₹799; free shipping.
-- Die Cast Cycle: ₹240 + ₹70 shipping; followers price ₹199 + shipping.
-- RC Car Combo: price to be confirmed.
-- Racing Drift Car: ₹2300 + ₹70 shipping; followers price ₹1999 + free shipping.
+The catalogue is driven by products.json. Each product record contains an ID, name, category, subcategory, type, description, image list and pricing fields when available.
 
-## Customer flow
-- Buy Now opens WhatsApp with the selected product name and canonical product URL.
-- Add to Cart stores multiple selected products locally.
-- Cart checkout sends the complete selected product list to WhatsApp.
-- Share uses the product's canonical URL so the recipient lands on the exact product page.
-- Product pages contain product-specific title, description, Open Graph metadata and Product structured data.
+Active products currently listed in the catalogue:
+- Vintage Cars – 6 Car Combo — ₹849; followers price ₹799; + shipping charges.
+- Super Bikes – 6 Bike Combo — ₹849; followers price ₹799; + shipping charges.
+- Yamaha RX100 — ₹899; followers price ₹799; + shipping charges.
+- Die Cast Royal Enfield — ₹899; followers price ₹799; + shipping charges.
+- Die Cast Cycle — ₹240; followers price ₹199; + shipping charges.
+- Racing Drift Car — ₹2300; followers price ₹1999; + shipping charges.
 
-## Search / AEO / LLM
-- Homepage includes Organization/OnlineStore, LocalBusiness, WebSite and product ItemList structured data.
-- Product pages include Product structured data, product images, price/member-price information where available, canonical URLs and social metadata.
-- Sitemap includes all active product URLs.
-- robots.txt allows crawling and references the sitemap.
-- llms.txt documents the product hierarchy, pricing and customer flows.
+RC Car Combo is currently marked inactive in products.json and should not be presented as an active catalogue product.
+
+## Product discovery URLs
+
+Product-specific catalogue URLs use:
+https://fancycorner.in/?product=PRODUCT_ID
+
+These URLs open the matching product in the existing catalogue UI. Product SEO metadata and Product/ItemList structured data are generated from products.json, so new active products inherit the same SEO/AEO/LLM treatment when they are added to that data source.
+
+## Business context
+
+Fancy Corner Online is based at No.12, Bilal Estate, South Ukkadam, Coimbatore – 641001, Tamil Nadu, India.
+
+Phone / WhatsApp: +91 79046 39830
+Email: fancycorneronline@gmail.com
+
+For current availability, final pricing, shipping and order confirmation, customers should contact Fancy Corner Online directly through the website enquiry flow or WhatsApp.
+
+## Search, AEO and LLM context
+
+Use the product name, category, subcategory and description as the primary product context. Product images are part of the product record. Do not infer specifications, stock, delivery fees, discounts, materials or availability that are not present in the product data.
+
+Natural-language discovery topics include:
+- miniature cars and collectible cars in Coimbatore
+- miniature bikes and die-cast bikes
+- vintage car miniatures
+- RC cars and racing drift cars
+- collectible miniatures and gifting
+- Fancy Corner Online product catalogue
+- Fancy Corner Online Coimbatore
+
+The site provides clear product information first and uses direct enquiry for current availability and final order details.
 
 ## Social profiles
+
 - Instagram: https://www.instagram.com/fancycorneronline/
 - YouTube: https://www.youtube.com/@FancyCornerOnline
 - Facebook: https://www.facebook.com/profile.php?id=61596729560426
@@ -57,5 +77,6 @@
 - X: https://x.com/fancycorner_
 
 ## Brand asset
-- Canonical logo: /images/logo.jpeg
+
+- Canonical logo: https://fancycorner.in/images/logo.jpeg
 - Favicon uses the same brand asset.
