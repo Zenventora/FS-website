@@ -4973,6 +4973,57 @@ body{background:#f7f8fa!important}
   visibility:visible!important;
 }
 </style>
+<style id="fc-slick-geometry-final">
+/* FINAL: restore Slick's native track geometry. Previous gallery overrides
+   forced the track to 100% and removed the slide float, which can leave the
+   active image outside the visible viewport even though arrows/thumbnails
+   and the slide index continue to work. */
+.product-modal-media .gallery-slider .slick-list{
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .slick-track{
+  display:block!important;
+  height:100%!important;
+  /* Let Slick's own inline track width win. */
+  width:auto!important;
+}
+.product-modal-media .gallery-slider .slick-slide{
+  float:left!important;
+  display:block!important;
+  height:100%!important;
+  min-height:100%!important;
+}
+.product-modal-media .gallery-slider .slick-slide > div,
+.product-modal-media .gallery-slider .gallery-slide{
+  width:100%!important;
+  height:100%!important;
+  min-height:100%!important;
+}
+.product-modal-media .gallery-slider .gallery-slide{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .gallery-slide img{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  visibility:visible!important;
+  opacity:1!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  transform:none!important;
+}
+.product-modal-media .gallery-slider .slick-slide[aria-hidden="true"]{
+  visibility:visible!important;
+}
+</style>
 </head>
 <body>
 <header class="header">
