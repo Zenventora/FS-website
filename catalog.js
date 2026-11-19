@@ -133,7 +133,7 @@ function renderGallery(){
   destroyGallerySliders();
 
   const images=p.images.map(imageSrc);
-  const originals=p.images.map(v=>String(v||"").replace(/^\\.\\//,"https://fancycorner.in/"));
+  const originals=p.images.map(v=>String(v||"").replace(/^\.\//,"https://fancycorner.in/"));
 
   // Native gallery implementation: no Slick dependency for the main popup.
   // A single horizontal track is translated to the active image. This keeps
