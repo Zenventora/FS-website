@@ -4808,6 +4808,98 @@ body{background:#f7f8fa!important}
   }
 }
 </style>
+<style id="fc-final-gallery-visible-pass">
+/* FINAL: keep Slick geometry intact and explicitly paint the active slide. */
+.product-modal-media .gallery-slider{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .slick-list{
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .slick-track{
+  height:100%!important;
+}
+.product-modal-media .gallery-slider .slick-slide{
+  height:100%!important;
+}
+.product-modal-media .gallery-slider .slick-slide > div,
+.product-modal-media .gallery-slider .gallery-slide{
+  width:100%!important;
+  height:100%!important;
+}
+.product-modal-media .gallery-slider .gallery-slide{
+  position:relative!important;
+  overflow:hidden!important;
+}
+.product-modal-media .gallery-slider .gallery-slide img{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:100%!important;
+  min-height:100%!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:cover!important;
+  object-position:center center!important;
+  opacity:0!important;
+  visibility:visible!important;
+  z-index:1!important;
+}
+.product-modal-media .gallery-slider .slick-current .gallery-slide img,
+.product-modal-media .gallery-slider .slick-current img{
+  opacity:1!important;
+  visibility:visible!important;
+  z-index:2!important;
+}
+.product-modal-media .gallery-slider .slick-slide[aria-hidden="true"]{
+  visibility:visible!important;
+}
+.product-modal-media .gallery-slider .slick-slide[aria-hidden="true"] img{
+  opacity:0!important;
+}
+
+/* Mobile CTA row: Buy Now + Plus + Share should have clean breathing room. */
+@media(max-width:760px){
+  .product-modal-actions{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 44px!important;
+    gap:10px!important;
+    align-items:center!important;
+  }
+  .product-modal-actions .buy-now{
+    width:100%!important;
+    min-width:0!important;
+    height:44px!important;
+    min-height:44px!important;
+    padding:0 14px!important;
+  }
+  .product-modal-actions .add{
+    width:44px!important;
+    min-width:44px!important;
+    height:44px!important;
+    border-radius:13px!important;
+  }
+  .product-modal-actions .share{
+    width:44px!important;
+    min-width:44px!important;
+    height:44px!important;
+    border-radius:13px!important;
+    margin-left:0!important;
+  }
+  .product-modal-actions .share svg{
+    width:20px!important;
+    height:20px!important;
+  }
+}
+</style>
 </head>
 <body>
 <header class="header">
