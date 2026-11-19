@@ -132,20 +132,21 @@ function renderGallery(){
 
   destroyGallerySliders();
 
-  // Load every gallery image immediately. This avoids blank Slick slides
-  // when the modal changes to a slide whose image was still lazy-loading.
   const images=p.images.map(imageSrc);
-  const originals=p.images.map(v=>String(v||"").replace(/^\.\//,"https://fancycorner.in/"));
-  main.innerHTML=images.map((image,i)=>
+  const originals=p.images.map(v=>String(v||"").replace(/^\\.\\//,"https://fancycorner.in/"));
+
+  // Native gallery implementation: no Slick dependency for the main popup.
+  // A single horizontal track is translated to the active image. This keeps
+  // every image in the DOM and avoids Slick's width calculation problems
+  // inside a modal that changes from display:none to visible.
+  main.innerHTML='<div class="fc-native-gallery-track">'+images.map((image,i)=>
     '<div class="gallery-slide" data-gallery-slide="'+i+'">'+
-      '<img src="'+esc(image)+'" data-original-src="'+esc(originals[i])+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager" decoding="async" style="display:block;width:100%;height:100%;visibility:visible;opacity:1;object-fit:cover;object-position:center center">'+
+      '<img src="'+esc(image)+'" data-original-src="'+esc(originals[i])+'" alt="'+esc(p.name)+' — photo '+(i+1)+'" draggable="false" loading="eager" decoding="async">'+
     '</div>'
-  ).join("");
+  ).join("")+'</div>';
 
   thumbs.innerHTML=images.map((image,i)=>
-    '<div class="gallery-thumb-slide">'+
-      '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url(\''+esc(image)+'\')"></button>'+
-    '</div>'
+    '<button type="button" class="gallery-dot '+(i===galleryIndex?"active":"")+'" data-gallery-index="'+i+'" aria-label="Photo '+(i+1)+'" style="background-image:url(\''+esc(image)+'\')"></button>'
   ).join("");
 
   $("#galleryName").textContent=p.name;
@@ -154,174 +155,117 @@ function renderGallery(){
   $("#galleryPrice").innerHTML=priceMarkup(p);
   $("#galleryCounter").textContent=(galleryIndex+1)+" / "+p.images.length;
 
-  const jq=window.jQuery;
-  if(!(jq&&jq.fn&&jq.fn.slick)){
-    main.innerHTML='<div class="gallery-slide"><img src="'+esc(images[galleryIndex])+'" alt="'+esc(p.name)+'"></div>';
-    return;
-  }
+  const track=main.querySelector(".fc-native-gallery-track");
+  const slides=Array.from(main.querySelectorAll(".gallery-slide"));
 
-  const $main=jq(main);
-  const $thumbs=jq(thumbs);
-
-  // Initialize the main Slick first. The thumbnails are synchronized
-  // explicitly below so Slick never depends on an uninitialized partner.
-  // The popup is already visible here; keeping the slider measurable before
-  // initialization prevents Slick from creating zero-width/blank slides.
-  main.style.visibility="visible";
-  main.style.opacity="1";
-  $main.slick({
-    slidesToShow:1,
-    slidesToScroll:1,
-    initialSlide:galleryIndex,
-    arrows:false,
-    dots:false,
-    infinite:p.images.length>1,
-    autoplay:p.images.length>1,
-    autoplaySpeed:3500,
-    pauseOnHover:true,
-    pauseOnFocus:false,
-    speed:350,
-    fade:false,
-    swipe:true,
-    draggable:true,
-    touchMove:true,
-    adaptiveHeight:false,
-    accessibility:true
+  Object.assign(main.style,{
+    display:"block",
+    position:"relative",
+    width:"100%",
+    height:"100%",
+    overflow:"hidden",
+    visibility:"visible",
+    opacity:"1"
   });
 
-  $thumbs.slick({
-    slidesToShow:Math.min(6,p.images.length),
-    slidesToScroll:1,
-    arrows:false,
-    dots:false,
-    infinite:false,
-    focusOnSelect:false,
-    swipe:true,
-    draggable:true,
-    touchMove:true,
-    variableWidth:false,
-    centerMode:false,
-    responsive:[
-      {breakpoint:760,settings:{slidesToShow:Math.min(5,p.images.length)}},
-      {breakpoint:520,settings:{slidesToShow:Math.min(4,p.images.length)}}
-    ]
+  Object.assign(track.style,{
+    display:"flex",
+    width:(p.images.length*100)+"%",
+    height:"100%",
+    transform:"translate3d(-"+(galleryIndex*100/p.images.length)+"%,0,0)",
+    transition:"transform 350ms ease",
+    willChange:"transform"
   });
 
-  const sync=(index,moveThumb=true)=>{
-    galleryIndex=index;
-    $("#galleryCounter").textContent=(index+1)+" / "+p.images.length;
-    $thumbs.find(".gallery-dot").removeClass("active").eq(index).addClass("active");
+  slides.forEach(slide=>{
+    Object.assign(slide.style,{
+      flex:"0 0 "+(100/p.images.length)+"%",
+      width:(100/p.images.length)+"%",
+      height:"100%",
+      minWidth:"0",
+      minHeight:"0",
+      display:"block",
+      position:"relative",
+      overflow:"hidden"
+    });
+    const img=slide.querySelector("img");
+    if(img){
+      Object.assign(img.style,{
+        display:"block",
+        width:"100%",
+        height:"100%",
+        minWidth:"100%",
+        minHeight:"100%",
+        maxWidth:"none",
+        maxHeight:"none",
+        visibility:"visible",
+        opacity:"1",
+        objectFit:"cover",
+        objectPosition:"center center",
+        background:"#f1f2f3"
+      });
 
-    if(moveThumb && $thumbs.hasClass("slick-initialized")){
-      const visible=Math.max(1,Math.min(6,p.images.length));
-      const maxStart=Math.max(0,p.images.length-visible);
-      const target=Math.max(0,Math.min(index,maxStart));
-      $thumbs.slick("slickGoTo",target,true);
+      const refresh=()=>{
+        img.style.display="block";
+        img.style.visibility="visible";
+        img.style.opacity="1";
+      };
+      img.addEventListener("load",refresh,{once:true});
+      img.addEventListener("error",()=>{
+        const fallback=img.dataset.originalSrc;
+        if(fallback && img.src!==fallback && !img.dataset.fallbackTried){
+          img.dataset.fallbackTried="1";
+          img.src=fallback;
+        }
+        refresh();
+      });
+      if(img.complete)refresh();
     }
+  });
+
+  const updateThumbState=()=>{
+    thumbs.querySelectorAll(".gallery-dot").forEach((dot,i)=>{
+      dot.classList.toggle("active",i===galleryIndex);
+    });
+    const active=thumbs.querySelector(".gallery-dot.active");
+    if(active)active.scrollIntoView({behavior:"smooth",block:"nearest",inline:"center"});
   };
 
-  $main.on("afterChange.fcGallery",(e,slick,current)=>{
-    sync(current,true);
-  });
-
-  $thumbs.on("click.fcGallery",".gallery-dot",function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    const index=Number(this.dataset.galleryIndex);
-    if(Number.isInteger(index) && index>=0 && index<p.images.length){
-      $main.slick("slickGoTo",index);
-    }
-  });
-
-  // Keep the thumbnail slider's own movement independent, while ensuring
-  // the active thumbnail always follows the current main image.
-  $thumbs.on("afterChange.fcGallery",(e,slick,current)=>{
-    const visible=Math.max(1,Math.min(6,p.images.length));
-    const start=Math.max(0,Math.min(galleryIndex,p.images.length-visible));
-    if(current>start || current+visible-1<galleryIndex){
-      $thumbs.slick("slickGoTo",start,true);
-    }
-    $thumbs.find(".gallery-dot").removeClass("active").eq(galleryIndex).addClass("active");
-  });
-
-  sync(galleryIndex,true);
-
-  // Force Slick onto the requested slide after initialization. This also
-  // makes the first image deterministic when the popup was opened from a
-  // product URL rather than by a card click.
-  if($main.hasClass("slick-initialized")){
-    $main.slick("slickGoTo",galleryIndex,true);
-    $main.slick("setPosition");
-  }
-
-  // The modal is painted only after .open is applied. Recalculate both
-  // Slick instances after paint and after all images report loaded.
-  requestAnimationFrame(()=>{
-    if($main.hasClass("slick-initialized"))$main.slick("setPosition");
-    if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
-  });
-
-  const refreshGalleryLayout=()=>{
-    if($main.hasClass("slick-initialized")){
-      $main.slick("setPosition");
-      $main.slick("slickGoTo",galleryIndex,true);
-    }
-    if($thumbs.hasClass("slick-initialized"))$thumbs.slick("setPosition");
-
-    // Slick can calculate a zero/incorrect slide size when a modal has just
-    // changed from display:none to visible. Force the current image to occupy
-    // the measurable square stage after every layout pass.
-    main.querySelectorAll(".slick-slide img, .gallery-slide img").forEach(img=>{
-      img.style.display="block";
-      img.style.visibility="visible";
-      img.style.opacity="1";
-      img.style.width="100%";
-      img.style.height="100%";
-      img.style.objectFit="cover";
-      img.style.objectPosition="center center";
-    });
+  const goTo=(index)=>{
+    const count=p.images.length;
+    if(!count)return;
+    galleryIndex=((index%count)+count)%count;
+    track.style.transform="translate3d(-"+(galleryIndex*100/count)+"%,0,0)";
+    $("#galleryCounter").textContent=(galleryIndex+1)+" / "+count;
+    updateThumbState();
   };
 
-  main.querySelectorAll("img").forEach(img=>{
-    const refresh=()=>{
-      refreshGalleryLayout();
-      if(typeof img.decode==="function"){
-        img.decode().then(refreshGalleryLayout).catch(()=>{});
-      }
-    };
+  main.__fcGoTo=goTo;
 
-    img.addEventListener("load",refresh,{once:true});
-    img.addEventListener("error",()=>{
-      // HEIC proxy failures should not leave a blank modal. Try the direct
-      // source once as a fallback before giving up.
-      const fallback=img.dataset.originalSrc;
-      if(fallback && img.src!==fallback && !img.dataset.fallbackTried){
-        img.dataset.fallbackTried="1";
-        img.src=fallback;
-      }
-      refreshGalleryLayout();
+  thumbs.querySelectorAll(".gallery-dot").forEach(dot=>{
+    dot.addEventListener("click",e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      goTo(Number(dot.dataset.galleryIndex));
     });
-
-    if(img.complete)refresh();
   });
 
-  // Recalculate after the modal has painted and again after the browser has
-  // completed its next layout passes. This is important for Slick in a
-  // container that was previously display:none.
-  [0,50,150,300].forEach(ms=>setTimeout(refreshGalleryLayout,ms));
-  window.addEventListener("resize",refreshGalleryLayout,{passive:true});
+  // Keep the current slide stable after the modal/browser performs a layout.
+  requestAnimationFrame(()=>goTo(galleryIndex));
+  setTimeout(()=>goTo(galleryIndex),50);
+  setTimeout(()=>goTo(galleryIndex),150);
 }
+
 function galleryStep(delta){
   if(!galleryProduct)return;
-  const jq=window.jQuery;
   const main=$("#gallerySlider");
-
-  if(jq&&jq.fn&&jq.fn.slick&&jq(main).hasClass("slick-initialized")){
-    jq(main).slick(delta<0?"slickPrev":"slickNext");
+  if(main && typeof main.__fcGoTo==="function"){
+    main.__fcGoTo(galleryIndex+delta);
     return;
   }
-
-  galleryIndex=(galleryIndex+delta+galleryProduct.images.length)%galleryProduct.images.length;
+  const count=galleryProduct.images.length;
+  if(!count)return;
+  galleryIndex=((galleryIndex+delta)%count+count)%count;
   renderGallery();
 }
 
