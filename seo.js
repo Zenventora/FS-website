@@ -4,6 +4,7 @@
   const SITE = "https://fancycorner.in";
   const ORG_ID = SITE + "/#organization";
   const STORE_ID = SITE + "/#store";
+  const BRAND_ALIASES = ["Fancy Corner","Fancy Corner Online","Fancy Corner Coimbatore","Fancy Corner Ukkadam","Fancy Store Coimbatore","Fancy Store Ukkadam","Fancy Store Online","Fancy Stores in Coimbatore"];
 
   const absoluteImage = (value) => {
     const raw = String(value || "").replace(/^\\.\\//, SITE + "/");
@@ -129,6 +130,7 @@
         "@type": "Organization",
         "@id": ORG_ID,
         "name": "Fancy Corner Online",
+        "alternateName": BRAND_ALIASES,
         "url": SITE + "/",
         "logo": SITE + "/images/logo.jpeg",
         "email": "fancycorneronline@gmail.com",
@@ -166,7 +168,10 @@
         },
         "parentOrganization": {
           "@id": ORG_ID
-        }
+        },
+        "areaServed": [{"@type":"City","name":"Coimbatore"},{"@type":"Place","name":"Ukkadam, Coimbatore"},{"@type":"State","name":"Tamil Nadu"}],
+        "serviceType": ["Online fancy store","Fancy article store","Miniature and collectible store","RC car store"],
+        "knowsAbout": ["Miniature cars","Miniature bikes","Vintage car collectibles","RC cars","Collectible gifts"]
       },
       {
         "@type": "WebSite",
@@ -182,7 +187,7 @@
         "@id": SITE + "/#webpage",
         "url": SITE + "/",
         "name": "Fancy Corner Online Product Catalogue",
-        "description": "Product catalogue for miniatures, RC cars, collectible bikes and vintage cars in Coimbatore.",
+        "description": "Online product catalogue for Fancy Corner Online, a Coimbatore and Ukkadam-based fancy store offering miniatures, RC cars, collectible bikes, vintage cars and related collectibles.",
         "isPartOf": {
           "@id": SITE + "/#website"
         },
